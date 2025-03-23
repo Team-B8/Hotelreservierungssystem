@@ -1,17 +1,17 @@
 # Team-B8 | Hotelreservierungssystem
 
 ## Autoren
-Yaren Akinci
-Kerem Akkaya
-Lou Brauchli
-Haris Salii
+<p>Yaren Akinci</p>
+<p>Kerem Akkaya</p>
+<p>Lou Brauchli</p>
+<p>Haris Salii</p>
 
 ## Ressourcen
 - Link zur Deepnote-Dokumentation:
 - Link zu den Scrum Meetings und Sprint Reviews:
 - Link zum Scrum Board:
 
-## Metheodologie / Projektmanagement
+## Methodologie / Projektmanagement
 
 
 
