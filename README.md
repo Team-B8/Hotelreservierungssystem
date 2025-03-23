@@ -12,7 +12,7 @@
 - Link zum Scrum Board:
 
 ## Methodologie / Projektmanagement
-
+Scrum
 
 
 ## User Stories
@@ -58,7 +58,7 @@ Mindestens zwei der folgenden User Stories auswählen:
 
 ### User Stories mit Datenvisualisierung
 
-eine der folgenden User Stories 
+Eine der folgenden User Stories auswählen:
 
 1. Als Admin möchte ich die Belegungsraten für jeden Zimmertyp in meinem Hotel sehen, damit ich weiss, welche Zimmer am beliebtesten sind und ich meine Buchungsstrategien optimieren kann. Hint: Wählt ein geeignetes Diagramm, um die Auslastung nach Zimmertyp darzustellen (z. B. wie oft jeder Zimmertyp gebucht wird).
 2. Als Admin möchte ich eine Aufschlüsselung der demografischen Merkmale meiner Gäste sehen, damit ich gezieltes Marketing planen kann. Hint: Wählt ein geeignetes Diagramm, um die Verteilung der Gäste nach verschiedenen Merkmalen darzustellen (z. B. Altersspanne, Nationalität, wiederkehrende Gäste). Möglicherweise müssen Sie der Tabelle „Gäste“ einige Spalten hinzufügen.
