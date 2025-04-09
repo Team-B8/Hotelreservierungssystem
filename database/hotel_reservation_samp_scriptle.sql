@@ -85,6 +85,17 @@ CREATE TABLE Room_Facilities (
     FOREIGN KEY (facility_id) REFERENCES Facilities(facility_id) ON DELETE CASCADE
 );
 
+CREATE TABLE Rating (
+	-- Author: Team 8
+	rating_id    INTEGER PRIMARY KEY,
+	guest_id     INTEGER NOT NULL,
+	hotel_id     INTEGER NOT NULL,
+	stars        INTEGER NOT NULL CHECK (stars BETWEEN 1 AND 5),
+	comment      TEXT,
+	created_date   DATE DEFAULT CURRENT_DATE,
+	FOREIGN KEY (guest_id) REFERENCES Guest(guest_id) ON DELETE CASCADE,
+	FOREIGN KEY (hotel_id) REFERENCES Hotel(hotel_id) ON DELETE CASCADE
+);
 
 INSERT INTO Address (address_id, street, city, zip_code) VALUES
 (1, 'Bahnhofstrasse 1', 'Zürich', '8001'),
@@ -150,3 +161,9 @@ INSERT INTO Room_Facilities (room_id, facility_id) VALUES
 (2, 1), -- Room 102 has WiFi
 (3, 3), -- Room 201 has Air Conditioning
 (4, 4); -- Room 301 has Mini Bar
+
+INSERT INTO Rating (rating_id, guest_id, hotel_id, stars, comment, created_date) VALUES
+(1, 1, 1, 5, 'Wunderschönes Hotel mit hervorragendem Service.', '2025-06-06'),
+(2, 2, 2, 4, 'Tolles Frühstück und zentrale Lage.', '2025-07-16'),
+(3, 3, 3, 3, 'Schöne Aussicht, aber etwas laut in der Nacht.', '2025-08-23'),
+(4, 5, 5, 5, 'Ein Erlebnis der Extraklasse. Uneingeschränkt empfehlenswert.', '2025-10-08');
