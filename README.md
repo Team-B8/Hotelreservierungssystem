@@ -12,8 +12,13 @@
 - Link zum Scrum Board:
 
 ## Methodologie / Projektmanagement
-Scrum
+Scrum erklären und wie wir gearbeitet haben. Auf Sprint Meeting und Reviews in DeepNote verweisen.
 
+## ERD Diagramm
+![ERD Diagramm](/images/ERD_Hotelreservierung.jpg)
+
+## UML Diagramm
+![UML Diagramm](/images/UML_Hotelreservierung.jpg)
 
 ## User Stories
 ### Minimale User Stories
