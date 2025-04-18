@@ -1,21 +1,34 @@
 from data_access.hotel_dal import HotelDAL
 from model.hotel import Hotel
 
-class HotelManager:
-    def __init__(self):
-        self.__hotel_dal = HotelDAL()
+class Hotel:
+    def __init__(self, hotel_id: int, name: str, stars: int):
+        self.__hotel_id = hotel_id
+        self.__name = name
+        self.__stars = stars
 
-    def get_hotel(self, hotel_id: int) -> Hotel | None:
-        return self.__hotel_dal.get_hotel_by_id(hotel_id)
+    def get_hotel_id(self) -> int:
+        return self.__hotel_id
 
-    def delete_hotel(self, hotel_id: int) -> None:
-        self.__hotel_dal.delete_hotel_by_id(hotel_id)
+    def get_name(self) -> str:
+        return self.__name
 
-    def add_hotel(self, hotel: Hotel) -> None:
-        self.__hotel_dal.insert_hotel(hotel)
+    def set_name(self, name: str) -> None:
+        self.__name = name
 
-    def update_hotel_name(self, hotel_id: int, new_name: str) -> None:
-        self.__hotel_dal.update_hotel_name(hotel_id, new_name)
+    def get_stars(self) -> int:
+        return self.__stars
 
-    def update_hotel_stars(self, hotel_id: int, new_stars: int) -> None:
-        self.__hotel_dal.update_hotel_stars(hotel_id, new_stars)
+    def set_stars(self, stars: int) -> None:
+        self.__stars = stars
+
+    def delete(self) -> None:
+        del self
+
+    def get_rooms(self) -> list:
+        # Placeholder for getting rooms associated with the hotel
+        return []
+
+    def get_available_rooms(self, start: str, end: str) -> list:
+        # Placeholder for checking available rooms in the given date range
+        return []
