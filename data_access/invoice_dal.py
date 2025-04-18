@@ -1,25 +1,45 @@
-from data_access.base_dal import BaseDal
+from data_access.base_dal import BaseDAL
 from model.invoice import Invoice
-from datetime import date
 
-class InvoiceDAL(BaseDal):
-    def create_invoice(self, booking_id: int, issue_date: date, total_amount: float, is_paid: bool = False) -> Invoice:
-        sql = """
-            INSERT INTO Invoice (booking_id, issue_date, total_amount, is_paid)
-            VALUES (?, ?, ?, ?)
-        """
-        params = (booking_id, issue_date, total_amount, int(is_paid))
-        last_id, _ = self.execute(sql, params)
-        return Invoice(last_id, booking_id, issue_date, total_amount, is_paid)
-
-    def get_invoice_by_id(self, invoice_id: int) -> Invoice | None:
-        sql = "SELECT invoice_id, booking_id, issue_date, total_amount, is_paid FROM Invoice WHERE invoice_id = ?"
-        result = self.fetchone(sql, (invoice_id,))
-        if result:
-            invoice_id, booking_id, issue_date, total_amount, is_paid = result
-            return Invoice(invoice_id, booking_id, issue_date, total_amount, bool(is_paid))
+class InvoiceDAL(BaseDAL):
+    """Data access layer for the invoices table."""
+    def get_by_id(self, invoice_id: int) -> Invoice:
+        cursor = self.conn.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,))
+        row = cursor.fetchone()
+        if row:
+            return Invoice(**row)
         return None
 
-    def mark_as_paid(self, invoice_id: int):
-        sql = "UPDATE Invoice SET is_paid = 1 WHERE invoice_id = ?"
-        self.execute(sql, (invoice_id,))
+    def get_by_booking_id(self, booking_id: int) -> Invoice:
+        cursor = self.conn.execute("SELECT * FROM invoices WHERE booking_id=?", (booking_id,))
+        row = cursor.fetchone()
+        if row:
+            return Invoice(**row)
+        return None
+
+    def get_all(self) -> list[Invoice]:
+        cursor = self.conn.execute("SELECT * FROM invoices")
+        rows = cursor.fetchall()
+        return [Invoice(**row) for row in rows]
+
+    def create(self, invoice: Invoice) -> Invoice:
+        cursor = self.conn.execute(
+            "INSERT INTO invoices (booking_id, amount, paid) VALUES (?, ?, ?)",
+            (invoice.booking_id, invoice.amount, 1 if invoice.paid else 0)
+        )
+        self.conn.commit()
+        invoice.id = cursor.lastrowid
+        return invoice
+
+    def update(self, invoice: Invoice) -> bool:
+        result = self.conn.execute(
+            "UPDATE invoices SET booking_id=?, amount=?, paid=? WHERE id=?",
+            (invoice.booking_id, invoice.amount, 1 if invoice.paid else 0, invoice.id)
+        )
+        self.conn.commit()
+        return result.rowcount > 0
+
+    def delete(self, invoice_id: int) -> bool:
+        result = self.conn.execute("DELETE FROM invoices WHERE id=?", (invoice_id,))
+        self.conn.commit()
+        return result.rowcount > 0
