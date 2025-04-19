@@ -3,7 +3,7 @@ class Facilities:
         self._facility_id = facility_id
         self._facility_name = facility_name
         self._is_deleted = False
-
+#Nigeria
     @property
     def facility_id(self):
         return self._facility_id
