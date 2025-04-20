@@ -29,7 +29,10 @@ class Guest:
         self.__bookings = []  # list to store associated bookings
         self.__is_deleted = False  # flag to mark logical deletion
 
-
+    def __repr__(self):
+        # defines how the guest object is represented as string
+        return f"Guest(id={self._guest_id}, name={self.__first_name} {self.__last_name}, email={self.__email})"
+        
     @property
     def guest_id(self):
         return self.__guest_id
@@ -48,27 +51,27 @@ class Guest:
 
     @first_name.setter
     def first_name(self, new_first_name):
-        # update first name only if it is different
-        if new_first_name != self.__first_name:
-            self.__first_name = new_first_name
-        else:
-            print(f"The new first name is the same as the first name before.")
+        if not new_first_name:
+            raise ValueError("first_name is required")
+        if not isinstance(new_first_name, str):
+            raise ValueError("first_name must be a string")
+        self.__first_name = new_first_name
 
     @last_name.setter
     def last_name(self, new_last_name):
-        # update last name only if it is different
-        if new_last_name != self.__last_name:
-            self.__last_name = new_last_name
-        else:
-            print(f"The new last name is the same as the last name before.")
+        if not new_last_name:
+            raise ValueError("last_name is required")
+        if not isinstance(new_last_name, str):
+            raise ValueError("last_name must be a string")
+        self.__last_name = new_last_name
 
     @email.setter
     def email(self, new_email):
-        # update email only if it is different
-        if self.email != new_email:
-            self.__email = new_email
-        else:
-            print(f"The new email is the same as before.")
+        if not new_email:
+            raise ValueError("email is required")
+        if not isinstance(new_email, str):
+            raise ValueError("email must be a string")
+        self.__email = new_email
 
     def delete(self):
         # marks the guest as logically deleted
