@@ -1,38 +1,63 @@
 class Facilities:
     def __init__(self, facility_id: int, facility_name: str):
-        self._facility_id = facility_id
-        self._facility_name = facility_name
-        self._is_deleted = False
+        # Validate inputs immediately
+        if not facility_id:
+            raise ValueError("facility_id is required")
+        if not isinstance(facility_id, int):
+            raise ValueError("facility_id must be an integer")
+        if not facility_name:
+            raise ValueError("facility_name is required")
+        if not isinstance(facility_name, str):
+            raise ValueError("facility_name must be a string")
+
+        self.__facility_id = facility_id
+        self.__facility_name = facility_name
+        self.__is_deleted = False
+        self.__rooms = []  # list of Room objects using this facility
+
+    def __repr__(self):
+        # Textual representation of the facility object
+        return f"Facility(id={self.__facility_id}, name={self.__facility_name})"
 
     @property
     def facility_id(self):
-        return self._facility_id
+        return self.__facility_id
 
     @property
     def facility_name(self):
-        return self._facility_name
+        return self.__facility_name
 
     @facility_name.setter
     def facility_name(self, new_facility_name):
-        if self._facility_name != new_facility_name:
-            self._facility_name = new_facility_name
-        else:
-            print(f"The new facility name is the same as the one before")
+        if not new_facility_name:
+            raise ValueError("facility_name is required")
+        if not isinstance(new_facility_name, str):
+            raise ValueError("facility_name must be a string")
+        self.__facility_name = new_facility_name
+
+    @property
+    def rooms(self):
+        return self.__rooms
+
+    def assign_to_room(self, room):
+        # Adds the room to the facility if not already assigned
+        if room not in self.__rooms:
+            self.__rooms.append(room)
 
     def delete_facility(self):
-        if not self._is_deleted:
-            self._is_deleted = True
-            print(f"Facility {self.facility_name} was marked as deleted.")
+        if not self.__is_deleted:
+            self.__is_deleted = True
+            print(f"Facility {self.__facility_name} was marked as deleted.")
         else:
-            print(f"Facility {self.facility_name} is already deleted.")
-            
+            print(f"Facility {self.__facility_name} is already deleted.")
+
     @property
     def is_deleted(self):
-        return self._is_deleted
+        return self.__is_deleted
 
     def restore(self):
-        if self._is_deleted:
-            self._is_deleted = False
-            print(f"{self._first_name} {self._last_name} was restored.")
+        if self.__is_deleted:
+            self.__is_deleted = False
+            print(f"Facility {self.__facility_name} was restored.")
         else:
-            print(f"{self._first_name} {self._last_name} is already active.")
+            print(f"Facility {self.__facility_name} is already active.")
