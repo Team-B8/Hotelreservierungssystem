@@ -21,6 +21,10 @@ class FacilitiesManager:
     def delete_facility(self, facility_id: int) -> bool:
         return self.dal.delete(facility_id)
 
+    def assign_facility_to_room(self, facility: Facilities, room):
+        # Assigns the facility to the room bidirectionally
+        facility.assign_to_room(room)
+        room.add_facility(facility)
 
 from business_logic.room import Room
 
