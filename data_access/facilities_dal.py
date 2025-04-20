@@ -11,7 +11,7 @@ class FacilitiesDAL(BaseDAL):
         sql = "INSERT INTO facilities (facility_name) VALUES (?)"
         params = (facility.facility_name,)
         last_row_id, _ = self.execute(sql, params)
-        facility._facility_id = last_row_id  # assign DB-generated ID
+        facility._Facilities__facility_id = last_row_id  # assign DB-generated ID
         return facility
 
     def get_by_id(self, facility_id: int) -> Facilities | None:
