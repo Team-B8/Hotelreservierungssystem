@@ -11,7 +11,7 @@ class GuestDAL(BaseDAL):
         sql = "INSERT INTO guests (first_name, last_name, email) VALUES (?, ?, ?)"
         params = (guest.first_name, guest.last_name, guest.email)
         last_row_id, _ = self.execute(sql, params)
-        guest._guest_id = last_row_id  # sets the guest ID after insertion
+        guest._Guest__guest_id = last_row_id  # sets the guest ID after insertion (name mangling safe)
         return guest
 
     def get_by_id(self, guest_id: int) -> Guest | None:
@@ -31,7 +31,8 @@ class GuestDAL(BaseDAL):
         return None
 
     def delete(self, guest_id: int) -> bool:
-        # Deletes a guest by their ID
+        # Physically deletes a guest by their ID from the database (not just logical)
         sql = "DELETE FROM guests WHERE id = ?"
         _, row_count = self.execute(sql, (guest_id,))
         return row_count > 0
+
