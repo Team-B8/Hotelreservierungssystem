@@ -1,6 +1,3 @@
-from data_access.hotel_dal import HotelDAL
-from model.hotel import Hotel
-
 class Hotel:
     def __init__(self, hotel_id: int, name: str, stars: int):
         self.__hotel_id = hotel_id
