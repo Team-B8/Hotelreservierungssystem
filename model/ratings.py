@@ -1,6 +1,3 @@
-from data_access.rating_dal import RatingDAL
-from model.rating import Rating
-
 class Rating:
     def __init__(self, rating_id: int, stars: int, comment: str, created_date: str):
         self.__rating_id = rating_id
