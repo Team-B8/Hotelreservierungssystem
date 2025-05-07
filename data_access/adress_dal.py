@@ -4,7 +4,8 @@ from model.address import Address
 class AddressDAL(BaseDAL):
     """Data access layer for the addresses table."""
     def get_by_id(self, address_id: int) -> Address:
-        cursor = self.conn.execute("SELECT * FROM addresses WHERE id=?", (address_id,))
+         params = tuple([f"%{address_id}%"])
+        cursor = self.conn.execute("SELECT * FROM addresses WHERE id=?", params)
         row = cursor.fetchone()
         if row:
             return Address(**row)

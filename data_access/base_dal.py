@@ -1,57 +1,55 @@
-import os
-from contextlib import closing
-
 import sqlite3
 
-
 class BaseDal:
-    def __init__(self, db_connection_str: str = None):
-        if db_connection_str is None:
-            self.__db_connection_str = os.environ.get("DB_FILE")
-            if self.__db_connection_str is None:
-                raise Exception("DB_FILE environment variable and parameter path is not set.")
+    def __init__(self, connection_str: str = None):
+        if connection_str:
+            self.__connection_str = connection_str
         else:
-            self.__db_connection_str = db_connection_str
+            self.__connection_str = os.environ.get("DB_FILE")
+            if self.__connection_str is None:
+                raise Exception("DB_FILE environment variable or parameter connection_str has to be set.")
+    
+    def _connect(self):
+        # Mit detect_types=sqlite3.PARSE_DECLTYPES wird 
+        # der Verbindung gesagt die registrierten Adapter und Konverter zu verwenden
+        return sqlite3.connect(self.__connection_str, detect_types=sqlite3.PARSE_DECLTYPES)
 
-    def get_connection(self):
-        return sqlite3.connect(self.__db_connection_str, detect_types=sqlite3.PARSE_DECLTYPES)
-
-    def fetchone(self, sql: str, params: tuple | None = ()):
-        with closing(self.get_connection()) as conn:
+    def fetchone(self, sql: str, params: tuple = None):
+        if params is None:
+            # leeres tuple für sql parameter wenn params None ist
+            params = ()
+        with self._connect() as conn:
             try:
-                cur = conn.cursor()
-                cur.execute(sql, params)
-                result = cur.fetchone()
+                cursor = conn.execute(sql, params)
+                result = cursor.fetchone()
             except sqlite3.Error as e:
                 conn.rollback()
                 raise e
-            finally:
-                cur.close()
         return result
 
-    def fetchall(self, sql: str, params: tuple | None = ()) -> list:
-        with closing(self.get_connection()) as conn:
+    def fetchall(self, sql: str, params: tuple = None):
+        if params is None:
+            # leeres tuple für sql parameter wenn params None ist
+            params = ()
+        with self._connect() as conn:
             try:
-                cur = conn.cursor()
-                cur.execute(sql, params)
-                result = cur.fetchall()
+                cursor = conn.execute(sql, params)
+                results = cursor.fetchall()
             except sqlite3.Error as e:
                 conn.rollback()
                 raise e
-            finally:
-                cur.close()
-        return result
+        return results
 
-    def execute(self, sql: str, params: tuple | None = ()) -> (int, int):
-        with closing(self.get_connection()) as conn:
+    def execute(self, sql: str, params: tuple = None):
+        if params is None:
+            # leeres tuple für sql parameter wenn params None ist
+            params = ()
+        with self._connect() as conn:
             try:
-                cur = conn.cursor()
-                cur.execute(sql, params)
+                cursor = conn.execute(sql, params)
             except sqlite3.Error as e:
                 conn.rollback()
                 raise e
             else:
                 conn.commit()
-            finally:
-                cur.close()
-        return cur.lastrowid, cur.rowcount
+        return cursor.lastrowid, cursor.rowcount
