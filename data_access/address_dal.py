@@ -37,6 +37,8 @@ class AddressDAL(BaseDAL):
         self.conn.commit()
         return result.rowcount > 0
     
-    def get_address_by_hotel(self, address)
+    def get_address_by_hotel(self, address):
+        return
 
-    def get_address_by_guest(self)
+    def get_address_by_guest(self):
+        return

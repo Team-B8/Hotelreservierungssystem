@@ -1,5 +1,5 @@
 import model
-from model.booking import Booking
+import Booking
 
 class Guest:
     def __init__(self, guest_id: int, first_name: str, last_name: str, email: str):

@@ -17,3 +17,4 @@ class AddressManager:
     def delete_address(self, address_id: int) -> None:
         # Delete the address with the given ID
         self.__address_dal.delete_address(address_id)
+

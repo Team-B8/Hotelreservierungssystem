@@ -1,9 +1,11 @@
 from datetime import date, datetime
 import sqlite3
+import os
 
 import shutil
-source = "database/media_store_o.db"
+source = "database/hotel_reservation_db.db"
 db_file = "database/working_db.db"
+os.environ["DB_FILE"] = db_file
 shutil.copyfile(source, db_file) #Copy original DB first to always start fresh.
 
 def date_to_db(d: date) -> str:
@@ -17,6 +19,8 @@ sqlite3.register_adapter(date, date_to_db)
 
 ## Konverter: Wandelt gespeicherte `TEXT`-Werte wieder in `date`
 sqlite3.register_converter("DATE", db_to_date)
+
+
 
 class BaseDal:
     def __init__(self, connection_str: str = None):
