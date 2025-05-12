@@ -1,31 +1,36 @@
 import model
-import Booking
+import booking
+import address
 
 class Guest:
-    def __init__(self, guest_id: int, first_name: str, last_name: str, email: str):
+    def __init__(self, guest_id: int, first_name: str, last_name: str, email: str, address_id: int):
         # Ensure values for not nullable attributes
         if not guest_id:
             raise ValueError("guest_id is required")
-        if not isinstance(genre_id, int):
+        if not isinstance(guest_id, int):
             raise ValueError("guest_id must be an integer")
         if not first_name:
             raise ValueError("first_name is required")
-        if not last_name:
-            raise ValueError("last_name is required")
-        if not email:
-            raise ValueError("email is required")
         if not isinstance(first_name, str):
             raise ValueError("first_name must be an string")
+        if not last_name:
+            raise ValueError("last_name is required")
         if not isinstance(last_name, str):
             raise ValueError("last_name must be an string")
+        if not email:
+            raise ValueError("email is required")
         if not isinstance(email, str):
             raise ValueError("email must be an string")
-   
+        if not address_id:
+            raise ValueError("address_id is required")
+        if not isinstance(address_id, int):
+            raise ValueError("address_id must be an integer")
 
         self._guest_id = guest_id
         self.__first_name = first_name
         self.__last_name = last_name
         self.__email = email
+        self.__address_id = address_id
         self.__bookings = []  # list to store associated bookings
         self.__is_deleted = False  # flag to mark logical deletion
 
@@ -34,20 +39,20 @@ class Guest:
         return f"Guest(id={self._guest_id}, name={self.__first_name} {self.__last_name}, email={self.__email})"
         
     @property
-    def guest_id(self):
+    def guest_id(self) -> int:
         return self.__guest_id
 
     @property
-    def last_name(self):
+    def first_name(self) -> str:
+        return self.__first_name
+
+    @property
+    def last_name(self) -> str:
         return self.__last_name
 
     @property
-    def email(self):
+    def email(self) -> str:
         return self.__email
-
-    @property
-    def first_name(self):
-        return self.__first_name
 
     @first_name.setter
     def first_name(self, new_first_name):
@@ -94,11 +99,11 @@ class Guest:
             print(f"{self._first_name} {self.__last_name} is already active.")
 
     @property
-    def full_name(self):
+    def full_name(self) -> str:
         return f"{self.__first_name} {self.__last_name}"
 
     @property
-    def bookings(self):
+    def bookings(self) -> str:
         return self.__bookings
 
     def create_booking(self, room, check_in, check_out):
@@ -106,3 +111,13 @@ class Guest:
         new_booking = Booking(room, check_in, check_out)
         self.__bookings.append(new_booking)
         return new_booking
+
+    @property
+    def address_id(self) -> int:
+        return self.__address_id
+        
+    @address_id.setter
+    def address_id(self, new_address_id: int):
+        if new_address_id is not None and not isinstance(new_address_id, int):
+            raise TypeError("Address ID must be an integer")
+        self.__address_id = new_address_id
