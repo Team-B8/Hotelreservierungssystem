@@ -10,7 +10,7 @@ class Address:
         if not zip_code:
             raise ValueError("zip_code is required")
         if not isinstance(zip_code, str):
-            raise ValueError("zip_code must be an string")
+            raise ValueError("zip_code must be a string")
         
         
         self.__address_id = address_id
@@ -21,7 +21,8 @@ class Address:
     def __repr__(self):
         return f"Address({self.__address_id}, {self.__street}, {self.__city}, {self.__zip_code})"
 
-    def get_address_id(self) -> int:
+    @property
+    def address_id(self) -> int:
         return self.__address_id
     
     @property
@@ -62,6 +63,3 @@ class Address:
         if not isinstance(zip_code, str):
             raise ValueError("Zip_code must be an string")
         self.__zip_code = zip_code
-    
-    def delete(self):
-        return

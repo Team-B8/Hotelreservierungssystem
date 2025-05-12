@@ -2,7 +2,6 @@ from data_access.base_dal import BaseDAL
 from model.invoice import Invoice
 
 class InvoiceDAL(BaseDAL):
-    """Data access layer for the invoices table."""
     def get_by_id(self, invoice_id: int) -> Invoice:
         cursor = self.conn.execute("SELECT * FROM invoices WHERE id=?", (invoice_id,))
         row = cursor.fetchone()

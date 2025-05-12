@@ -10,7 +10,7 @@ class AddressDAL(BaseDAL):
             return Address(**row)
         return None
 
-    def get_all_address(self) -> list[Address]:
+    def get_all_addresses(self) -> list[Address]:
         cursor = self.conn.execute("SELECT * FROM address")
         rows = cursor.fetchall()
         return [Address(**row) for row in rows]
@@ -37,8 +37,18 @@ class AddressDAL(BaseDAL):
         self.conn.commit()
         return result.rowcount > 0
     
-    def get_address_by_hotel(self, address):
-        return
+    def get_address_by_hotel(self, hotel_id: int) -> Address | None:
+        cursor = self.conn.execute(
+            "SELECT a.* FROM address a JOIN hotel h ON a.id = h.address_id WHERE h.id = ?",
+            (hotel_id,)
+        )
+        row = cursor.fetchone()
+        return Address(**row) if row else None
 
-    def get_address_by_guest(self):
-        return
+    def get_address_by_guest(self, guest_id: int) -> Address | None:
+        cursor = self.conn.execute(
+            "SELECT a.* FROM address a JOIN guest g ON a.id = g.address_id WHERE g.id = ?",
+            (guest_id,)
+        )
+        row = cursor.fetchone()
+        return Address(**row) if row else None

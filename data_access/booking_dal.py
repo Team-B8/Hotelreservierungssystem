@@ -78,3 +78,23 @@ class BookingDAL(BaseDAL):
         )
         conflict = cursor.fetchone()
         return conflict is None
+
+    def get_by_room_id(self, room_id: int) -> list[Booking]:
+        cursor = self.conn.execute("SELECT * FROM bookings WHERE room_id=?", (room_id,))
+        rows = cursor.fetchall()
+        return [self.__row_to_booking(row) for row in rows]
+
+    def get_by_date_range(self, start_date, end_date) -> list[Booking]:
+        start_str = start_date.isoformat() if hasattr(start_date, "isoformat") else str(start_date)
+        end_str = end_date.isoformat() if hasattr(end_date, "isoformat") else str(end_date)
+        cursor = self.conn.execute(
+            "SELECT * FROM bookings WHERE start_date <= ? AND end_date >= ?",
+            (end_str, start_str)
+        )
+        rows = cursor.fetchall()
+        return [self.__row_to_booking(row) for row in rows]
+
+    def delete(self, booking_id: int) -> bool:
+        result = self.conn.execute("DELETE FROM bookings WHERE id=?", (booking_id,))
+        self.conn.commit()
+        return result.rowcount > 0
