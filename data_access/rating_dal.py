@@ -1,5 +1,5 @@
 from data_access.base_dal import BaseDal
-import model.ratings as model
+from model.ratings import Ratings
 
 class RatingDAL(BaseDal):
     def create_rating(self, stars: int, comment: str, created_date: str) -> model.Rating:
