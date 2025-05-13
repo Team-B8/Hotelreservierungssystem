@@ -1,5 +1,5 @@
-from model.hotel import Hotel
 from data_access.hotel_dal import HotelDAL
+from model.hotel import Hotel
 
 class HotelManager:
     def __init__(self) -> None:
