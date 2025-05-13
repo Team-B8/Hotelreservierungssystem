@@ -1,5 +1,5 @@
 from data_access.base_dal import BaseDal
-import model.hotel as model
+from model.hotel import Hotel
 
 class HotelDAL(BaseDal):
     def create_hotel(self, name: str, stars: int) -> model.Hotel:
