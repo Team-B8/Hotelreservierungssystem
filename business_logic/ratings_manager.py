@@ -1,5 +1,5 @@
 import model.ratings as model
-import data_access.rating_dal as data_access
+import data_access.rating_dal as rating
 
 class RatingManager:
     def __init__(self) -> None:
