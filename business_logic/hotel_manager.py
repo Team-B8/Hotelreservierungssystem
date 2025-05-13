@@ -1,4 +1,4 @@
-import model.hotel as model
+import model.hotel as hotel
 import data_access.hotel_dal as data_access
 
 class HotelManager:
