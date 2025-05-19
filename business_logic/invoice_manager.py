@@ -1,17 +1,16 @@
 from data_access.invoice_dal import InvoiceDAL
 from data_access.room_dal import RoomDAL
 from data_access.room_type_dal import RoomTypeDAL
+from model.invoice import Invoice
 from datetime import timedelta, date
 
 class InvoiceManager:
-    """Business logic for invoice creation, display, and adjustment."""
     def __init__(self):
         self.invoice_dal = InvoiceDAL()
         self.room_dal = RoomDAL()
         self.room_type_dal = RoomTypeDAL()
 
     def generate_invoice(self, booking):
-        """Create an invoice for a given booking, calculating price with seasonal adjustments."""
         # Calculate the total price based on booking dates and room price
         room = self.room_dal.get_by_id(booking.room_id)
         room_type = self.room_type_dal.get_by_id(room.room_type_id)
@@ -37,11 +36,9 @@ class InvoiceManager:
         return invoice
 
     def display_invoice(self, booking_id: int):
-        """Retrieve an invoice by booking ID."""
         return self.invoice_dal.get_by_booking_id(booking_id)
 
     def adjust_invoice(self, booking_id: int, new_amount: float):
-        """Adjust the amount of an invoice for a given booking ID."""
         invoice = self.invoice_dal.get_by_booking_id(booking_id)
         if invoice is None:
             return None
