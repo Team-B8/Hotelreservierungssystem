@@ -14,15 +14,14 @@ class HotelManager:
         self.room_type_dal = RoomTypeDAL()
         self.booking_dal = BookingDAL()
 
-    def create_hotel(self, name: str, stars: int) -> model.Hotel:
-        # Business-Logik: Stars müssen zwischen 1 und 5 sein
+    def create_hotel(self, name: str, stars: int) -> Hotel:
         if not (1 <= stars <= 5):
             raise ValueError("Stars must be between 1 and 5")
-        return self.__hotel_dal.create_hotel(name, stars)
+        return self.hotel_dal.create_hotel(name, stars)
 
-    def get_hotel(self, hotel_id: int) -> model.Hotel | None:
-        return self.__hotel_dal.read_hotel_by_id(hotel_id)
+    def get_hotel(self, hotel_id: int) -> Hotel | None:
+        return self.hotel_dal.read_hotel_by_id(hotel_id)
 
     def delete_hotel(self, hotel_id: int) -> None:
-        self.__hotel_dal.delete_hotel(hotel_id)
+        self.hotel_dal.delete_hotel(hotel_id)
 
