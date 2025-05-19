@@ -1,5 +1,10 @@
 from data_access.hotel_dal import HotelDAL
+from data_access.address_dal import AddressDAL
+from data_access.room_dal import RoomDAL
+from data_access.room_type_dal import RoomTypeDAL
+from data_access.booking_dal import BookingDAL
 from model.hotel import Hotel
+from datetime import date
 
 class HotelManager:
     def __init__(self) -> None:
