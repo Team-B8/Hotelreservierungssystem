@@ -1,72 +1,60 @@
 class Room:
-    """
-    Model Class Room
-    """
+    def __init__(self, room_id: int, hotel_id: int, room_no: str, type_id: int, price_per_night: float):
+        self.room_id = room_id
+        self.hotel_id = hotel_id
+        self.room_no = room_no
+        self.type_id = type_id
+        self.price_per_night = price_per_night
 
-    def __init__(self, room_id: int, room_no: int, price_per_night: float)
+    def __repr__(self):
+        return f"Room(id={self.__room_id}, hotel_id={self.__hotel_id}, number='{self.__room_no}', type_id={self.__type_id}, price={self.__price_per_night})"
 
-# Input Validation -> reacts to certain types of possible false inputs with a helping response
-        if not room_id:
-            raise ValueError("album_id is required")
-        if not isinstance(album_id, int):
-            raise ValueError("album_ide must be an integer")
-        if not room_no:
-            raise ValueError("room_no is required")
-        if not isinstance(room_no, int):
-            raise ValueError("room_no must be an integer")
-        if not price_per_night:
-            raise ValueError("price_per_night is required")
-
-# Attribute initialization: ID, No, Price
-
-        self.__room_id: int = room_id
-        self.__room_no: int = room_no
-        self.__price_per_night: float = price_per_night
-        self.__facility: int = []
-
-    def __repr__(self): #Format in which whole object is represented -> __repr__
-        return (f"Room Id = {self.__room_id}, Room No. = {self.__room_no}, Price per night: {self.__price_per_night}")
-
-#Getter for each variable with use of decorators
     @property
     def room_id(self) -> int:
         return self.__room_id
 
+    @room_id.setter
+    def room_id(self, value: int):
+        if not isinstance(value, int):
+            raise TypeError("room_id must be an integer")
+        self.__room_id = value
+
     @property
-    def room_no(self) -> int:
+    def hotel_id(self) -> int:
+        return self.__hotel_id
+
+    @hotel_id.setter
+    def hotel_id(self, value: int):
+        if not isinstance(value, int):
+            raise TypeError("hotel_id must be an integer")
+        self.__hotel_id = value
+
+    @property
+    def room_no(self) -> str:
         return self.__room_no
-    
+
+    @room_no.setter
+    def room_no(self, value: str):
+        if not isinstance(value, str):
+            raise TypeError("room_no must be a string")
+        self.__room_no = value
+
+    @property
+    def type_id(self) -> int:
+        return self.__type_id
+
+    @type_id.setter
+    def type_id(self, value: int):
+        if not isinstance(value, int):
+            raise TypeError("type_id must be an integer")
+        self.__type_id = value
+
     @property
     def price_per_night(self) -> float:
         return self.__price_per_night
 
-#Setter for each variable with use of decorators
-    @room_id.setter
-    def room_id(self, room_id: int) -> None:
-        if not room_id:
-            raise ValueError("ID is required")
-        if not isinstance(room_id, int)
-            raise ValueError("ID must me an integer")
-        self.__room_id = room_id
-
-    @room_no.setter
-    def room_no(self, room_no: int) -> None:
-        if not room_no:
-            raise ValueError("No. is required")
-        if not isinstance(room_id, int)
-            raise ValueError("No. must me an integer")
-        self.__room_no = room_no
-
     @price_per_night.setter
-    def price_per_night(self, price_per_night: int) -> None:
-        if not price_per_night:
-            raise ValueError("Price per night is required")
-        if not isinstance(price_per_night, float):
-            raise ValueError("Price per night must be a float")
-    self.__price_per_night = price_per_night
-
-#Adding a facility
-    def add_facility(self, facility):
-        if facility not in self.__facility:
-            self.__facility.append(facility)
-        facilities.room = self
+    def price_per_night(self, value: float):
+        if not isinstance(value, (int, float)):
+            raise TypeError("price_per_night must be numeric")
+        self.__price_per_night = float(value)
