@@ -1,0 +1,25 @@
+from data_access.base_dal import BaseDal
+from model.room_type import RoomType
+
+class RoomTypeDAL(BaseDal):
+    def get_by_id(self, type_id: int) -> RoomType | None:
+        sql = "SELECT * FROM room_type WHERE type_id = ?"
+        row = self.fetchone(sql, (type_id,))
+        if row:
+            return RoomType(
+                room_type_id=row[0],
+                description=row[1],
+                max_guests=row[2]
+            )
+        return None
+
+    def get_all(self) -> list[RoomType]:
+        sql = "SELECT * FROM room_type"
+        rows = self.fetchall(sql)
+        return [
+            RoomType(
+                room_type_id=row[0],
+                description=row[1],
+                max_guests=row[2]
+            ) for row in rows
+        ]
