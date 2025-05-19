@@ -47,10 +47,10 @@ class InvoiceManager:
     def display_invoice(self, booking_id: int) -> Invoice | None:
         return self.invoice_dal.get_by_booking_id(booking_id)
 
-    def adjust_invoice(self, booking_id: int, new_amount: float):
+    def adjust_invoice(self, booking_id: int, new_amount: float) -> Invoice | None:
         invoice = self.invoice_dal.get_by_booking_id(booking_id)
         if invoice is None:
             return None
-        invoice.amount = new_amount
+        invoice.total_amount = new_amount
         self.invoice_dal.update(invoice)
         return invoice
