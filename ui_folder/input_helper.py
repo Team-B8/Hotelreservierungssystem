@@ -22,3 +22,11 @@ def user_story_1_2():
     hotels = HotelManager().filter_by_city_and_stars(city, min_stars)
     for hotel in hotels:
         print(f"ID: {hotel.get_hotel_id()} | Name: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
+
+def user_story_1_3():
+    print("\n--- 1.3: Hotels mit passenden Zimmern für Gästezahl in Stadt ---")
+    city = input("Stadt: ")
+    guests = int(input("Anzahl Gäste: "))
+    hotels = HotelManager().filter_by_city_and_guest_capacity(city, guests)
+    for hotel in hotels:
+        print(f"Hotel: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
