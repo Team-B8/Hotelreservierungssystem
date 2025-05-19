@@ -58,7 +58,7 @@ def user_story_1_6():
     print("\n--- 1.6: Hotelinformationen anzeigen ---")
     hotels = HotelManager().get_all_hotels()
     for hotel in hotels:
-        address = hotel.get_address()
+        address = HotelManager().address_dal.get_address_by_hotel(hotel.hotel_id)
         print(f"{hotel.name} | {hotel.stars} Sterne | Adresse: {address.get_full_address()}")
 
 def gast_menu():
