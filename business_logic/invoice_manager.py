@@ -43,8 +43,8 @@ class InvoiceManager:
         )
 
         return self.invoice_dal.create(invoice)
-
-    def display_invoice(self, booking_id: int):
+    
+    def display_invoice(self, booking_id: int) -> Invoice | None:
         return self.invoice_dal.get_by_booking_id(booking_id)
 
     def adjust_invoice(self, booking_id: int, new_amount: float):
