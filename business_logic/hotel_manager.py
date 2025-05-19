@@ -32,3 +32,23 @@ class HotelManager:
 
     def get_all_hotels(self) -> list[Hotel]:
         return self.hotel_dal.get_all_hotels()
+    
+    def filter_by_city(self, city: str) -> list[Hotel]:
+        hotels = self.hotel_dal.get_all_hotels()
+        return [h for h in hotels if self.address_dal.get_address_by_hotel(h.get_hotel_id()).city.lower() == city.lower()]
+
+    def filter_by_city_and_stars(self, city: str, min_stars: int) -> list[Hotel]:
+        hotels = self.filter_by_city(city)
+        return [h for h in hotels if h.get_stars() >= min_stars]
+
+    def filter_by_city_and_guest_capacity(self, city: str, guests: int) -> list[Hotel]:
+        hotels = self.filter_by_city(city)
+        matching_hotels = []
+        for hotel in hotels:
+            rooms = self.room_dal.get_rooms_by_hotel_id(hotel.get_hotel_id())
+            for room in rooms:
+                room_type = self.room_type_dal.get_by_id(room.type_id)
+                if room_type.max_guests >= guests:
+                    matching_hotels.append(hotel)
+                    break
+        return matching_hotels
