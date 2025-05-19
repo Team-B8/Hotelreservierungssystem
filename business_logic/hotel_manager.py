@@ -52,3 +52,26 @@ class HotelManager:
                     matching_hotels.append(hotel)
                     break
         return matching_hotels
+    
+    def filter_by_availability(self, city: str, check_in: date, check_out: date) -> list[Hotel]:
+        hotels = self.filter_by_city(city)
+        available_hotels = []
+        for hotel in hotels:
+            rooms = self.room_dal.get_rooms_by_hotel_id(hotel.get_hotel_id())
+            for room in rooms:
+                if self.booking_dal.is_room_available(room.room_id, check_in, check_out):
+                    available_hotels.append(hotel)
+                    break
+        return available_hotels
+
+    def filter_combined(self, city: str, guests: int, min_stars: int, check_in: date, check_out: date) -> list[Hotel]:
+        hotels = self.filter_by_city_and_stars(city, min_stars)
+        matching_hotels = []
+        for hotel in hotels:
+            rooms = self.room_dal.get_rooms_by_hotel_id(hotel.get_hotel_id())
+            for room in rooms:
+                room_type = self.room_type_dal.get_by_id(room.type_id)
+                if room_type.max_guests >= guests and self.booking_dal.is_room_available(room.room_id, check_in, check_out):
+                    matching_hotels.append(hotel)
+                    break
+        return matching_hotels
