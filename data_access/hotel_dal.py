@@ -20,6 +20,12 @@ class HotelDAL(BaseDal):
         sql = "SELECT hotel_id, name, stars, address_id FROM Hotel"
         rows = self.fetchall(sql)
         return [Hotel(hotel_id=row[0], name=row[1], stars=row[2], address_id=row[3]) for row in rows]
+    
+    def update_hotel(self, hotel_id: int, name: str, stars: int) -> bool:
+        sql = "UPDATE Hotel SET name = ?, stars = ? WHERE hotel_id = ?"
+        params = (name, stars, hotel_id)
+        _, rowcount = self.execute(sql, params)
+        return rowcount > 0
 
     def delete_hotel(self, hotel_id: int) -> bool:
         sql = "DELETE FROM Hotel WHERE hotel_id = ?"
