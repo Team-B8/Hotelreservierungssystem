@@ -2,7 +2,7 @@ from data_access.base_dal import BaseDAL
 from model.invoice import Invoice
 
 class InvoiceDAL(BaseDAL):
-    def get_by_id(self, invoice_id: int) -> Invoice:
+    def get_by_id(self, invoice_id: int) -> Invoice | None:
         cursor = self.conn.execute("SELECT * FROM invoices WHERE invoice_id=?", (invoice_id,))
         row = cursor.fetchone()
         if row:
@@ -15,7 +15,7 @@ class InvoiceDAL(BaseDAL):
             )
         return None
 
-    def get_by_booking_id(self, booking_id: int) -> Invoice:
+    def get_by_booking_id(self, booking_id: int) -> Invoice | None:
         cursor = self.conn.execute("SELECT * FROM invoices WHERE booking_id=?", (booking_id,))
         row = cursor.fetchone()
         if row:
