@@ -39,13 +39,13 @@ class HotelManager:
 
     def filter_by_city_and_stars(self, city: str, min_stars: int) -> list[Hotel]:
         hotels = self.filter_by_city(city)
-        return [h for h in hotels if h.get_stars() >= min_stars]
+        return [h for h in hotels if h.stars >= min_stars]
 
     def filter_by_city_and_guest_capacity(self, city: str, guests: int) -> list[Hotel]:
         hotels = self.filter_by_city(city)
         matching_hotels = []
         for hotel in hotels:
-            rooms = self.room_dal.get_rooms_by_hotel_id(hotel.get_hotel_id())
+            rooms = self.room_dal.get_rooms_by_hotel_id(hotel.hotel_id)
             for room in rooms:
                 room_type = self.room_type_dal.get_by_id(room.type_id)
                 if room_type.max_guests >= guests:
@@ -57,7 +57,7 @@ class HotelManager:
         hotels = self.filter_by_city(city)
         available_hotels = []
         for hotel in hotels:
-            rooms = self.room_dal.get_rooms_by_hotel_id(hotel.get_hotel_id())
+            rooms = self.room_dal.get_rooms_by_hotel_id(hotel.hotel_id)
             for room in rooms:
                 if self.booking_dal.is_room_available(room.room_id, check_in, check_out):
                     available_hotels.append(hotel)
@@ -68,7 +68,7 @@ class HotelManager:
         hotels = self.filter_by_city_and_stars(city, min_stars)
         matching_hotels = []
         for hotel in hotels:
-            rooms = self.room_dal.get_rooms_by_hotel_id(hotel.get_hotel_id())
+            rooms = self.room_dal.get_rooms_by_hotel_id(hotel.hotel_id)
             for room in rooms:
                 room_type = self.room_type_dal.get_by_id(room.type_id)
                 if room_type.max_guests >= guests and self.booking_dal.is_room_available(room.room_id, check_in, check_out):
