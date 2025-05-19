@@ -16,7 +16,13 @@ class HotelDAL(BaseDal):
             return Hotel(hotel_id=row[0], name=row[1], stars=row[2], address_id=row[3])
         return None
 
-    def delete_hotel(self, hotel_id: int) -> None:
-        sql = "DELETE FROM Hotel WHERE HotelId = ?"
+    def get_all_hotels(self) -> list[Hotel]:
+        sql = "SELECT hotel_id, name, stars, address_id FROM Hotel"
+        rows = self.fetchall(sql)
+        return [Hotel(hotel_id=row[0], name=row[1], stars=row[2], address_id=row[3]) for row in rows]
+
+    def delete_hotel(self, hotel_id: int) -> bool:
+        sql = "DELETE FROM Hotel WHERE hotel_id = ?"
         params = (hotel_id,)
-        self.execute(sql, params)
+        _, rowcount = self.execute(sql, params)
+        return rowcount > 0
