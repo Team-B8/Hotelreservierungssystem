@@ -9,7 +9,7 @@ class RoomDAL(BaseDal):
             return Room(
                 room_id=row[0],
                 hotel_id=row[1],
-                room_number=row[2],
+                room_no=row[2],
                 type_id=row[3],
                 price_per_night=row[4]
             )
@@ -22,7 +22,7 @@ class RoomDAL(BaseDal):
             Room(
                 room_id=row[0],
                 hotel_id=row[1],
-                room_number=row[2],
+                room_no=row[2],
                 type_id=row[3],
                 price_per_night=row[4]
             )
@@ -36,7 +36,7 @@ class RoomDAL(BaseDal):
             Room(
                 room_id=row[0],
                 hotel_id=row[1],
-                room_number=row[2],
+                room_no=row[2],
                 type_id=row[3],
                 price_per_night=row[4]
             )
