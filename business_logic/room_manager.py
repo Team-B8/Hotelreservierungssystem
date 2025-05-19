@@ -1,19 +1,19 @@
 # 
 
-from business_logic.facilities import Facilities
+from business_logic.facilities_manager import Facilities
 
 class Room:
     """
     Model Class Room
     """
 
-    def __init__(self, room_id: int, room_no: int, price_per_night: float)
+    def __init__(self, room_id: int, room_no: int, price_per_night: float):
 
 # Input Validation -> reacts to certain types of possible false inputs with a helping response
         if not room_id:
-            raise ValueError("album_id is required")
-        if not isinstance(album_id, int):
-            raise ValueError("album_ide must be an integer")
+            raise ValueError("room_id is required")
+        if not isinstance(room_id, int):
+            raise ValueError("room_id must be an integer")
         if not room_no:
             raise ValueError("room_no is required")
         if not isinstance(room_no, int):
@@ -49,7 +49,7 @@ class Room:
     def room_id(self, room_id: int) -> None:
         if not room_id:
             raise ValueError("ID is required")
-        if not isinstance(room_id, int)
+        if not isinstance(room_id, int):
             raise ValueError("ID must me an integer")
         self.__room_id = room_id
 
@@ -57,7 +57,7 @@ class Room:
     def room_no(self, room_no: int) -> None:
         if not room_no:
             raise ValueError("No. is required")
-        if not isinstance(room_id, int)
+        if not isinstance(room_no, int):
             raise ValueError("No. must me an integer")
         self.__room_no = room_no
 
@@ -67,7 +67,7 @@ class Room:
             raise ValueError("Price per night is required")
         if not isinstance(price_per_night, float):
             raise ValueError("Price per night must be a float")
-    self.__price_per_night = price_per_night
+        self.__price_per_night = price_per_night
 
 #Adding a facility
     def add_facility(self, facility):
