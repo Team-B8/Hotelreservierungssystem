@@ -86,3 +86,23 @@ def gast_menu():
             break
         else:
             print("Ungültige Eingabe.")
+
+def main_menu():
+    while True:
+        print("\n===== HOTELRESERVIERUNGSSYSTEM =====")
+        print("1. Gast")
+        print("2. Admin")
+        print("0. Beenden")
+        choice = input("Als wer möchten Sie fortfahren? ")
+        if choice == "1":
+            gast_menu()
+        elif choice == "2":
+            print("Admin-Menü wird noch entwickelt...")
+        elif choice == "0":
+            print("Programm beendet.")
+            break
+        else:
+            print("Ungültige Eingabe.")
+
+if __name__ == "__main__":
+    main_menu()
