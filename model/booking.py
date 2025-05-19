@@ -1,6 +1,6 @@
 from datetime import date
-from model import Room
-from model import Invoice
+from model.room import Room
+from model.invoice import Invoice
 
 class Booking:
     def __init__(self, booking_id: int, guest_id: int, room_id: int, check_in: date, check_out: date, is_cancelled: bool, total_amount: float):
