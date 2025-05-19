@@ -30,3 +30,12 @@ def user_story_1_3():
     hotels = HotelManager().filter_by_city_and_guest_capacity(city, guests)
     for hotel in hotels:
         print(f"Hotel: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
+
+def user_story_1_4():
+    print("\n--- 1.4: Hotels mit verfügbaren Zimmern im Zeitraum ---")
+    city = input("Stadt: ")
+    check_in = input_date("Check-in Datum")
+    check_out = input_date("Check-out Datum")
+    hotels = HotelManager().filter_by_availability(city, check_in, check_out)
+    for hotel in hotels:
+        print(f"Hotel: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
