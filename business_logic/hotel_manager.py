@@ -7,8 +7,12 @@ from model.hotel import Hotel
 from datetime import date
 
 class HotelManager:
-    def __init__(self) -> None:
-        self.__hotel_dal = data_access.HotelDAL()
+    def __init__(self):
+        self.hotel_dal = HotelDAL()
+        self.address_dal = AddressDAL()
+        self.room_dal = RoomDAL()
+        self.room_type_dal = RoomTypeDAL()
+        self.booking_dal = BookingDAL()
 
     def create_hotel(self, name: str, stars: int) -> model.Hotel:
         # Business-Logik: Stars müssen zwischen 1 und 5 sein
