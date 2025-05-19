@@ -4,7 +4,7 @@ from datetime import date
 
 class BookingDAL(BaseDAL):
     def get_by_id(self, booking_id: int) -> Booking:
-        cursor = self.conn.execute("SELECT * FROM Booking WHERE id=?", (booking_id,))
+        cursor = self.conn.execute("SELECT * FROM Booking WHERE booking_id=?", (booking_id,))
         row = cursor.fetchone()
         return self.__row_to_booking(row)
 
@@ -38,7 +38,7 @@ class BookingDAL(BaseDAL):
         end_str = booking.end_date.isoformat() if hasattr(booking.end_date, "isoformat") else str(booking.end_date)
         status_val = 1 if booking.status else 0
         result = self.conn.execute(
-            "UPDATE Booking SET room_id=?, guest_id=?, start_date=?, end_date=?, status=? WHERE id=?",
+            "UPDATE Booking SET room_id=?, guest_id=?, start_date=?, end_date=?, status=? WHERE booking_id=?",
             (booking.room_id, booking.guest_id, start_str, end_str, status_val, booking.id)
         )
         self.conn.commit()
@@ -57,7 +57,7 @@ class BookingDAL(BaseDAL):
         start_str = start_date.isoformat() if hasattr(start_date, "isoformat") else str(start_date)
         end_str = end_date.isoformat() if hasattr(end_date, "isoformat") else str(end_date)
         cursor = self.conn.execute(
-            "SELECT id FROM Booking WHERE room_id=? AND status=0 AND ? < end_date AND ? > start_date",
+            "SELECT booking_id FROM Booking WHERE room_id=? AND status=0 AND ? < end_date AND ? > start_date",
             (room_id, start_str, end_str)
         )
         conflict = cursor.fetchone()
@@ -79,7 +79,7 @@ class BookingDAL(BaseDAL):
         return [self.__row_to_booking(row) for row in rows]
 
     def delete(self, booking_id: int) -> bool:
-        result = self.conn.execute("DELETE FROM Booking WHERE id=?", (booking_id,))
+        result = self.conn.execute("DELETE FROM Booking WHERE booking_id=?", (booking_id,))
         self.conn.commit()
         return result.rowcount > 0
     
