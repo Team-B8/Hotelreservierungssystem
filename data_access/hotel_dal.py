@@ -2,23 +2,18 @@ from data_access.base_dal import BaseDal
 from model.hotel import Hotel
 
 class HotelDAL(BaseDal):
-    def create_hotel(self, name: str, stars: int) -> model.Hotel:
-        sql = "
-        INSERT INTO Hotel (Name, Stars) VALUES (?, ?)
-        "
-        params = (name, stars)
+    def create_hotel(self, name: str, stars: int, address_id: int) -> Hotel:
+        sql = "INSERT INTO Hotel (name, stars, address_id) VALUES (?, ?, ?)"
+        params = (name, stars, address_id)
         last_row_id, _ = self.execute(sql, params)
-        return model.Hotel(last_row_id, name, stars)
+        return Hotel(hotel_id=last_row_id, name=name, stars=stars, address_id=address_id)
 
-    def read_hotel_by_id(self, hotel_id: int) -> model.Hotel | None:
-        sql = "
-        SELECT HotelId, Name, Stars FROM Hotel WHERE HotelId = ?
-        "
+    def read_hotel_by_id(self, hotel_id: int) -> Hotel | None:
+        sql = "SELECT hotel_id, name, stars, address_id FROM Hotel WHERE hotel_id = ?"
         params = (hotel_id,)
-        result = self.fetchone(sql, params)
-        if result:
-            hotel_id, name, stars = result
-            return model.Hotel(hotel_id, name, stars)
+        row = self.fetchone(sql, params)
+        if row:
+            return Hotel(hotel_id=row[0], name=row[1], stars=row[2], address_id=row[3])
         return None
 
     def delete_hotel(self, hotel_id: int) -> None:
