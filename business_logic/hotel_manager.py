@@ -25,3 +25,10 @@ class HotelManager:
     def delete_hotel(self, hotel_id: int) -> None:
         self.hotel_dal.delete_hotel(hotel_id)
 
+    def update_hotel(self, hotel_id: int, name: str, stars: int) -> bool:
+        if not (1 <= stars <= 5):
+            raise ValueError("Stars must be between 1 and 5")
+        return self.hotel_dal.update_hotel(hotel_id, name, stars)
+
+    def get_all_hotels(self) -> list[Hotel]:
+        return self.hotel_dal.get_all_hotels()
