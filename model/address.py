@@ -1,6 +1,5 @@
 class Address:
     def __init__(self, address_id: int, street: str, city: str, zip_code: str):
-        
         if not isinstance(address_id, int):
             raise ValueError("address_id must be an integer")
         if not street:
@@ -9,9 +8,6 @@ class Address:
             raise ValueError("city is required")
         if not zip_code:
             raise ValueError("zip_code is required")
-        if not isinstance(zip_code, str):
-            raise ValueError("zip_code must be a string")
-        
         
         self.__address_id = address_id
         self.__street = street
@@ -19,7 +15,7 @@ class Address:
         self.__zip_code = zip_code
 
     def __repr__(self):
-        return f"Address({self.__address_id}, {self.__street}, {self.__city}, {self.__zip_code})"
+        return f"Address({self.__address_id}, {self.__street}, {self.__city}, {self.__zip_code}, {self.__country})"
 
     @property
     def address_id(self) -> int:
@@ -35,7 +31,7 @@ class Address:
 
     @property
     def zip_code(self) -> str:
-        return self.__zip_code    
+        return self.__zip_code  
     
     def get_full_address(self) -> str:
         return f"{self.__street}, {self.__city}, {self.__zip_code})"

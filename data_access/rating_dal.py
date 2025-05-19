@@ -1,7 +1,7 @@
-from data_access.base_dal import BaseDal
-from model.ratings import Ratings
+from data_access.base_dal import BaseDAL
+from model.ratings import Rating
 
-class RatingDAL(BaseDal):
+class RatingDAL(BaseDAL):
     def create_rating(self, stars: int, comment: str, created_date: str) -> model.Rating:
         sql = "
         INSERT INTO Rating (Stars, Comment, CreatedDate) VALUES (?, ?, ?)

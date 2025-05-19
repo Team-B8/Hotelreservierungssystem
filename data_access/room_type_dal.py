@@ -1,7 +1,7 @@
-from data_access.base_dal import BaseDal
+from data_access.base_dal import BaseDAL
 from model.room_type import RoomType
 
-class RoomTypeDAL(BaseDal):
+class RoomTypeDAL(BaseDAL):
     def get_by_id(self, type_id: int) -> RoomType | None:
         sql = "SELECT * FROM room_type WHERE type_id = ?"
         row = self.fetchone(sql, (type_id,))

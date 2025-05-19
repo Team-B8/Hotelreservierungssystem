@@ -1,3 +1,5 @@
+import sys, os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from business_logic.hotel_manager import HotelManager
 from datetime import datetime
 
@@ -13,7 +15,7 @@ def user_story_1_1():
     city = input("Stadt eingeben: ")
     hotels = HotelManager().filter_by_city(city)
     for hotel in hotels:
-        print(f"ID: {hotel.get_hotel_id()} | Name: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
+        print(f"ID: {hotel.hotel_id} | Name: {hotel.name} | Sterne: {hotel.stars}")
 
 def user_story_1_2():
     print("\n--- 1.2: Hotels nach Sternen in Stadt filtern ---")
@@ -21,7 +23,7 @@ def user_story_1_2():
     min_stars = int(input("Minimale Sterne (1–5): "))
     hotels = HotelManager().filter_by_city_and_stars(city, min_stars)
     for hotel in hotels:
-        print(f"ID: {hotel.get_hotel_id()} | Name: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
+        print(f"ID: {hotel.hotel_id()} | Name: {hotel.get_name()} | Sterne: {hotel.stars}")
 
 def user_story_1_3():
     print("\n--- 1.3: Hotels mit passenden Zimmern für Gästezahl in Stadt ---")
@@ -29,7 +31,7 @@ def user_story_1_3():
     guests = int(input("Anzahl Gäste: "))
     hotels = HotelManager().filter_by_city_and_guest_capacity(city, guests)
     for hotel in hotels:
-        print(f"Hotel: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
+        print(f"Hotel: {hotel.name} | Sterne: {hotel.stars}")
 
 def user_story_1_4():
     print("\n--- 1.4: Hotels mit verfügbaren Zimmern im Zeitraum ---")
@@ -38,7 +40,7 @@ def user_story_1_4():
     check_out = input_date("Check-out Datum")
     hotels = HotelManager().filter_by_availability(city, check_in, check_out)
     for hotel in hotels:
-        print(f"Hotel: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
+        print(f"Hotel: {hotel.name} | Sterne: {hotel.stars}")
 
 def user_story_1_5():
     print("\n--- 1.5: Kombinierte Suche (Stadt, Gästezahl, Sterne, Zeitraum) ---")
@@ -49,7 +51,7 @@ def user_story_1_5():
     check_out = input_date("Check-out Datum")
     hotels = HotelManager().filter_combined(city, guests, stars, check_in, check_out)
     for hotel in hotels:
-        print(f"Hotel: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
+        print(f"Hotel: {hotel.name} | Sterne: {hotel.stars}")
 
 
 def user_story_1_6():
@@ -57,7 +59,7 @@ def user_story_1_6():
     hotels = HotelManager().get_all_hotels()
     for hotel in hotels:
         address = hotel.get_address()
-        print(f"{hotel.get_name()} | {hotel.get_stars()} Sterne | Adresse: {address.get_full_address()}")
+        print(f"{hotel.name} | {hotel.stars} Sterne | Adresse: {address.get_full_address()}")
 
 def gast_menu():
     while True:

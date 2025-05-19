@@ -2,6 +2,9 @@ from data_access.base_dal import BaseDAL
 from model.address import Address
 
 class AddressDAL(BaseDAL):
+    def __init__(self):
+        super().__init__()
+        
     def get_by_id(self, address_id: int) -> Address | None:
         cursor = self.conn.execute("SELECT * FROM address WHERE address_id = ?", (address_id,))
         row = cursor.fetchone()
