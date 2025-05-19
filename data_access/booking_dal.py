@@ -82,3 +82,16 @@ class BookingDAL(BaseDAL):
         result = self.conn.execute("DELETE FROM bookings WHERE id=?", (booking_id,))
         self.conn.commit()
         return result.rowcount > 0
+    
+    def __row_to_booking(self, row) -> Booking | None:
+        if row is None:
+            return None
+        return Booking(
+            booking_id=row[0],
+            guest_id=row[1],
+            room_id=row[2],
+            check_in=row[3],
+            check_out=row[4],
+            is_cancelled=bool(row[5]),
+            total_amount=row[6]
+        )
