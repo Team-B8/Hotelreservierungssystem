@@ -39,3 +39,22 @@ def user_story_1_4():
     hotels = HotelManager().filter_by_availability(city, check_in, check_out)
     for hotel in hotels:
         print(f"Hotel: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
+
+def user_story_1_5():
+    print("\n--- 1.5: Kombinierte Suche (Stadt, Gästezahl, Sterne, Zeitraum) ---")
+    city = input("Stadt: ")
+    guests = int(input("Anzahl Gäste: "))
+    stars = int(input("Minimale Sterne: "))
+    check_in = input_date("Check-in Datum")
+    check_out = input_date("Check-out Datum")
+    hotels = HotelManager().filter_combined(city, guests, stars, check_in, check_out)
+    for hotel in hotels:
+        print(f"Hotel: {hotel.get_name()} | Sterne: {hotel.get_stars()}")
+
+
+def user_story_1_6():
+    print("\n--- 1.6: Hotelinformationen anzeigen ---")
+    hotels = HotelManager().get_all_hotels()
+    for hotel in hotels:
+        address = hotel.get_address()
+        print(f"{hotel.get_name()} | {hotel.get_stars()} Sterne | Adresse: {address.get_full_address()}")
