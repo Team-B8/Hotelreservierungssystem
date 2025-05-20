@@ -16,8 +16,11 @@ class RoomDAL(BaseDAL):
         return None
 
     def get_rooms_by_hotel_id(self, hotel_id: int) -> list[Room]:
+        # SQL query to get all rooms for the given hotel ID
         sql = "SELECT * FROM room WHERE hotel_id = ?"
+        # get all matching rows from the database
         rows = self.fetchall(sql, (hotel_id,))
+        # create a list of Room objects from the rows
         return [
             Room(
                 room_id=row[0],
