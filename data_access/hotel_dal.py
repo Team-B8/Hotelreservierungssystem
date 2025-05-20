@@ -17,8 +17,11 @@ class HotelDAL(BaseDAL):
         return None
 
     def get_all_hotels(self) -> list[Hotel]:
+        # SQL query to get all hotels with their basic info
         sql = "SELECT hotel_id, name, stars, address_id FROM Hotel"
+        # get all rows from the database
         rows = self.fetchall(sql)
+        # create a list of Hotel objects from the rows
         return [Hotel(hotel_id=row[0], name=row[1], stars=row[2], address_id=row[3]) for row in rows]
     
     def update_hotel(self, hotel_id: int, name: str, stars: int) -> bool:
