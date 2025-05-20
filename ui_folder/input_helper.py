@@ -11,9 +11,13 @@ def input_date(prompt):
             print("Ungültiges Datum. Bitte erneut eingeben.")
 
 def user_story_1_1():
+    # Print the title of the feature
     print("\n--- 1.1: Hotels nach Stadt filtern ---")
+    # Ask the user to enter a city name
     city = input("Stadt eingeben: ")
+    # Get hotels in the entered city using HotelManager
     hotels = HotelManager().filter_by_city(city)
+    # Print info about each hotel
     for hotel in hotels:
         print(f"ID: {hotel.hotel_id} | Name: {hotel.name} | Sterne: {hotel.stars}")
 
