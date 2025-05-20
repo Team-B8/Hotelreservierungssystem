@@ -35,10 +35,15 @@ def user_story_1_2():
         print(f"ID: {hotel.hotel_id} | Name: {hotel.name} | Sterne: {hotel.stars}")
 
 def user_story_1_3():
+    # print the title for this user story
     print("\n--- 1.3: Hotels mit passenden Zimmern für Gästezahl in Stadt ---")
+    # ask user for a city
     city = input("Stadt: ")
+    # ask user for number of guests
     guests = int(input("Anzahl Gäste: "))
+    # get hotels in the city that have rooms for the given number of guests
     hotels = HotelManager().filter_by_city_and_guest_capacity(city, guests)
+    # print hotel name and stars for each result
     for hotel in hotels:
         print(f"Hotel: {hotel.name} | Sterne: {hotel.stars}")
 
