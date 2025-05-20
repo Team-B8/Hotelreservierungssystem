@@ -22,10 +22,15 @@ def user_story_1_1():
         print(f"ID: {hotel.hotel_id} | Name: {hotel.name} | Sterne: {hotel.stars}")
 
 def user_story_1_2():
+    # print the title for this user story
     print("\n--- 1.2: Hotels nach Sternen in Stadt filtern ---")
+    # ask user to enter a city
     city = input("Stadt eingeben: ")
+    # ask user to enter the minimum number of stars
     min_stars = int(input("Minimale Sterne (1–5): "))
+    # get hotels that match the city and have at least the given stars
     hotels = HotelManager().filter_by_city_and_stars(city, min_stars)
+    # print info about each hotel
     for hotel in hotels:
         print(f"ID: {hotel.hotel_id} | Name: {hotel.name} | Sterne: {hotel.stars}")
 
