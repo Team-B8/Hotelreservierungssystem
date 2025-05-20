@@ -34,7 +34,9 @@ class HotelManager:
         return self.hotel_dal.get_all_hotels()
     
     def filter_by_city(self, city: str) -> list[Hotel]:
+        # get all hotels from the database
         hotels = self.hotel_dal.get_all_hotels()
+        # return only hotels where the city matches
         return [h for h in hotels if self.address_dal.get_address_by_hotel(h.hotel_id).city.lower() == city.lower()]
 
     def filter_by_city_and_stars(self, city: str, min_stars: int) -> list[Hotel]:
