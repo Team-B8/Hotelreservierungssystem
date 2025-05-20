@@ -40,7 +40,9 @@ class HotelManager:
         return [h for h in hotels if self.address_dal.get_address_by_hotel(h.hotel_id).city.lower() == city.lower()]
 
     def filter_by_city_and_stars(self, city: str, min_stars: int) -> list[Hotel]:
+        # get hotels in the given city
         hotels = self.filter_by_city(city)
+        # return only hotels with stars >= min_stars
         return [h for h in hotels if h.stars >= min_stars]
 
     def filter_by_city_and_guest_capacity(self, city: str, guests: int) -> list[Hotel]:
