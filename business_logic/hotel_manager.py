@@ -46,15 +46,24 @@ class HotelManager:
         return [h for h in hotels if h.stars >= min_stars]
 
     def filter_by_city_and_guest_capacity(self, city: str, guests: int) -> list[Hotel]:
+        # get hotels in the given city
         hotels = self.filter_by_city(city)
+        # list to store hotels that have rooms for the guests
         matching_hotels = []
+        # check each hotel
         for hotel in hotels:
+            # get all rooms for the hotel
             rooms = self.room_dal.get_rooms_by_hotel_id(hotel.hotel_id)
+            # check each room
             for room in rooms:
+                # get room type to check max guests
                 room_type = self.room_type_dal.get_by_id(room.type_id)
+                # if room can fit the number of guests
                 if room_type.max_guests >= guests:
+                    # add hotel to result and stop checking more rooms
                     matching_hotels.append(hotel)
                     break
+        # return hotels with suitable rooms
         return matching_hotels
     
     def filter_by_availability(self, city: str, check_in: date, check_out: date) -> list[Hotel]:
