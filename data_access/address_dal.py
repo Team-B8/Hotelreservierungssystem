@@ -38,11 +38,14 @@ class AddressDAL(BaseDAL):
         return result.rowcount > 0
 
     def get_address_by_hotel(self, hotel_id: int) -> Address | None:
+        # run SQL query to get address for a given hotel ID using a JOIN
         cursor = self.conn.execute(
             "SELECT a.* FROM address a JOIN hotel h ON a.address_id = h.address_id WHERE h.hotel_id = ?",
             (hotel_id,)
         )
+        # get the first result row
         row = cursor.fetchone()
+        # if a row was found, create and return an Address object using keyword args; else return None
         return Address(**row) if row else None
 
     def get_address_by_guest(self, guest_id: int) -> Address | None:
