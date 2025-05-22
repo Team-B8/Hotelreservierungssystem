@@ -86,13 +86,22 @@ class HotelManager:
         return available_hotels
 
     def filter_combined(self, city: str, guests: int, min_stars: int, check_in: date, check_out: date) -> list[Hotel]:
+        # get hotels in the city with at least min_stars
         hotels = self.filter_by_city_and_stars(city, min_stars)
+        # list to store matching hotels
         matching_hotels = []
+        # check each hotel
         for hotel in hotels:
+            # get all rooms for the hotel
             rooms = self.room_dal.get_rooms_by_hotel_id(hotel.hotel_id)
+            # check each room
             for room in rooms:
+                # get room type to check max guests
                 room_type = self.room_type_dal.get_by_id(room.type_id)
+                # if room fits the guests and is available
                 if room_type.max_guests >= guests and self.booking_dal.is_room_available(room.room_id, check_in, check_out):
+                    # add hotel to result and stop checking more rooms
                     matching_hotels.append(hotel)
                     break
+        # return hotels that match all filters
         return matching_hotels
