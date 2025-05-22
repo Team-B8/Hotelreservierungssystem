@@ -101,7 +101,7 @@ def user_story_2_1():
     print("\nVerfügbare Hotels:")
     for h in hotels:
         print(f"- {h.name}")
-    # ask user to enter hotel name
+    # ask user to enter hotel naﬁme
     hotel_name = input("Hotelname eingeben: ")
     hotel = HotelManager().get_hotel_by_name(hotel_name)
     if not hotel:
