@@ -90,6 +90,34 @@ def user_story_1_6():
         # print hotel name, stars, and full address
         print(f"{hotel.name} | {hotel.stars} Sterne | Adresse: {address.get_full_address()}")
 
+def user_story_2_1():
+    # print the title for this user story
+    print("\n--- 2.1: Zimmerdetails anzeigen ---")
+
+    # ask user to enter hotel ID
+    hotel_id = int(input("Hotel ID eingeben: "))
+
+    # get optional check-in and check-out to calculate total price
+    check_in = input_date("Check-in Datum")
+    check_out = input_date("Check-out Datum")
+
+    # get all rooms from RoomManager
+    rooms = RoomManager().get_rooms_by_hotel_id(hotel_id)
+
+    for room in rooms:
+        # get room type
+        room_type = RoomTypeManager().get_by_id(room.type_id)
+        # get facilities
+        facilities = FacilitiesManager().get_facilities_for_room(room.room_id)
+        # calculate number of nights and total price
+        nights = (check_out - check_in).days
+        total_price = nights * room.price_per_night
+        # format and print room details
+        print(f"\nRoom No: {room.room_no}")
+        print(f"Type: {room_type.description} | Max Guests: {room_type.max_guests}")
+        print(f"Price per night: {room.price_per_night} | Total price: {total_price}")
+        print("Facilities: " + ", ".join([f.facility_name for f in facilities]))
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -99,6 +127,7 @@ def gast_menu():
         print("1.4 Hotels mit verfügbaren Zimmern im Zeitraum")
         print("1.5 Hotels nach Stadt, Sterne, Gästezahl, Zeitraum")
         print("1.6 Hotelinformationen anzeigen")
+        print("2.1 Zimmerdetails anzeigen")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Option wählen: ")
         if auswahl == "1.1":
@@ -113,6 +142,8 @@ def gast_menu():
             user_story_1_5()
         elif auswahl == "1.6":
             user_story_1_6()
+        elif auswahl == "2.1":
+            user_story_2_1()
         elif auswahl == "0":
             break
         else:
