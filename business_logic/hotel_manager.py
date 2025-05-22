@@ -31,6 +31,7 @@ class HotelManager:
         return self.hotel_dal.update_hotel(hotel_id, name, stars)
 
     def get_all_hotels(self) -> list[Hotel]:
+        # get all hotels from the database
         return self.hotel_dal.get_all_hotels()
     
     def filter_by_city(self, city: str) -> list[Hotel]:
