@@ -33,3 +33,16 @@ class FacilitiesDAL(BaseDAL):
         sql = "DELETE FROM facilities WHERE id = ?"
         _, row_count = self.execute(sql, (facility_id,))
         return row_count > 0
+
+    def get_facilities_by_room_id(self, room_id: int) -> list[Facilities]:
+        # SQL query to get all facilities for a given room using a JOIN
+        sql = """
+            SELECT f.facility_id, f.facility_name
+            FROM facilities f
+            JOIN room_facilities rf ON f.facility_id = rf.facility_id
+            WHERE rf.room_id = ?
+        """
+        # get all matching rows from the database
+        rows = self.fetchall(sql, (room_id,))
+        # convert each row to a Facilities object and return the list
+        return [Facilities(facility_id=row["facility_id"], facility_name=row["facility_name"]) for row in rows]
