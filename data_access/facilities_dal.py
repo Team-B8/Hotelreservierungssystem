@@ -1,4 +1,3 @@
-# facilities_dal.py (Data Access Layer)
 from data_access.base_dal import BaseDAL
 from model.facilities import Facilities
 

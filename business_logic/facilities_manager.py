@@ -1,10 +1,9 @@
-# facilities_manager.py (Business Logic Layer)
 from data_access.facilities_dal import FacilitiesDAL
 from model.facilities import Facilities
 
 class FacilitiesManager:
     def __init__(self):
-        self.dal = FacilitiesDAL()  # connects to the DAL layer
+        self.dal = FacilitiesDAL()
 
     def add_facility(self, facility_name: str) -> Facilities:
         # Adds a facility only if it doesn't already exist
@@ -28,6 +27,6 @@ class FacilitiesManager:
         facility.assign_to_room(room)
         room.add_facility(facility)
 
-    def get_facilities_by_room_id(self, room_id: int) -> list[Facilities]:
+    def get_facilities_by_room(self, room_id: int) -> list[Facilities]:
         # Get all facilities assigned to a specific room
         return self.dal.get_facilities_by_room_id(room_id)
