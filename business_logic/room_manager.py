@@ -1,5 +1,9 @@
 from data_access.room_dal import RoomDAL
+from data_access.room_type_dal import RoomTypeDAL
+from data_access.facilities_dal import FacilitiesDAL
 from model.room import Room
+from model.room_type import RoomType
+from model.facilities import Facilities
 
 class RoomManager:
 
