@@ -96,12 +96,13 @@ def user_story_1_6():
 def user_story_2_1():
     # print the title for this user story
     print("\n--- 2.1: Zimmerdetails anzeigen ---")
-    # ask user to enter hotel ID
-    try:
-        hotel_id = int(input("Hotel ID eingeben: "))
-    except ValueError:
-        print("Ungültige Eingabe für Hotel ID.")
+    # ask user to enter hotel name
+    hotel_name = input("Hotelname eingeben: ")
+    hotel = HotelManager().get_hotel_by_name(hotel_name)
+    if not hotel:
+        print("Hotel nicht gefunden.")
         return
+    hotel_id = hotel.hotel_id
     # ask user for check-in and check-out date
     check_in = input_date("Check-in Datum")
     check_out = input_date("Check-out Datum")
