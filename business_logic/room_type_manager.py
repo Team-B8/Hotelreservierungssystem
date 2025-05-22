@@ -1,6 +1,6 @@
 
 
-class RoomType:
+class RoomTypeManager:
 
     def __init__(self, room_type_id: int, description: str, max_guests: int):
 

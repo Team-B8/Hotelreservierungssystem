@@ -2,6 +2,9 @@ import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from business_logic.hotel_manager import HotelManager
 from datetime import datetime
+from business_logic.room_manager import RoomManager
+from business_logic.room_type_manager import RoomTypeManager
+from business_logic.facilities_manager import FacilitiesManager
 
 def input_date(prompt):
     while True:

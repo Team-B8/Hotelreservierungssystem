@@ -2,7 +2,7 @@
 
 from business_logic.facilities_manager import Facilities
 
-class Room:
+class RoomManager:
     """
     Model Class Room
     """
