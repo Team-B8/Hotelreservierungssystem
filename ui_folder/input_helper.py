@@ -48,11 +48,17 @@ def user_story_1_3():
         print(f"Hotel: {hotel.name} | Sterne: {hotel.stars}")
 
 def user_story_1_4():
+    # print the title for this user story
     print("\n--- 1.4: Hotels mit verfügbaren Zimmern im Zeitraum ---")
+    # ask user for a city
     city = input("Stadt: ")
+    # get check-in date from user
     check_in = input_date("Check-in Datum")
+    # get check-out date from user
     check_out = input_date("Check-out Datum")
+    # get hotels in the city that have free rooms in the given time period
     hotels = HotelManager().filter_by_availability(city, check_in, check_out)
+    # print hotel name and stars
     for hotel in hotels:
         print(f"Hotel: {hotel.name} | Sterne: {hotel.stars}")
 
