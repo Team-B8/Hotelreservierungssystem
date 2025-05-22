@@ -27,6 +27,6 @@ class FacilitiesManager:
         facility.assign_to_room(room)
         room.add_facility(facility)
 
-    def get_facilities_by_room(self, room_id: int) -> list[Facilities]:
+    def get_facilities_for_room(self, room_id: int):
         # Get all facilities assigned to a specific room
         return self.dal.get_facilities_by_room_id(room_id)
