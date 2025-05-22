@@ -2,6 +2,9 @@ from data_access.base_dal import BaseDAL
 from model.hotel import Hotel
 
 class HotelDAL(BaseDAL):
+    def __init__(self):
+        super().__init__()
+
     def create_hotel(self, name: str, stars: int, address_id: int) -> Hotel:
         sql = "INSERT INTO Hotel (name, stars, address_id) VALUES (?, ?, ?)"
         params = (name, stars, address_id)

@@ -3,6 +3,9 @@ from model.booking import Booking
 from datetime import date
 
 class BookingDAL(BaseDAL):
+    def __init__(self):
+        super().__init__()
+
     def get_by_id(self, booking_id: int) -> Booking:
         cursor = self.conn.execute("SELECT * FROM Booking WHERE booking_id=?", (booking_id,))
         row = cursor.fetchone()

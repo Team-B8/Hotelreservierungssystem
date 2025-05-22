@@ -3,8 +3,8 @@ from data_access.base_dal import BaseDAL
 from model.guest import Guest
 
 class GuestDAL(BaseDAL):
-    def __init__(self, db_path="hotel.db"):
-        super().__init__(db_path)  # calls the constructor of BaseDAL to set up the DB connection
+    def __init__(self):
+        super().__init__()
 
     def create(self, guest: Guest) -> Guest:
         # Inserts a new guest into the database

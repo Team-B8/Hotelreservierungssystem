@@ -2,6 +2,9 @@ from data_access.base_dal import BaseDAL
 from model.ratings import Rating
 
 class RatingDAL(BaseDAL):
+    def __init__(self):
+        super().__init__()
+
     def create_rating(self, stars: int, comment: str, created_date: str) -> Rating:
         sql = "INSERT INTO Rating (Stars, Comment, CreatedDate) VALUES (?, ?, ?)"
         params = (stars, comment, created_date)
