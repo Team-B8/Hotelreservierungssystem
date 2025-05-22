@@ -2,8 +2,8 @@ from data_access.base_dal import BaseDAL
 from model.facilities import Facilities
 
 class FacilitiesDAL(BaseDAL):
-    def __init__(self, db_path="hotel.db"):
-        super().__init__(db_path)  # sets up DB connection via BaseDAL
+    def __init__(self):
+        super().__init__()
 
     def create(self, facility: Facilities) -> Facilities:
         # Inserts a new facility into the database
