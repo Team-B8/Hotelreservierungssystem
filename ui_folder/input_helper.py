@@ -93,17 +93,13 @@ def user_story_1_6():
 def user_story_2_1():
     # print the title for this user story
     print("\n--- 2.1: Zimmerdetails anzeigen ---")
-
     # ask user to enter hotel ID
     hotel_id = int(input("Hotel ID eingeben: "))
-
     # get optional check-in and check-out to calculate total price
     check_in = input_date("Check-in Datum")
     check_out = input_date("Check-out Datum")
-
     # get all rooms from RoomManager
     rooms = RoomManager().get_rooms_by_hotel_id(hotel_id)
-
     for room in rooms:
         # get room type
         room_type = RoomTypeManager().get_by_id(room.type_id)
