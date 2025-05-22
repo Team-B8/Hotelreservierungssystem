@@ -15,7 +15,7 @@ class FacilitiesDAL(BaseDAL):
 
     def get_by_id(self, facility_id: int) -> Facilities | None:
         # Retrieves a facility by its ID
-        sql = "SELECT * FROM Facilities WHERE id = ?"
+        sql = "SELECT * FROM Facilities WHERE facility_id = ?"
         row = self.fetchone(sql, (facility_id,))
         if row:
             return Facilities(facility_id=row["id"], facility_name=row["facility_name"])
@@ -29,7 +29,7 @@ class FacilitiesDAL(BaseDAL):
 
     def delete(self, facility_id: int) -> bool:
         # Deletes a facility by its ID
-        sql = "DELETE FROM Facilities WHERE id = ?"
+        sql = "DELETE FROM Facilities WHERE facility_id = ?"
         _, row_count = self.execute(sql, (facility_id,))
         return row_count > 0
 
