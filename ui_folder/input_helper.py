@@ -96,6 +96,11 @@ def user_story_1_6():
 def user_story_2_1():
     # print the title for this user story
     print("\n--- 2.1: Zimmerdetails anzeigen ---")
+    # show all available hotels
+    hotels = HotelManager().get_all_hotels()
+    print("\nVerfügbare Hotels:")
+    for h in hotels:
+        print(f"- {h.name}")
     # ask user to enter hotel name
     hotel_name = input("Hotelname eingeben: ")
     hotel = HotelManager().get_hotel_by_name(hotel_name)
