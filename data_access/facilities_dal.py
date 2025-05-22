@@ -18,14 +18,14 @@ class FacilitiesDAL(BaseDAL):
         sql = "SELECT * FROM Facilities WHERE facility_id = ?"
         row = self.fetchone(sql, (facility_id,))
         if row:
-            return Facilities(facility_id=row["id"], facility_name=row["facility_name"])
+            return Facilities(facility_id=row["facility_id"], facility_name=row["facility_name"])
         return None
 
     def get_all(self) -> list[Facilities]:
         # Retrieves all facilities from the database
         sql = "SELECT * FROM Facilities"
         rows = self.fetchall(sql)
-        return [Facilities(facility_id=row["id"], facility_name=row["facility_name"]) for row in rows]
+        return [Facilities(facility_id=row["facility_id"], facility_name=row["facility_name"]) for row in rows]
 
     def delete(self, facility_id: int) -> bool:
         # Deletes a facility by its ID
@@ -35,7 +35,7 @@ class FacilitiesDAL(BaseDAL):
 
     def get_facilities_by_room_id(self, room_id: int) -> list[Facilities]:
         # SQL query to get all facilities for a given room using a JOIN
-        sql = "SELECT f.facility_id, f.facility_name FROM Facilities f JOIN room_facilities rf ON f.facility_id = rf.facility_id WHERE rf.room_id = ?"
+        sql = "SELECT f.facility_id, f.facility_name FROM Facilities f JOIN Room_Facilities rf ON f.facility_id = rf.facility_id WHERE rf.room_id = ?"
         # get all matching rows from the database
         rows = self.fetchall(sql, (room_id,))
         # convert each row to a Facilities object and return the list
