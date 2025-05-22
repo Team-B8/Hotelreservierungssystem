@@ -63,13 +63,17 @@ def user_story_1_4():
         print(f"Hotel: {hotel.name} | Sterne: {hotel.stars}")
 
 def user_story_1_5():
+    # print the title for this user story
     print("\n--- 1.5: Kombinierte Suche (Stadt, Gästezahl, Sterne, Zeitraum) ---")
+    # ask user for input data
     city = input("Stadt: ")
     guests = int(input("Anzahl Gäste: "))
     stars = int(input("Minimale Sterne: "))
     check_in = input_date("Check-in Datum")
     check_out = input_date("Check-out Datum")
+    # get hotels that match all filters
     hotels = HotelManager().filter_combined(city, guests, stars, check_in, check_out)
+    # print hotel info
     for hotel in hotels:
         print(f"Hotel: {hotel.name} | Sterne: {hotel.stars}")
 
