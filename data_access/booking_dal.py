@@ -53,14 +53,17 @@ class BookingDAL(BaseDAL):
         return result.rowcount > 0
 
     def is_room_available(self, room_id: int, check_in_date, check_out_date) -> bool:
-        # Check if given room has any active booking overlapping the date range
+        # make sure dates are in string format (ISO)
         start_str = check_in_date.isoformat() if hasattr(check_in_date, "isoformat") else str(check_in_date)
         end_str = check_out_date.isoformat() if hasattr(check_out_date, "isoformat") else str(check_out_date)
+        # run SQL to check for any non-cancelled bookings that overlap the given dates
         cursor = self.conn.execute(
             "SELECT booking_id FROM Booking WHERE room_id=? AND is_cancelled=0 AND ? < check_out_date AND ? > check_in_date",
             (room_id, start_str, end_str)
         )
+        # if there is a booking, room is not available
         conflict = cursor.fetchone()
+        # True if no conflict, so room is free
         return conflict is None
 
     def get_by_room_id(self, room_id: int) -> list[Booking]:
