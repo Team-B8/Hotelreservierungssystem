@@ -106,3 +106,11 @@ class HotelManager:
                     break
         # return hotels that match all filters
         return matching_hotels
+    
+    def get_hotel_by_name(self, name: str) -> Hotel | None:
+        # get all hotels from the database
+        hotels = self.hotel_dal.get_all_hotels()
+        for hotel in hotels:
+            if hotel.name.lower() == name.lower():
+                return hotel
+        return None
