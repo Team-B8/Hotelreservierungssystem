@@ -97,21 +97,30 @@ def user_story_2_1():
     # print the title for this user story
     print("\n--- 2.1: Zimmerdetails anzeigen ---")
     # ask user to enter hotel ID
-    hotel_id = int(input("Hotel ID eingeben: "))
-    # get optional check-in and check-out to calculate total price
+    try:
+        hotel_id = int(input("Hotel ID eingeben: "))
+    except ValueError:
+        print("Ungültige Eingabe für Hotel ID.")
+        return
+    # ask user for check-in and check-out date
     check_in = input_date("Check-in Datum")
     check_out = input_date("Check-out Datum")
-    # get all rooms from RoomManager
+    # check that check_out is after check_in
+    if check_out <= check_in:
+        print("Check-out muss nach dem Check-in liegen.")
+        return
+    # get all rooms for the given hotel
     rooms = RoomManager().get_rooms_by_hotel_id(hotel_id)
+    # print details for each room
     for room in rooms:
-        # get room type
+        # get room type for room
         room_type = RoomTypeManager().get_by_id(room.type_id)
-        # get facilities
+        # get facilities for room
         facilities = FacilitiesManager().get_facilities_for_room(room.room_id)
-        # calculate number of nights and total price
+        # calculate total price for the stay
         nights = (check_out - check_in).days
         total_price = nights * room.price_per_night
-        # format and print room details
+        # print room information
         print(f"\nRoom No: {room.room_no}")
         print(f"Type: {room_type.description} | Max Guests: {room_type.max_guests}")
         print(f"Price per night: {room.price_per_night} | Total price: {total_price}")
