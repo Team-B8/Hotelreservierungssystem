@@ -35,6 +35,12 @@ class Address:
     
     def get_full_address(self) -> str:
         return f"{self.__street}, {self.__city}, {self.__zip_code}"
+    
+    @address_id.setter
+    def address_id(self, address_id: int) -> None:
+        if not isinstance(address_id, int):
+            raise ValueError("address_id must be an integer")
+        self.__address_id = address_id
 
     @street.setter
     def street(self, street: str) -> None:

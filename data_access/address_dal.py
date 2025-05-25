@@ -21,13 +21,13 @@ class AddressDAL(BaseDAL):
             (address.street, address.city, address.zip_code)
         )
         self.conn.commit()
-        address.id = cursor.lastrowid
+        address.address_id = cursor.lastrowid
         return address
 
     def update(self, address: Address) -> bool:
         result = self.conn.execute(
             "UPDATE address SET street = ?, city = ?, zip_code = ? WHERE address_id = ?",
-            (address.street, address.city, address.zip_code, address.id)
+            (address.street, address.city, address.zip_code, address.address_id)
         )
         self.conn.commit()
         return result.rowcount > 0
