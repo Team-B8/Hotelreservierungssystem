@@ -160,7 +160,7 @@ def user_story_2_2():
         print("Keine verfügbaren Zimmer gefunden.")
         return
     for r in rooms:
-        print(f"\nRoom No: {r['room_no']}")
+        print(f"\nRoom No: {r.room_no}")
         print(f"Type: {r['type_description']} | Max Guests: {r['max_guests']}")
         print(f"Price per night: {r['price_per_night']} | Total price: {r['total_price']}")
         print("Facilities: " + ", ".join(r['facilities']))
