@@ -8,7 +8,8 @@ class AddressManager:
 
     def create_address(self, street: str, city: str, zip_code: str) -> Address:
         # Create and save a new address with the given details
-        return self.__address_dal.create_address(street, city, zip_code)
+        address = Address(street=street, city=city, zip_code=zip_code)
+        return self.__address_dal.create(address)
 
     def get_address(self, address_id: int) -> Address | None:
         # Retrieve an address by its ID
@@ -16,5 +17,5 @@ class AddressManager:
 
     def delete_address(self, address_id: int) -> None:
         # Delete the address with the given ID
-        self.__address_dal.delete_address(address_id)
+        self.__address_dal.delete(address_id)
 
