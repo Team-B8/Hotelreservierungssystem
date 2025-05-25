@@ -16,7 +16,7 @@ class RoomManager:
         # return all rooms for a given hotel
         return self.room_dal.get_rooms_by_hotel_id(hotel_id)
 
-    # use a dictionary to easily structure and return all relevant room info in a single object
+    # dictionary to structure and return all relevant room info
     def get_detailed_rooms_by_hotel_id(self, hotel_id: int, nights: int = 1) -> list[dict]:
         # fetch rooms for the hotel
         rooms = self.room_dal.get_rooms_by_hotel_id(hotel_id)

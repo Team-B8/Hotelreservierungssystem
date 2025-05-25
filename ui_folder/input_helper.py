@@ -132,6 +132,40 @@ def user_story_2_1():
         print(f"Price per night: {room.price_per_night} | Total price: {total_price}")
         print("Facilities: " + ", ".join([f.facility_name for f in facilities]))
 
+def user_story_2_2():
+    # print the title for this user story
+    print("\n--- 2.2: Verfügbare Zimmer anzeigen ---")
+    # show all available hotels
+    hotels = HotelManager().get_all_hotels()
+    print("\nVerfügbare Hotels:")
+    for h in hotels:
+        print(f"- {h.name}")
+    # ask user to enter hotel name
+    hotel_name = input("Hotelname eingeben: ")
+    hotel = HotelManager().get_hotel_by_name(hotel_name)
+    if not hotel:
+        print("Hotel nicht gefunden.")
+        return
+    hotel_id = hotel.hotel_id
+    # ask user for check-in and check-out date
+    check_in = input_date("Check-in Datum")
+    check_out = input_date("Check-out Datum")
+    # check that check_out is after check_in
+    if check_out <= check_in:
+        print("Check-out muss nach dem Check-in liegen.")
+        return
+    # get detailed available rooms
+    rooms = RoomManager().get_detailed_available_rooms(hotel_id, str(check_in), str(check_out))
+    if not rooms:
+        print("Keine verfügbaren Zimmer gefunden.")
+        return
+    for r in rooms:
+        print(f"\nRoom No: {r['room_no']}")
+        print(f"Type: {r['type_description']} | Max Guests: {r['max_guests']}")
+        print(f"Price per night: {r['price_per_night']} | Total price: {r['total_price']}")
+        print("Facilities: " + ", ".join(r['facilities']))
+
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -142,6 +176,7 @@ def gast_menu():
         print("1.5 Hotels nach Stadt, Sterne, Gästezahl, Zeitraum")
         print("1.6 Hotelinformationen anzeigen")
         print("2.1 Zimmerdetails anzeigen")
+        print("2.2 Verfügbare Zimmer anzeigen")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Option wählen: ")
         if auswahl == "1.1":
@@ -158,6 +193,8 @@ def gast_menu():
             user_story_1_6()
         elif auswahl == "2.1":
             user_story_2_1()
+        elif auswahl == "2.2":
+            user_story_2_2()
         elif auswahl == "0":
             break
         else:
