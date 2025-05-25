@@ -51,8 +51,8 @@ class RoomManager:
     
     def get_detailed_available_rooms(self, hotel_id: int, check_in: str, check_out: str) -> list[Room]:
         # Returns all available rooms for the hotel in the given date range
-        all_rooms = self.get_rooms_by_hotel(hotel_id)
-        available_rooms = self.get_available_rooms_by_hotel_and_date(hotel_id, check_in, check_out)
+        all_rooms = self.get_rooms_by_hotel_id(hotel_id)
+        available_rooms = self.get_available_rooms_by_hotel_and_dates(hotel_id, check_in, check_out)
         # Create a mapping of room_id to Room for fast lookup
         room_dict = {room.room_id: room for room in all_rooms}
         # Return only Room objects for the available room_ids
