@@ -38,3 +38,13 @@ class RoomManager:
                 "total_price": round(room.price_per_night * nights, 2)
             })
         return detailed_rooms
+    
+
+    def get_available_rooms_by_hotel_and_dates(self, hotel_id: int, check_in_date: str, check_out_date: str) -> list[Room]:
+        # Get all rooms for the hotel
+        all_rooms = self.room_dal.get_rooms_by_hotel_id(hotel_id)
+        # Get all room_ids that are already booked during the specified dates
+        booked_room_ids = self.room_dal.get_booked_room_ids(hotel_id, check_in_date, check_out_date)
+        # Return only those rooms that are not booked
+        available_rooms = [room for room in all_rooms if room.room_id not in booked_room_ids]
+        return available_rooms
