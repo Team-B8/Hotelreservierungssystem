@@ -223,6 +223,19 @@ def gast_menu():
         else:
             print("Ungültige Eingabe.")
 
+def admin_menu():
+    while True:
+        print("\n--- ADMIN MENÜ ---")
+        print("3.1 Hotel hinzufügen")
+        print("0. Zurück zum Hauptmenü")
+        auswahl = input("Option wählen: ")
+        if auswahl == "3.1":
+            user_story_3_1()
+        elif auswahl == "0":
+            break
+        else:
+            print("Ungültige Eingabe.")
+
 def main_menu():
     while True:
         print("\n===== HOTELRESERVIERUNGSSYSTEM =====")
@@ -233,7 +246,7 @@ def main_menu():
         if choice == "1":
             gast_menu()
         elif choice == "2":
-            print("Admin-Menü wird noch entwickelt...")
+            admin_menu()
         elif choice == "0":
             print("Programm beendet.")
             break
