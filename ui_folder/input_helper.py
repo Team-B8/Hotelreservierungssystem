@@ -179,13 +179,20 @@ def user_story_3_1():
     # get hotel name and star rating from user
     name = input("Hotelname: ")
     stars = int(input("Sterne (1–5): "))
+    # get address details
+    print("Adresse eingeben:")
+    street = input("Strasse: ")
+    city = input("Stadt: ")
+    zip_code = input("PLZ: ")
     try:
-        # try to create the hotel using HotelManager
-        hotel = HotelManager().create_hotel(name, stars)
-        # print success message with hotel name and ID
+        # erstelle Adresse und erhalte deren ID
+        from business_logic.address_manager import AddressManager
+        address = AddressManager().create_address(street, city, zip_code)
+        address_id = address.address_id
+        # erstelle Hotel mit der erstellten Adresse
+        hotel = HotelManager().create_hotel(name, stars, address_id)
         print(f"Hotel '{hotel.name}' mit ID {hotel.hotel_id} hinzugefügt.")
     except Exception as e:
-        # print error message if something goes wrong
         print(f"Fehler beim Hinzufügen des Hotels: {e}")
 
 
