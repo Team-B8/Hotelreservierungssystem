@@ -187,7 +187,7 @@ def user_story_3_1():
     try:
         # erstelle Adresse und erhalte deren ID
         from business_logic.address_manager import AddressManager
-        address = AddressManager().create_address(None, street, city, zip_code)
+        address = AddressManager().create_address(street, city, zip_code)
         address_id = address.address_id
         # erstelle Hotel mit der erstellten Adresse
         hotel = HotelManager().create_hotel(name, stars, address_id)

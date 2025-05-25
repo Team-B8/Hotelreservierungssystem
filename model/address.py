@@ -34,14 +34,14 @@ class Address:
         return self.__zip_code  
     
     def get_full_address(self) -> str:
-        return f"{self.__street}, {self.__city}, {self.__zip_code})"
+        return f"{self.__street}, {self.__city}, {self.__zip_code}"
 
     @street.setter
     def street(self, street: str) -> None:
         if not street:
             raise ValueError("street is required")
         if not isinstance(street, str):
-            raise ValueError("street must be an string")
+            raise ValueError("street must be a string")
         self.__street = street
 
     @city.setter
@@ -49,7 +49,7 @@ class Address:
         if not city:
             raise ValueError("city is required")
         if not isinstance(city, str):
-            raise ValueError("city must be an string")
+            raise ValueError("city must be a string")
         self.__city = city
 
     @zip_code.setter
@@ -57,5 +57,5 @@ class Address:
         if not zip_code:
             raise ValueError("zip_code is required")
         if not isinstance(zip_code, str):
-            raise ValueError("Zip_code must be an string")
+            raise ValueError("zip_code must be a string")
         self.__zip_code = zip_code
