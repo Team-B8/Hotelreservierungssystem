@@ -5,6 +5,8 @@ from datetime import datetime
 from business_logic.room_manager import RoomManager
 from business_logic.room_type_manager import RoomTypeManager
 from business_logic.facilities_manager import FacilitiesManager
+from business_logic.address_manager import AddressManager
+from business_logic.hotel_manager import HotelManager
 
 def input_date(prompt):
     while True:
@@ -180,18 +182,15 @@ def user_story_3_1():
     name = input("Hotelname: ")
     stars = int(input("Sterne (1–5): "))
     # get address details
-    print("Adresse eingeben:")
     street = input("Strasse: ")
     city = input("Stadt: ")
     zip_code = input("PLZ: ")
     try:
         # erstelle Adresse und erhalte deren ID
-        from business_logic.address_manager import AddressManager
         address = AddressManager().create_address(street, city, zip_code)
-        address_id = address.address_id
         # erstelle Hotel mit der erstellten Adresse
-        hotel = HotelManager().create_hotel(name, stars, address_id)
-        print(f"Hotel '{hotel.name}' mit ID {hotel.hotel_id} hinzugefügt.")
+        hotel = HotelManager().create_hotel(name, stars, address.address_id)
+        print(f"Hotel '{name}' erfolgreich hinzugefügt.")
     except Exception as e:
         print(f"Fehler beim Hinzufügen des Hotels: {e}")
 

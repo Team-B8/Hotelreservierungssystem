@@ -14,10 +14,10 @@ class HotelManager:
         self.room_type_dal = RoomTypeDAL()
         self.booking_dal = BookingDAL()
 
-    def create_hotel(self, name: str, stars: int) -> Hotel:
+    def create_hotel(self, name: str, stars: int, address_id: int):
         if not (1 <= stars <= 5):
             raise ValueError("Stars must be between 1 and 5")
-        return self.hotel_dal.create_hotel(name, stars)
+        return self.hotel_dal.create_hotel(name, stars, address_id)
 
     def get_hotel(self, hotel_id: int) -> Hotel | None:
         return self.hotel_dal.read_hotel_by_id(hotel_id)

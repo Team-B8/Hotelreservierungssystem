@@ -33,7 +33,7 @@ class BaseDAL:
     
     def _connect(self):
         conn = sqlite3.connect(self.__connection_str, detect_types=sqlite3.PARSE_DECLTYPES)
-        conn.row_factory = sqlite3.Row  # 🔧 Zeile hinzufügen
+        conn.row_factory = sqlite3.Row
         return conn
 
     def fetchone(self, sql: str, params: tuple = None):
