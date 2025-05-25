@@ -159,11 +159,19 @@ def user_story_2_2():
     if not rooms:
         print("Keine verfügbaren Zimmer gefunden.")
         return
-    for r in rooms:
-        print(f"\nRoom No: {r.room_no}")
-        print(f"Type: {r['type_description']} | Max Guests: {r['max_guests']}")
-        print(f"Price per night: {r['price_per_night']} | Total price: {r['total_price']}")
-        print("Facilities: " + ", ".join(r['facilities']))
+    for room in rooms:
+        # get room type for room
+        room_type = RoomTypeManager().get_by_id(room.type_id)
+        # get facilities for room
+        facilities = FacilitiesManager().get_facilities_for_room(room.room_id)
+        # calculate total price for the stay
+        nights = (check_out - check_in).days
+        total_price = nights * room.price_per_night
+        # print room information
+        print(f"\nRoom No: {room.room_no}")
+        print(f"Type: {room_type.description} | Max Guests: {room_type.max_guests}")
+        print(f"Price per night: {room.price_per_night} | Total price: {total_price}")
+        print("Facilities: " + ", ".join([f.facility_name for f in facilities]))
 
 
 def gast_menu():
