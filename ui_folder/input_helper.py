@@ -173,20 +173,20 @@ def user_story_2_2():
         print(f"Price per night: {room.price_per_night} | Total price: {total_price}")
         print("Facilities: " + ", ".join([f.facility_name for f in facilities]))
     
-    def user_story_3_1():
-        # print the title for this user story
-        print("\n--- 3.1: Hotel hinzufügen ---")
-        # get hotel name and star rating from user
-        name = input("Hotelname: ")
-        stars = int(input("Sterne (1–5): "))
-        try:
-            # try to create the hotel using HotelManager
-            hotel = HotelManager().create_hotel(name, stars)
-            # print success message with hotel name and ID
-            print(f"Hotel '{hotel.name}' mit ID {hotel.hotel_id} hinzugefügt.")
-        except Exception as e:
-            # print error message if something goes wrong
-            print(f"Fehler beim Hinzufügen des Hotels: {e}")
+def user_story_3_1():
+    # print the title for this user story
+    print("\n--- 3.1: Hotel hinzufügen ---")
+    # get hotel name and star rating from user
+    name = input("Hotelname: ")
+    stars = int(input("Sterne (1–5): "))
+    try:
+        # try to create the hotel using HotelManager
+        hotel = HotelManager().create_hotel(name, stars)
+        # print success message with hotel name and ID
+        print(f"Hotel '{hotel.name}' mit ID {hotel.hotel_id} hinzugefügt.")
+    except Exception as e:
+        # print error message if something goes wrong
+        print(f"Fehler beim Hinzufügen des Hotels: {e}")
 
 
 def gast_menu():
