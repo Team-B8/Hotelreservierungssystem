@@ -1,6 +1,6 @@
 class Address:
-    def __init__(self, street: str, city: str, zip_code: str, address_id: int = None):
-        if not isinstance(address_id, int):
+    def __init__(self, address_id: int | None, street: str, city: str, zip_code: str):
+        if address_id is not None and not isinstance(address_id, int):
             raise ValueError("address_id must be an integer")
         if not street:
             raise ValueError("street is required")
