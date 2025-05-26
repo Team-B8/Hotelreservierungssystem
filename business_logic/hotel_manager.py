@@ -34,8 +34,14 @@ class HotelManager:
     def get_hotel(self, hotel_id: int) -> Hotel | None:
         return self.hotel_dal.read_hotel_by_id(hotel_id)
 
-    def delete_hotel(self, hotel_id: int) -> None:
-        self.hotel_dal.delete_hotel(hotel_id)
+    def delete_hotel(self, hotel_id: int) -> bool:
+        # get the hotel by ID
+        hotel = self.get_hotel(hotel_id)
+        # if hotel does not exist, return False
+        if not hotel:
+            return False
+        # delete the hotel using the data access layer and return the result
+        return self.hotel_dal.delete_hotel(hotel_id)
 
     def update_hotel(self, hotel_id: int, name: str, stars: int) -> bool:
         if not (1 <= stars <= 5):
