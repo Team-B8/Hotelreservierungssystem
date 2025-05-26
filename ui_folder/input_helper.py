@@ -261,7 +261,7 @@ def user_story_3_3():
         address = manager.address_dal.get_address_by_hotel(hotel_id)
         # show current hotel info
         print(f"Aktuell: Name: {hotel.name}, Sterne: {hotel.stars}")
-        print(f"Adresse: {address.street}, {address.zip_code} {address.city}, {address.country}")
+        print(f"Adresse: {address.street}, {address.zip_code} {address.city}")
         # get new name and stars from user input
         new_name = input("Neuer Hotelname (leer lassen für keine Änderung): ")
         new_stars_input = input("Neue Sternezahl (1–5, leer lassen für keine Änderung): ")
@@ -269,14 +269,12 @@ def user_story_3_3():
         new_street = input("Neue Straße (leer lassen für keine Änderung): ")
         new_zip = input("Neue PLZ (leer lassen für keine Änderung): ")
         new_city = input("Neue Stadt (leer lassen für keine Änderung): ")
-        new_country = input("Neues Land (leer lassen für keine Änderung): ")
         # keep old values if input is empty
         new_name = new_name if new_name.strip() else hotel.name
         new_stars = int(new_stars_input) if new_stars_input.strip() else hotel.stars
         address.street = new_street if new_street.strip() else address.street
         address.zip_code = new_zip if new_zip.strip() else address.zip_code
         address.city = new_city if new_city.strip() else address.city
-        address.country = new_country if new_country.strip() else address.country
         # update hotel and address in the database
         updated = manager.update_hotel(hotel_id, new_name, new_stars)
         manager.address_dal.update_address(address)

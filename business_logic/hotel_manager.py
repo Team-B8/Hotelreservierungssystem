@@ -44,11 +44,15 @@ class HotelManager:
         return self.hotel_dal.delete_hotel(hotel_id)
 
     def update_hotel(self, hotel_id: int, name: str, stars: int, address=None) -> bool:
+        # check if stars are in the valid range
         if not (1 <= stars <= 5):
             raise ValueError("Stars must be between 1 and 5")
+        # update hotel name and stars in the database
         hotel_updated = self.hotel_dal.update_hotel(hotel_id, name, stars)
+        # if an address object is given, update the address too
         if address:
             self.address_dal.update_address(address)
+        # return True if hotel was updated
         return hotel_updated
 
     def get_all_hotels(self) -> list[Hotel]:
