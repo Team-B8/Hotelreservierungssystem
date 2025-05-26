@@ -6,12 +6,15 @@ class HotelDAL(BaseDAL):
         super().__init__()
 
     def create_hotel(self, name: str, stars: int, address_id: int) -> Hotel:
+        # SQL query to insert a new hotel into the database
         sql = "INSERT INTO Hotel (name, stars, address_id) VALUES (?, ?, ?)"
         params = (name, stars, address_id)
+        # connect to the database and run the insert query
         with self._connect() as conn:
             cursor = conn.execute(sql, params)
             conn.commit()
             last_row_id = cursor.lastrowid
+        # return a Hotel object with the new data
         return Hotel(hotel_id=last_row_id, name=name, stars=stars, address_id=address_id)
 
     def read_hotel_by_id(self, hotel_id: int) -> Hotel | None:

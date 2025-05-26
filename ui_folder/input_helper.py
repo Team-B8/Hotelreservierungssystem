@@ -210,6 +210,27 @@ def user_story_3_1():
     except Exception as e:
         print(f"Fehler beim Hinzufügen des Hotels: {e}")
 
+def user_story_3_2():
+    # print the title for this user story
+    print("\n--- 3.2: Hotel löschen ---")
+    # show all hotels with ID and stars
+    hotels = HotelManager().get_all_hotels()
+    for h in hotels:
+        print(f"{h.hotel_id}: {h.name} ({h.stars} Sterne)")
+    try:
+        # ask user for hotel ID to delete
+        hotel_id = int(input("ID des zu löschenden Hotels eingeben: "))
+        # get the hotel by ID
+        hotel = HotelManager().get_hotel(hotel_id)
+        if not hotel:
+            print("Hotel nicht gefunden.")
+            return
+        # delete the hotel
+        HotelManager().delete_hotel(hotel_id)
+        print(f"Hotel '{hotel.name}' wurde gelöscht.")
+    except ValueError:
+        # if user input is not a number
+        print("Ungültige Eingabe. Bitte eine Zahl eingeben.")
 
 def gast_menu():
     while True:
@@ -249,10 +270,13 @@ def admin_menu():
     while True:
         print("\n--- ADMIN MENÜ ---")
         print("3.1 Hotel hinzufügen")
+        print("3.2 Hotel löschen")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Option wählen: ")
         if auswahl == "3.1":
             user_story_3_1()
+        elif auswahl == "3.2":
+            user_story_3_2()
         elif auswahl == "0":
             break
         else:

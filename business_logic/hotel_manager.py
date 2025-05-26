@@ -16,15 +16,20 @@ class HotelManager:
         self.booking_dal = BookingDAL()
 
     def create_hotel(self, name: str, stars: int, address_id: int):
+        # check if stars are in the valid range
         if not (1 <= stars <= 5):
             raise ValueError("Stars must be between 1 and 5")
+        # create the hotel in the database
         hotel = self.hotel_dal.create_hotel(name, stars, address_id)
-        # Automatically create a default room
-        default_type = self.room_type_dal.get_by_id(1)  # Default to Single room
+        # get the default room type (ID 1, usually Single room)
+        default_type = self.room_type_dal.get_by_id(1)
+        # if default room type doesn't exist, raise an error
         if not default_type:
             raise ValueError("Default room type (ID 1) does not exist")
+        # create a default room for the new hotel
         room = self.room_dal.create_room(hotel.hotel_id, "001", default_type.type_id, 100.0)
-        return hotel  # Optionally, also return room if needed
+        # return the created hotel
+        return hotel
 
     def get_hotel(self, hotel_id: int) -> Hotel | None:
         return self.hotel_dal.read_hotel_by_id(hotel_id)
