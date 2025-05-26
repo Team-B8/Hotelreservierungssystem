@@ -10,14 +10,18 @@ class GuestDAL(BaseDAL):
         # Inserts a new guest into the database
         sql = "INSERT INTO guests (first_name, last_name, email) VALUES (?, ?, ?)"
         params = (guest.first_name, guest.last_name, guest.email)
-        last_row_id, _ = self.execute(sql, params)
-        guest._Guest__guest_id = last_row_id  # sets the guest ID after insertion (name mangling safe)
+        with self._connect() as conn:
+            cursor = conn.execute(sql, params)
+            conn.commit()
+            guest._Guest__guest_id = cursor.lastrowid
         return guest
 
     def get_by_id(self, guest_id: int) -> Guest | None:
         # Retrieves a guest by their ID
         sql = "SELECT * FROM guests WHERE id = ?"
-        row = self.fetchone(sql, (guest_id,))
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (guest_id,))
+            row = cursor.fetchone()
         if row:
             return Guest(guest_id=row["id"], first_name=row["first_name"], last_name=row["last_name"], email=row["email"])
         return None
@@ -25,7 +29,9 @@ class GuestDAL(BaseDAL):
     def get_by_email(self, email: str) -> Guest | None:
         # Retrieves a guest by their email address
         sql = "SELECT * FROM guests WHERE email = ?"
-        row = self.fetchone(sql, (email,))
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (email,))
+            row = cursor.fetchone()
         if row:
             return Guest(guest_id=row["id"], first_name=row["first_name"], last_name=row["last_name"], email=row["email"])
         return None
@@ -33,6 +39,7 @@ class GuestDAL(BaseDAL):
     def delete(self, guest_id: int) -> bool:
         # Physically deletes a guest by their ID from the database (not just logical)
         sql = "DELETE FROM guests WHERE id = ?"
-        _, row_count = self.execute(sql, (guest_id,))
-        return row_count > 0
-
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (guest_id,))
+            conn.commit()
+        return cursor.rowcount > 0

@@ -6,6 +6,7 @@ import shutil
 source = "database/hotel_reservation_db.db"
 db_file = "database/working_db.db"
 os.environ["DB_FILE"] = db_file
+
 shutil.copyfile(source, db_file) #Copy original DB first to always start fresh.
 
 def date_to_db(d: date) -> str:

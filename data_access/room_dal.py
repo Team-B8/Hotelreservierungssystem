@@ -7,7 +7,9 @@ class RoomDAL(BaseDAL):
 
     def get_by_id(self, room_id: int) -> Room | None:
         sql = "SELECT * FROM room WHERE room_id = ?"
-        row = self.fetchone(sql, (room_id,))
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (room_id,))
+            row = cursor.fetchone()
         if row:
             return Room(
                 room_id=row[0],
@@ -19,11 +21,10 @@ class RoomDAL(BaseDAL):
         return None
 
     def get_rooms_by_hotel_id(self, hotel_id: int) -> list[Room]:
-        # SQL query to get all rooms for the given hotel ID
         sql = "SELECT * FROM room WHERE hotel_id = ?"
-        # get all matching rows from the database
-        rows = self.fetchall(sql, (hotel_id,))
-        # create a list of Room objects from the rows
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (hotel_id,))
+            rows = cursor.fetchall()
         return [
             Room(
                 room_id=row[0],
@@ -37,7 +38,9 @@ class RoomDAL(BaseDAL):
 
     def get_all_rooms(self) -> list[Room]:
         sql = "SELECT * FROM room"
-        rows = self.fetchall(sql)
+        with self._connect() as conn:
+            cursor = conn.execute(sql)
+            rows = cursor.fetchall()
         return [
             Room(
                 room_id=row[0],
@@ -51,7 +54,6 @@ class RoomDAL(BaseDAL):
     
 
     def get_booked_room_ids(self, hotel_id: int, check_in: str, check_out: str) -> list[int]:
-        # SQL query to find booked rooms in the given hotel and date range
         sql = """
             SELECT DISTINCT r.room_id
             FROM room r
@@ -63,7 +65,7 @@ class RoomDAL(BaseDAL):
                 (b.check_in_date >= ? AND b.check_in_date < ?)
             )
         """
-        # get all matching rows from the database
-        rows = self.fetchall(sql, (hotel_id, check_out, check_in, check_in, check_out))
-        # return only the room IDs from the result
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (hotel_id, check_out, check_in, check_in, check_out))
+            rows = cursor.fetchall()
         return [row[0] for row in rows]
