@@ -43,10 +43,13 @@ class HotelManager:
         # delete the hotel using the data access layer and return the result
         return self.hotel_dal.delete_hotel(hotel_id)
 
-    def update_hotel(self, hotel_id: int, name: str, stars: int) -> bool:
+    def update_hotel(self, hotel_id: int, name: str, stars: int, address=None) -> bool:
         if not (1 <= stars <= 5):
             raise ValueError("Stars must be between 1 and 5")
-        return self.hotel_dal.update_hotel(hotel_id, name, stars)
+        hotel_updated = self.hotel_dal.update_hotel(hotel_id, name, stars)
+        if address:
+            self.address_dal.update_address(address)
+        return hotel_updated
 
     def get_all_hotels(self) -> list[Hotel]:
         # get all hotels from the database
