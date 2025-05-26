@@ -74,3 +74,10 @@ class RoomDAL(BaseDAL):
         sql = "INSERT INTO room (hotel_id, room_number, type_id, price_per_night) VALUES (?, ?, ?, ?)"
         params = (hotel_id, room_no, type_id, price_per_night)
         return self.insert_and_get_id(sql, params)
+    
+    def insert_and_get_id(self, sql: str, params: tuple) -> Room:
+        cursor = self.conn.cursor()
+        cursor.execute(sql, params)
+        self.conn.commit()
+        room_id = cursor.lastrowid
+        return Room(room_id=room_id, hotel_id=params[0], room_no=params[1], type_id=params[2], price_per_night=params[3])

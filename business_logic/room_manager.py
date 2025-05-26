@@ -23,9 +23,9 @@ class RoomManager:
         detailed_rooms = []
         for room in rooms:
             # get room type info
-            room_type = self.room_type_dal.get_by_id(room.type_id)
+            room_type = self.room_type_dal.get_by_id(room_type.room_type_id)
             # get facilities
-            facilities = self.facilities_dal.get_by_room_id(room.room_id)
+            facilities = self.facilities_dal.get_facilities_by_room_id(room.room_id)
             facility_names = [f.facility_name for f in facilities]
             # build a detailed dict
             detailed_rooms.append({

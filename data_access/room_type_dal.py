@@ -12,7 +12,7 @@ class RoomTypeDAL(BaseDAL):
             row = cursor.fetchone()
         if row:
             return RoomType(
-                room_type_id=row[0],
+                type_id=row[0],
                 description=row[1],
                 max_guests=row[2]
             )
@@ -25,7 +25,7 @@ class RoomTypeDAL(BaseDAL):
             rows = cursor.fetchall()
         return [
             RoomType(
-                room_type_id=row[0],
+                type_id=row[0],
                 description=row[1],
                 max_guests=row[2]
             ) for row in rows

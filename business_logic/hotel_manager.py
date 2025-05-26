@@ -4,6 +4,7 @@ from data_access.room_dal import RoomDAL
 from data_access.room_type_dal import RoomTypeDAL
 from data_access.booking_dal import BookingDAL
 from model.hotel import Hotel
+from model.room import Room
 from datetime import date
 
 class HotelManager:
@@ -17,7 +18,13 @@ class HotelManager:
     def create_hotel(self, name: str, stars: int, address_id: int):
         if not (1 <= stars <= 5):
             raise ValueError("Stars must be between 1 and 5")
-        return self.hotel_dal.create_hotel(name, stars, address_id)
+        hotel = self.hotel_dal.create_hotel(name, stars, address_id)
+        # Automatically create a default room
+        default_type = self.room_type_dal.get_by_id(1)  # Default to Single room
+        if not default_type:
+            raise ValueError("Default room type (ID 1) does not exist")
+        room = self.room_dal.create_room(hotel.hotel_id, "001", default_type.type_id, 100.0)
+        return hotel  # Optionally, also return room if needed
 
     def get_hotel(self, hotel_id: int) -> Hotel | None:
         return self.hotel_dal.read_hotel_by_id(hotel_id)
@@ -58,7 +65,7 @@ class HotelManager:
             # check each room
             for room in rooms:
                 # get room type to check max guests
-                room_type = self.room_type_dal.get_by_id(room.type_id)
+                room_type = self.room_type_dal.get_by_id(room_type.type_id)
                 # if room can fit the number of guests
                 if room_type.max_guests >= guests:
                     # add hotel to result and stop checking more rooms
@@ -98,7 +105,7 @@ class HotelManager:
             # check each room
             for room in rooms:
                 # get room type to check max guests
-                room_type = self.room_type_dal.get_by_id(room.type_id)
+                room_type = self.room_type_dal.get_by_id(room_type.type_id)
                 # if room fits the guests and is available
                 if room_type.max_guests >= guests and self.booking_dal.is_room_available(room.room_id, check_in, check_out):
                     # add hotel to result and stop checking more rooms
