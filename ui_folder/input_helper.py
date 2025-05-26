@@ -170,10 +170,10 @@ def user_story_2_2():
         nights = (check_out - check_in).days
         total_price = nights * room.price_per_night
         # print room information
-        print(f"\nRoom No: {room.room_no}")
-        print(f"Type: {room_type.description} | Max Guests: {room_type.max_guests}")
-        print(f"Price per night: {room.price_per_night} | Total price: {total_price}")
-        print("Facilities: " + ", ".join([f.facility_name for f in facilities]))
+        print(f"\nRaum Nummer: {room.room_no}")
+        print(f"Type: {room_type.description} | Maximale Anzahl Gäste: {room_type.max_guests}")
+        print(f"Preis pro Nacht: {room.price_per_night} | Totaler Preis: {total_price}")
+        print("Einrichtungen: " + ", ".join([f.facility_name for f in facilities]))
     
 def user_story_3_1():
     # print the title for this user story
@@ -186,11 +186,29 @@ def user_story_3_1():
     city = input("Stadt: ")
     zip_code = input("PLZ: ")
     try:
-        # erstelle Adresse und erhalte deren ID
+        # create address and get id
         address = AddressManager().create_address(street, city, zip_code)
-        # erstelle Hotel mit der erstellten Adresse
+        # create hotel with the address
         hotel = HotelManager().create_hotel(name, stars, address.address_id)
         print(f"Hotel '{name}' erfolgreich hinzugefügt.")
+
+        # add a room for the hotel
+        print("\n--- Zimmer für das Hotel hinzufügen ---")
+        room_number = input("Zimmernummer: ")
+        # print room types
+        room_types = RoomTypeManager().get_all_room_types()
+        print("Verfügbare Zimmertypen:")
+        for rt in room_types:
+            print(f"{rt.type_id}: {rt.description} (max {rt.max_guests} Gäste)")
+        type_id = int(input("Typ-ID wählen: "))
+        price = float(input("Preis pro Nacht: "))
+
+        try:
+            RoomManager().create_room(hotel.hotel_id, room_number, type_id, price)
+            print("Zimmer erfolgreich hinzugefügt.")
+        except Exception as e:
+            print(f"Fehler beim Hinzufügen des Zimmers: {e}")
+
     except Exception as e:
         print(f"Fehler beim Hinzufügen des Hotels: {e}")
 
