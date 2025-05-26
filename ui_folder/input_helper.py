@@ -193,7 +193,6 @@ def user_story_3_1():
     print(f"Hotel '{name}' erfolgreich hinzugefügt.")
     # add a room for the hotel
     print("\n--- Zimmer für das Hotel hinzufügen ---")
-    room_no = input("Zimmernummer: ")
     # print room types
     room_types = RoomTypeManager().get_all()
     print("Verfügbare Zimmertypen:")
@@ -202,7 +201,8 @@ def user_story_3_1():
     type_id = int(input("Typ-ID wählen: "))
     price = float(input("Preis pro Nacht: "))
     #try:
-    RoomManager().create_room(hotel.hotel_id, room_no, type_id, price)
+    room = RoomManager().create_room(hotel.hotel_id, type_id, price)
+    print(f"Zimmer Nr. {room.room_no} erfolgreich hinzugefügt.")
     print("Zimmer erfolgreich hinzugefügt.")
     #except Exception as e:
         #print(f"Fehler beim Hinzufügen des Zimmers: {e}")

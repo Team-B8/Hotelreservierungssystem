@@ -81,3 +81,19 @@ class RoomDAL(BaseDAL):
             conn.commit()
             last_row_id = cursor.lastrowid
         return last_row_id #Room(room_id=last_row_id, hotel_id=params[0], room_no=params[1], type_id=params[2], price_per_night=params[3])
+    
+    def get_next_room_number(self, hotel_id: int) -> str:
+        sql = "SELECT room_number FROM room WHERE hotel_id = ?"
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (hotel_id,))
+            rows = cursor.fetchall()
+
+        max_number = 0
+        for row in rows:
+            try:
+                num = int(row["room_number"])
+                max_number = max(max_number, num)
+            except (ValueError, TypeError):
+                continue
+
+        return str(max_number + 1).zfill(3)

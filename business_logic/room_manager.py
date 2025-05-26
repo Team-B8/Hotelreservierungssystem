@@ -58,7 +58,8 @@ class RoomManager:
         # Return only Room objects for the available room_ids
         return [room_dict[room.room_id] for room in available_rooms if room.room_id in room_dict]
     
-    def create_room(self, hotel_id: int, room_no: str, type_id: int, price_per_night: float) -> Room:
+    def create_room(self, hotel_id: int, type_id: int, price_per_night: float) -> Room:
+        room_no = self.room_dal.get_next_room_number(hotel_id)
         # create a new room in the database
         room_id = self.room_dal.create_room(hotel_id, room_no, type_id, price_per_night)
         return Room(room_id=room_id, hotel_id=hotel_id, room_no=room_no, type_id=type_id, price_per_night=price_per_night)
