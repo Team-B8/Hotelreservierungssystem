@@ -122,7 +122,7 @@ def user_story_2_1():
     # print details for each room
     for room in rooms:
         # get room type for room
-        room_type = RoomTypeManager().get_by_id(room_type.type_id)
+        room_type = RoomTypeManager().get_by_id(room.type_id)
         # get facilities for room
         facilities = FacilitiesManager().get_facilities_for_room(room.room_id)
         # calculate total price for the stay
@@ -163,7 +163,7 @@ def user_story_2_2():
         return
     for room in rooms:
         # get room type for room
-        room_type = RoomTypeManager().get_by_id(room_type.type_id)
+        room_type = RoomTypeManager().get_by_id(room.type_id)
         # get facilities for room
         facilities = FacilitiesManager().get_facilities_for_room(room.room_id)
         # calculate total price for the stay
@@ -185,30 +185,30 @@ def user_story_3_1():
     street = input("Strasse: ")
     city = input("Stadt: ")
     zip_code = input("PLZ: ")
-    try:
-        # create address and get id
-        address = AddressManager().create_address(street, city, zip_code)
-        # create hotel with the address
-        hotel = HotelManager().create_hotel(name, stars, address.address_id)
-        print(f"Hotel '{name}' erfolgreich hinzugefügt.")
-        # add a room for the hotel
-        print("\n--- Zimmer für das Hotel hinzufügen ---")
-        room_number = input("Zimmernummer: ")
-        # print room types
-        room_types = RoomTypeManager().get_all()
-        print("Verfügbare Zimmertypen:")
-        for rt in room_types:
-            print(f"{rt.type_id}: {rt.description} (max {rt.max_guests} Gäste)")
-        type_id = int(input("Typ-ID wählen: "))
-        price = float(input("Preis pro Nacht: "))
-        try:
-            RoomManager().create_room(hotel.hotel_id, room_number, type_id, price)
-            print("Zimmer erfolgreich hinzugefügt.")
-        except Exception as e:
-            print(f"Fehler beim Hinzufügen des Zimmers: {e}")
+#try:
+    # create address and get id
+    address = AddressManager().create_address(street, city, zip_code)
+    # create hotel with the address
+    hotel = HotelManager().create_hotel(name, stars, address.address_id)
+    print(f"Hotel '{name}' erfolgreich hinzugefügt.")
+    # add a room for the hotel
+    print("\n--- Zimmer für das Hotel hinzufügen ---")
+    room_no = input("Zimmernummer: ")
+    # print room types
+    room_types = RoomTypeManager().get_all()
+    print("Verfügbare Zimmertypen:")
+    for rt in room_types:
+        print(f"{rt.type_id}: {rt.description} (max {rt.max_guests} Gäste)")
+    type_id = int(input("Typ-ID wählen: "))
+    price = float(input("Preis pro Nacht: "))
+    #try:
+    RoomManager().create_room(hotel.hotel_id, room_no, type_id, price)
+    print("Zimmer erfolgreich hinzugefügt.")
+    #except Exception as e:
+        #print(f"Fehler beim Hinzufügen des Zimmers: {e}")
 
-    except Exception as e:
-        print(f"Fehler beim Hinzufügen des Hotels: {e}")
+#except Exception as e:
+    #print(f"Fehler beim Hinzufügen des Hotels: {e}")
 
 
 def gast_menu():
