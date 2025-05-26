@@ -241,6 +241,54 @@ def user_story_3_2():
         # if user input is not a number
         print("Ungültige Eingabe. Bitte eine Zahl eingeben.")
 
+def user_story_3_3():
+    # print the title for this user story
+    print("\n--- 3.3: Hotelinformationen aktualisieren ---")
+    # show all hotels with ID and stars
+    hotels = HotelManager().get_all_hotels()
+    for h in hotels:
+        print(f"{h.hotel_id}: {h.name} ({h.stars} Sterne)")
+    try:
+        # ask user for hotel ID to update
+        hotel_id = int(input("ID des zu bearbeitenden Hotels eingeben: "))
+        manager = HotelManager()
+        hotel = manager.get_hotel(hotel_id)
+        # check if hotel exists
+        if not hotel:
+            print("Hotel nicht gefunden.")
+            return
+        # get the current address of the hotel
+        address = manager.address_dal.get_address_by_hotel(hotel_id)
+        # show current hotel info
+        print(f"Aktuell: Name: {hotel.name}, Sterne: {hotel.stars}")
+        print(f"Adresse: {address.street}, {address.zip_code} {address.city}, {address.country}")
+        # get new name and stars from user input
+        new_name = input("Neuer Hotelname (leer lassen für keine Änderung): ")
+        new_stars_input = input("Neue Sternezahl (1–5, leer lassen für keine Änderung): ")
+        # get new address data from user input
+        new_street = input("Neue Straße (leer lassen für keine Änderung): ")
+        new_zip = input("Neue PLZ (leer lassen für keine Änderung): ")
+        new_city = input("Neue Stadt (leer lassen für keine Änderung): ")
+        new_country = input("Neues Land (leer lassen für keine Änderung): ")
+        # keep old values if input is empty
+        new_name = new_name if new_name.strip() else hotel.name
+        new_stars = int(new_stars_input) if new_stars_input.strip() else hotel.stars
+        address.street = new_street if new_street.strip() else address.street
+        address.zip_code = new_zip if new_zip.strip() else address.zip_code
+        address.city = new_city if new_city.strip() else address.city
+        address.country = new_country if new_country.strip() else address.country
+        # update hotel and address in the database
+        updated = manager.update_hotel(hotel_id, new_name, new_stars)
+        manager.address_dal.update_address(address)
+        # show result message
+        if updated:
+            print("Hotel und Adresse erfolgreich aktualisiert.")
+        else:
+            print("Hotel konnte nicht aktualisiert werden.")
+    except ValueError:
+        # handle invalid input
+        print("Ungültige Eingabe. Bitte gültige Werte eingeben.")
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -280,12 +328,15 @@ def admin_menu():
         print("\n--- ADMIN MENÜ ---")
         print("3.1 Hotel hinzufügen")
         print("3.2 Hotel löschen")
+        print("3.3 Hotelinformationen aktualisieren")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Option wählen: ")
         if auswahl == "3.1":
             user_story_3_1()
         elif auswahl == "3.2":
             user_story_3_2()
+        elif auswahl == "3.3":
+            user_story_3_3()
         elif auswahl == "0":
             break
         else:
