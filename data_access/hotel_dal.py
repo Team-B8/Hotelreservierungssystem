@@ -35,11 +35,14 @@ class HotelDAL(BaseDAL):
         return [Hotel(hotel_id=row[0], name=row[1], stars=row[2], address_id=row[3]) for row in rows]
     
     def update_hotel(self, hotel_id: int, name: str, stars: int) -> bool:
+        # SQL query to update hotel name and stars by hotel ID
         sql = "UPDATE Hotel SET name = ?, stars = ? WHERE hotel_id = ?"
         params = (name, stars, hotel_id)
+        # connect to the database and run the update
         with self._connect() as conn:
             cursor = conn.execute(sql, params)
             conn.commit()
+        # return True if at least one row was updated
         return cursor.rowcount > 0
 
     def delete_hotel(self, hotel_id: int) -> bool:
