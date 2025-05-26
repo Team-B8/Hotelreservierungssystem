@@ -27,7 +27,7 @@ class AddressDAL(BaseDAL):
             address.address_id = cursor.lastrowid
         return address
 
-    def update(self, address: Address) -> bool:
+    def update_address(self, address: Address) -> bool:
         with self._connect() as conn:
             result = conn.execute(
                 "UPDATE address SET street = ?, city = ?, zip_code = ? WHERE address_id = ?",
