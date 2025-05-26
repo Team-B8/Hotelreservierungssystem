@@ -76,7 +76,7 @@ class HotelManager:
             # check each room
             for room in rooms:
                 # get room type to check max guests
-                room_type = self.room_type_dal.get_by_id(room_type.type_id)
+                room_type = self.room_type_dal.get_by_id(room.type_id)
                 # if room can fit the number of guests
                 if room_type.max_guests >= guests:
                     # add hotel to result and stop checking more rooms

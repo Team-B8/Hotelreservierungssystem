@@ -129,10 +129,10 @@ def user_story_2_1():
         nights = (check_out - check_in).days
         total_price = nights * room.price_per_night
         # print room information
-        print(f"\nRoom No: {room.room_no}")
-        print(f"Type: {room_type.description} | Max Guests: {room_type.max_guests}")
-        print(f"Price per night: {room.price_per_night} | Total price: {total_price}")
-        print("Facilities: " + ", ".join([f.facility_name for f in facilities]))
+        print(f"\nRaum Nummer: {room.room_no}")
+        print(f"Type: {room_type.description} | Maximale Anzahl Gäste: {room_type.max_guests}")
+        print(f"Preis pro Nacht: {room.price_per_night} | Totaler Preis: {total_price}")
+        print("Einrichtungen: " + ", ".join([f.facility_name for f in facilities]))
 
 def user_story_2_2():
     # print the title for this user story
@@ -218,7 +218,7 @@ def user_story_3_2():
     for h in hotels:
         print(f"{h.hotel_id}: {h.name} ({h.stars} Sterne)")
     try:
-        # ask user for hotel ID to deletion
+        # ask user for hotel ID to delete
         hotel_id = int(input("ID des zu löschenden Hotels eingeben: "))
         # get the hotel by ID
         hotel = HotelManager().get_hotel(hotel_id)
