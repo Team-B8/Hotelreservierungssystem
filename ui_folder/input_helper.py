@@ -218,7 +218,7 @@ def user_story_3_2():
     for h in hotels:
         print(f"{h.hotel_id}: {h.name} ({h.stars} Sterne)")
     try:
-        # ask user for hotel ID to delete
+        # ask user for hotel ID to deletion
         hotel_id = int(input("ID des zu löschenden Hotels eingeben: "))
         # get the hotel by ID
         hotel = HotelManager().get_hotel(hotel_id)
@@ -226,8 +226,13 @@ def user_story_3_2():
             print("Hotel nicht gefunden.")
             return
         # delete the hotel
-        HotelManager().delete_hotel(hotel_id)
-        print(f"Hotel '{hotel.name}' wurde gelöscht.")
+        # confirm before deletion
+        confirm = input(f"Bist du sicher, dass du das Hotel '{hotel.name}' löschen möchtest? (y/n): ").lower()
+        if confirm == "y":
+            HotelManager().delete_hotel(hotel_id)
+            print(f"Hotel '{hotel.name}' wurde gelöscht.")
+        else:
+            print("Löschen abgebrochen.")
     except ValueError:
         # if user input is not a number
         print("Ungültige Eingabe. Bitte eine Zahl eingeben.")
