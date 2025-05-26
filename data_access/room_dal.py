@@ -69,3 +69,8 @@ class RoomDAL(BaseDAL):
             cursor = conn.execute(sql, (hotel_id, check_out, check_in, check_in, check_out))
             rows = cursor.fetchall()
         return [row[0] for row in rows]
+    
+    def create_room(self, hotel_id: int, room_no: str, type_id: int, price_per_night: float) -> int:
+        sql = "INSERT INTO room (hotel_id, room_number, type_id, price_per_night) VALUES (?, ?, ?, ?)"
+        params = (hotel_id, room_no, type_id, price_per_night)
+        return self.insert_and_get_id(sql, params)
