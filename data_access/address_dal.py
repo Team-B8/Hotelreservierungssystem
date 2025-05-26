@@ -28,12 +28,15 @@ class AddressDAL(BaseDAL):
         return address
 
     def update_address(self, address: Address) -> bool:
+        # connect to the database and run the update query
         with self._connect() as conn:
             result = conn.execute(
+                # SQL query to update the address fields
                 "UPDATE address SET street = ?, city = ?, zip_code = ? WHERE address_id = ?",
                 (address.street, address.city, address.zip_code, address.address_id)
             )
             conn.commit()
+        # return True if at least one row was updated
         return result.rowcount > 0
 
     def delete(self, address_id: int) -> bool:
