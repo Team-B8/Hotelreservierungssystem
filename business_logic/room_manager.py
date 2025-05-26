@@ -29,13 +29,13 @@ class RoomManager:
             facility_names = [f.facility_name for f in facilities]
             # build a detailed dict
             detailed_rooms.append({
-                "room_id": room.room_id,
-                "room_no": room.room_no,
-                "type_description": room_type.description,
-                "max_guests": room_type.max_guests,
-                "facilities": facility_names,
-                "price_per_night": room.price_per_night,
-                "total_price": round(room.price_per_night * nights, 2)
+                "Raum ID": room.room_id,
+                "Raum Nummer": room.room_no,
+                "Type Beschreibung": room_type.description,
+                "Maximale Anzahl Gäste": room_type.max_guests,
+                "Einrichtungen": facility_names,
+                "Preis pro Nacht": room.price_per_night,
+                "Totaler Preis": round(room.price_per_night * nights, 2)
             })
         return detailed_rooms
     
@@ -57,3 +57,8 @@ class RoomManager:
         room_dict = {room.room_id: room for room in all_rooms}
         # Return only Room objects for the available room_ids
         return [room_dict[room.room_id] for room in available_rooms if room.room_id in room_dict]
+    
+    def create_room(self, hotel_id: int, room_no: str, type_id: int, price_per_night: float) -> Room:
+        # create a new room in the database
+        room_id = self.room_dal.create_room(hotel_id, room_no, type_id, price_per_night)
+        return Room(room_id=room_id, hotel_id=hotel_id, room_no=room_no, type_id=type_id, price_per_night=price_per_night)
