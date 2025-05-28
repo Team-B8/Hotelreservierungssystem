@@ -1,5 +1,7 @@
 from data_access.booking_dal import BookingDAL
 from data_access.guest_dal import GuestDAL
+from model.guest import Guest
+from model.booking import Booking
 
 class BookingManager:
     """Business logic for creating and cancelling bookings."""
@@ -9,17 +11,15 @@ class BookingManager:
         self.guest_dal = GuestDAL()
         self.invoice_manager = invoice_manager
 
-    def create_booking(self, room_id: int, first_name: str, last_name: str, email: str, start_date, end_date):
+    def create_booking(self, room_id: int, start_date, end_date, first_name: str, last_name: str, email: str):
         """Create a booking for the given room and guest information, and generate an invoice."""
         # Ensure guest exists or create new guest
         guest = self.guest_dal.get_by_email(email)
         if guest is None:
             # Create a new Guest record
-            from models.guest import Guest
             guest = Guest(first_name=first_name, last_name=last_name, email=email)
             guest = self.guest_dal.create(guest)
         # Create booking record
-        from models.booking import Booking
         booking = Booking(room_id=room_id, guest_id=guest.id, start_date=start_date, end_date=end_date, status=False)
         booking = self.booking_dal.create(booking)
         # Generate invoice for the booking
