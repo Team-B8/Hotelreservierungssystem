@@ -1,6 +1,7 @@
 from data_access.invoice_dal import InvoiceDAL
 from data_access.room_dal import RoomDAL
 from data_access.room_type_dal import RoomTypeDAL
+from data_access.guest_dal import GuestDAL
 from model.invoice import Invoice
 from datetime import timedelta, date
 
@@ -48,3 +49,15 @@ class InvoiceManager:
         invoice.total_amount = new_amount
         self.invoice_dal.update(invoice)
         return invoice
+
+    def get_invoices_by_email(self, email: str):
+        # find the guest by their email
+        guest = GuestDAL().get_by_email(email)
+        # if guest exists, get all their bookings
+        if guest:
+            return self.invoice_dal.get_by_id(guest.guest_id)
+        # if no guest found, return empty list
+        return []
+    
+    def get_invoice_by_booking_id(self, booking_id: int) -> Invoice | None:
+        return self.invoice_dal.get_by_booking_id(booking_id)
