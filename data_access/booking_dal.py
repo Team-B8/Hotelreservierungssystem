@@ -112,3 +112,13 @@ class BookingDAL(BaseDAL):
             is_cancelled=bool(row[5]),
             total_amount=row[6]
         )
+    
+    def get_by_guest_email(self, email: str) -> list[Booking]:
+        # SQL query to get all bookings for a guest using their email
+        sql = """SELECT b.* FROM Booking b JOIN Guest g ON b.guest_id = g.guest_id WHERE g.email = ?"""
+        # connect to the database and run the query
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (email,))
+            rows = cursor.fetchall()
+        # convert each row to a Booking object and return the list
+        return [self.__row_to_booking(row) for row in rows]
