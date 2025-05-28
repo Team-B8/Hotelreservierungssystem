@@ -364,7 +364,7 @@ def gast_menu():
         elif auswahl == "2.2":
             user_story_2_2()
         elif auswahl == "4":
-            user_story_4
+            user_story_4()
         elif auswahl == "0":
             break
         else:
