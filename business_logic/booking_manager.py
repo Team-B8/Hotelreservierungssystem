@@ -53,3 +53,16 @@ class BookingManager:
         if guest is None:
             return []
         return self.booking_dal.get_by_guest_id(guest.id, active_only=True)
+    
+    def get_booking_by_id(self, booking_id: int):
+        # get a booking from the database by its ID
+        return self.booking_dal.get_by_id(booking_id)
+
+    def get_bookings_by_email(self, email: str):
+        # find the guest by their email
+        guest = self.guest_dal.get_by_email(email)
+        # if guest exists, get all their bookings
+        if guest:
+            return self.booking_dal.get_by_guest_id(guest.guest_id)
+        # if no guest found, return empty list
+        return []
