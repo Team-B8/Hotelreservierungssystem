@@ -68,3 +68,19 @@ class InvoiceDAL(BaseDAL):
             result = conn.execute("DELETE FROM Invoice WHERE invoice_id=?", (invoice_id,))
             conn.commit()
         return result.rowcount > 0
+    
+    def get_by_guest_email(self, email: str) -> list[Invoice]:
+    # SQL query to get all invoices for a guest using their email
+        sql = """SELECT i.invoice_id, i.booking_id, i.issue_date, i.total_amount FROM Invoice i JOIN Booking b ON i.booking_id = b.booking_id JOIN Guest g ON b.guest_id = g.guest_id WHERE g.email = ?"""
+        # connect to the database and run the query
+        with self._connect() as conn:
+            rows = conn.execute(sql, (email,)).fetchall()
+        # convert each row to an Invoice object and return the list
+        return [
+            Invoice(
+                invoice_id=row["invoice_id"],
+                booking_id=row["booking_id"],
+                issue_date=row["issue_date"],
+                total_amount=row["total_amount"]
+            ) for row in rows
+        ]
