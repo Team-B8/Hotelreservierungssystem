@@ -3,7 +3,7 @@ CREATE TABLE Hotel (
     hotel_id       INTEGER PRIMARY KEY, 
     name           TEXT NOT NULL,
     stars          INTEGER,
-    address_id     INTEGER,
+    address_id     INTEGER NOT NULL,
     FOREIGN KEY (address_id) REFERENCES Address(address_id) ON DELETE SET NULL
 );
 
@@ -12,7 +12,7 @@ CREATE TABLE Address (
     address_id     INTEGER PRIMARY KEY,
     street        TEXT NOT NULL,
     city          TEXT NOT NULL,
-    zip_code      TEXT
+    zip_code      TEXT NOT NULL
 );
 
 CREATE TABLE Guest (
@@ -20,8 +20,8 @@ CREATE TABLE Guest (
     guest_id       INTEGER PRIMARY KEY,
     first_name     TEXT NOT NULL,
     last_name      TEXT NOT NULL,
-    email          TEXT UNIQUE,
-    address_id     INTEGER,
+    email          TEXT NOT NULL UNIQUE,
+    address_id     INTEGER NOT NULL,
     FOREIGN KEY (address_id) REFERENCES Address(address_id) ON DELETE SET NULL
 );
 
@@ -55,7 +55,7 @@ CREATE TABLE Booking (
     check_in_date  DATE NOT NULL,
     check_out_date DATE NOT NULL,
     is_cancelled   BOOLEAN NOT NULL DEFAULT 0, -- 0 = confirmed, 1 = cancelled
-    total_amount   REAL,
+    total_amount   REAL NOT NULL,
     FOREIGN KEY (guest_id) REFERENCES Guest(guest_id) ON DELETE CASCADE,
     FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE CASCADE
 );
@@ -92,7 +92,7 @@ CREATE TABLE Rating (
 	hotel_id     INTEGER NOT NULL,
 	stars        INTEGER NOT NULL CHECK (stars BETWEEN 1 AND 5),
 	comment      TEXT,
-	created_date   DATE DEFAULT CURRENT_DATE,
+	created_date   DATE NOT NULL DEFAULT CURRENT_DATE,
 	FOREIGN KEY (guest_id) REFERENCES Guest(guest_id) ON DELETE CASCADE,
 	FOREIGN KEY (hotel_id) REFERENCES Hotel(hotel_id) ON DELETE CASCADE
 );
