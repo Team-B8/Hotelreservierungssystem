@@ -1,12 +1,10 @@
 from model.booking import Booking
 
 class Guest:
-    def __init__(self, guest_id: int, first_name: str, last_name: str, email: str, address_id: int):
+    def __init__(self, guest_id: int | None, first_name: str, last_name: str, email: str, address_id: int):
         # Ensure values for not nullable attributes
-        if not guest_id:
-            raise ValueError("guest_id is required")
-        if not isinstance(guest_id, int):
-            raise ValueError("guest_id must be an integer")
+        if guest_id is not None and not isinstance(guest_id, int):
+            raise TypeError("guest_id must be an integer")
         if not first_name:
             raise ValueError("first_name is required")
         if not isinstance(first_name, str):

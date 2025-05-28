@@ -8,8 +8,8 @@ class GuestDAL(BaseDAL):
 
     def create(self, guest: Guest) -> Guest:
         # Inserts a new guest into the database
-        sql = "INSERT INTO Guest (first_name, last_name, email) VALUES (?, ?, ?)"
-        params = (guest.first_name, guest.last_name, guest.email)
+        sql = "INSERT INTO Guest (first_name, last_name, email, address_id) VALUES (?, ?, ?, ?)"
+        params = (guest.first_name, guest.last_name, guest.email, guest.address_id)
         with self._connect() as conn:
             cursor = conn.execute(sql, params)
             conn.commit()
