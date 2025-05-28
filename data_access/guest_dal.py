@@ -18,12 +18,12 @@ class GuestDAL(BaseDAL):
 
     def get_by_id(self, guest_id: int) -> Guest | None:
         # Retrieves a guest by their ID
-        sql = "SELECT * FROM Guest WHERE id = ?"
+        sql = "SELECT * FROM Guest WHERE guest_id = ?"
         with self._connect() as conn:
             cursor = conn.execute(sql, (guest_id,))
             row = cursor.fetchone()
         if row:
-            return Guest(guest_id=row["id"], first_name=row["first_name"], last_name=row["last_name"], email=row["email"])
+            return Guest(guest_id=row["guest_id"], first_name=row["first_name"], last_name=row["last_name"], email=row["email"])
         return None
 
     def get_by_email(self, email: str) -> Guest | None:
@@ -33,7 +33,7 @@ class GuestDAL(BaseDAL):
             cursor = conn.execute(sql, (email,))
             row = cursor.fetchone()
         if row:
-            return Guest(guest_id=row["id"], first_name=row["first_name"], last_name=row["last_name"], email=row["email"])
+            return Guest(guest_id=row["guest_id"], first_name=row["first_name"], last_name=row["last_name"], email=row["email"], address_id=row["address_id"])
         return None
 
     def delete(self, guest_id: int) -> bool:

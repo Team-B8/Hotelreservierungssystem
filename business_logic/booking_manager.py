@@ -22,8 +22,6 @@ class BookingManager:
         booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount)
         # save the booking in the database
         booking = self.booking_dal.create_booking(booking)
-        # Generate invoice for the booking
-        self.invoice_manager.generate_invoice(booking)
         # return the created booking
         return booking
     
@@ -44,8 +42,6 @@ class BookingManager:
         # Create booking
         booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount)
         booking = self.booking_dal.create_booking(booking)
-        # Generate invoice
-        self.invoice_manager.generate_invoice(booking)
         # return the created booking
         return booking
 
