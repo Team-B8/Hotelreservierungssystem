@@ -47,7 +47,11 @@ class BookingManager:
 
     def cancel_booking(self, booking_id: int) -> bool:
         # call the cancel_booking method from the data access layer
-        return self.booking_dal.cancel_booking(booking_id)
+        success = self.booking_dal.cancel_booking(booking_id)
+        if success:
+            # call the cancel_booking method from the data access layer
+            self.invoice_manager.mark_invoice_as_cancelled(booking_id)
+        return success
     
     def get_booking_by_id(self, booking_id: int):
         # get a booking from the database by its ID

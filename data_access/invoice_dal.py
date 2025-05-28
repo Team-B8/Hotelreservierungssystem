@@ -84,3 +84,13 @@ class InvoiceDAL(BaseDAL):
                 total_amount=row["total_amount"]
             ) for row in rows
         ]
+    
+    def mark_invoice_as_cancelled(self, booking_id: int) -> bool:
+        # SQL query to mark the invoice as cancelled by booking ID
+        sql = "UPDATE Invoice SET is_cancelled = 1 WHERE booking_id = ?"
+        # connect to the database and run the update
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (booking_id,))
+            conn.commit()
+        # return True if at least one row was updated
+        return cursor.rowcount > 0

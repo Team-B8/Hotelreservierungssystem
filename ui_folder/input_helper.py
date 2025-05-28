@@ -406,7 +406,7 @@ def user_story_6():
         success = booking_manager.cancel_booking(booking_id)
         # show result
         if success:
-            print("Buchung erfolgreich storniert.")
+            print("Buchung und zugehörige Rechnung wurden erfolgreich storniert.")
         else:
             print("Buchung konnte nicht gefunden oder storniert werden.")
     # show error if something goes wrong

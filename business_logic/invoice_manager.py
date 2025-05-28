@@ -71,3 +71,7 @@ class InvoiceManager:
     
     def get_invoice_by_booking_id(self, booking_id: int) -> Invoice | None:
         return self.invoice_dal.get_by_booking_id(booking_id)
+    
+    def mark_invoice_as_cancelled(self, booking_id: int) -> bool:
+        # mark invoice as cancelled
+        return self.invoice_dal.mark_invoice_as_cancelled(booking_id)
