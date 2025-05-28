@@ -59,7 +59,7 @@ class InvoiceManager:
             return []
         # get all bookings for the guest
         booking_dal = BookingDAL()
-        bookings = booking_dal.get_bookings_by_guest_id(guest.guest_id)
+        bookings = booking_dal.get_by_guest_email(guest.email)
         invoices = []
         # for each booking, try to get the invoice
         for booking in bookings:

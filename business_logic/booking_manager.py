@@ -47,12 +47,6 @@ class BookingManager:
 
     def cancel_booking(self, booking_id: int) -> bool:
         return self.booking_dal.cancel_booking(booking_id)
-
-    def get_bookings_for_guest(self, email: str):
-        guest = self.guest_dal.get_by_email(email)
-        if guest is None:
-            return []
-        return self.booking_dal.get_by_guest_id(guest.id, active_only=True)
     
     def get_booking_by_id(self, booking_id: int):
         # get a booking from the database by its ID

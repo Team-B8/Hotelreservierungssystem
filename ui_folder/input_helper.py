@@ -353,31 +353,41 @@ def user_story_4():
         print(f"Fehler bei der Buchung: {e}")
 
 def user_story_5():
+    # print the title for this user story
     print("\n--- 5: Rechnung abrufen ---")
     try:
+        # ask user how they want to search for invoice
         wahl = input("Rechnung suchen nach: (1) E-Mail oder (2) Buchungs-ID: ").strip()
         if wahl == "1":
+            # search by email
             email = input("E-Mail eingeben: ")
             invoices = InvoiceManager().get_invoices_by_email(email)
+            # if no invoices found
             if not invoices:
                 print("Keine Rechnungen gefunden.")
-                return
+                return           
+            # show all found invoices
             for invoice in invoices:
                 print(f"\nRechnungs-ID: {invoice.invoice_id}")
                 print(f"Buchungs-ID: {invoice.booking_id}")
                 print(f"Betrag: {invoice.total_amount:.2f} CHF")
                 print(f"Datum: {invoice.issue_date}")
         elif wahl == "2":
+            # search by booking ID
             booking_id = int(input("Buchungs-ID eingeben: "))
             invoice = InvoiceManager().get_invoice_by_booking_id(booking_id)
+            
+            # if invoice not found
             if not invoice:
                 print("Keine Rechnung gefunden.")
                 return
+            # show invoice details
             print(f"\nRechnungs-ID: {invoice.invoice_id}")
             print(f"Buchungs-ID: {invoice.booking_id}")
             print(f"Betrag: {invoice.total_amount:.2f} CHF")
             print(f"Datum: {invoice.issue_date}")
     except Exception as e:
+        # show error message if something goes wrong
         print(f"Fehler beim Abrufen der Rechnung: {e}")
 
 def gast_menu():
