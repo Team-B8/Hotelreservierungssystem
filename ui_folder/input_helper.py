@@ -376,7 +376,6 @@ def user_story_5():
             # search by booking ID
             booking_id = int(input("Buchungs-ID eingeben: "))
             invoice = InvoiceManager().get_invoice_by_booking_id(booking_id)
-            
             # if invoice not found
             if not invoice:
                 print("Keine Rechnung gefunden.")
@@ -389,6 +388,30 @@ def user_story_5():
     except Exception as e:
         # show error message if something goes wrong
         print(f"Fehler beim Abrufen der Rechnung: {e}")
+
+def user_story_6():
+    # print the title for this user story
+    print("\n--- 6: Buchung stornieren ---")
+    try:
+        # ask user for the booking ID
+        booking_id = int(input("Bitte geben Sie Ihre Buchungs-ID ein: "))
+        # confirm cancellation
+        confirm = input("Sind Sie sicher, dass Sie diese Buchung stornieren möchten? (j/n): ").strip().lower()
+        if confirm != "j":
+            print("Stornierung abgebrochen.")
+            return
+        # create booking manager with invoice manager
+        booking_manager = BookingManager(InvoiceManager())
+        # try to cancel the booking
+        success = booking_manager.cancel_booking(booking_id)
+        # show result
+        if success:
+            print("Buchung erfolgreich storniert.")
+        else:
+            print("Buchung konnte nicht gefunden oder storniert werden.")
+    # show error if something goes wrong
+    except Exception as e:
+        print(f"Fehler bei der Stornierung: {e}")
 
 def gast_menu():
     while True:
@@ -403,6 +426,7 @@ def gast_menu():
         print("2.2 Verfügbare Zimmer anzeigen")
         print("4 Zimmer buchen")
         print("5 Rechnung abrufen")
+        print("6 Buchung stornieren")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Option wählen: ")
         if auswahl == "1.1":
@@ -425,6 +449,8 @@ def gast_menu():
             user_story_4()
         elif auswahl == "5":
             user_story_5()
+        elif auswahl == "6":
+            user_story_6()
         elif auswahl == "0":
             break
         else:
