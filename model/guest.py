@@ -1,3 +1,5 @@
+from model.booking import Booking
+
 class Guest:
     def __init__(self, guest_id: int, first_name: str, last_name: str, email: str, address_id: int):
         # Ensure values for not nullable attributes
@@ -22,7 +24,7 @@ class Guest:
         if not isinstance(address_id, int):
             raise ValueError("address_id must be an integer")
 
-        self._guest_id = guest_id
+        self.__guest_id = guest_id
         self.__first_name = first_name
         self.__last_name = last_name
         self.__email = email
@@ -32,7 +34,7 @@ class Guest:
 
     def __repr__(self):
         # defines how the guest object is represented as string
-        return f"Guest(id={self._guest_id}, name={self.__first_name} {self.__last_name}, email={self.__email})"
+        return f"Guest(id={self.__guest_id}, name={self.__first_name} {self.__last_name}, email={self.__email})"
         
     @property
     def guest_id(self) -> int:
