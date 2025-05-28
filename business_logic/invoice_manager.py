@@ -12,32 +12,31 @@ class InvoiceManager:
         self.room_dal = RoomDAL()
         self.room_type_dal = RoomTypeDAL()
 
+    def _get_season_factor(self, current_date):
+        if current_date.month in [6, 7, 8]:        # Summer high season
+            return 1.5
+        elif current_date.month == 12:             # Winter holiday season
+            return 1.3
+        else:
+            return 1.0
+
+    def calculate_dynamic_price(self, check_in: date, check_out: date, base_price: float) -> float:
+        total = 0.0
+        current_date = check_in
+        while current_date < check_out:
+            factor = self._get_season_factor(current_date)
+            total += base_price * factor
+            current_date += timedelta(days=1)
+        return total
+
     def generate_invoice(self, booking):
         room = self.room_dal.get_by_id(booking.room_id)
         room_type = self.room_type_dal.get_by_id(room.type_id)
-
         # Determine base price
         base_price = room.price_per_night
-        total_amount = 0.0
-        current_date = booking.check_in_date
-
-        # Loop through each night of the stay
-        while current_date < booking.check_out_date:
-            if current_date.month in [6, 7, 8]:        # Summer high season
-                factor = 1.5
-            elif current_date.month == 12:             # Winter holiday season
-                factor = 1.3
-            else:
-                factor = 1.0                            # Normal season
-
-            total_amount += base_price * factor
-            current_date += timedelta(days=1)
-
-        total_amount = round(total_amount, 2)
-
+        total_amount = self.calculate_dynamic_price(booking.check_in, booking.check_out, base_price)
         # Create invoice
         invoice = Invoice(booking_id=booking.booking_id, issue_date=date.today(), total_amount=total_amount, is_cancelled=False)
-
         return self.invoice_dal.create(invoice)
     
     def display_invoice(self, booking_id: int) -> Invoice | None:

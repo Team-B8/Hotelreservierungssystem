@@ -130,8 +130,7 @@ def user_story_2_1():
         # get facilities for room
         facilities = FacilitiesManager().get_facilities_for_room(room.room_id)
         # calculate total price for the stay
-        nights = (check_out - check_in).days
-        total_price = nights * room.price_per_night
+        total_price = InvoiceManager().generate_invoice(room.price_per_night, check_in, check_out)
         # print room information
         print(f"\nRaum Nummer: {room.room_no}")
         print(f"Type: {room_type.description} | Maximale Anzahl Gäste: {room_type.max_guests}")
@@ -174,8 +173,7 @@ def user_story_2_2():
         # get facilities for room
         facilities = FacilitiesManager().get_facilities_for_room(room.room_id)
         # calculate total price for the stay
-        nights = (check_out - check_in).days
-        total_price = nights * room.price_per_night
+        total_price = InvoiceManager().generate_invoice(room.price_per_night, check_in, check_out)
         # print room information
         print(f"\nRaum Nummer: {room.room_no}")
         print(f"Type: {room_type.description} | Maximale Anzahl Gäste: {room_type.max_guests}")
