@@ -32,11 +32,11 @@ class BookingDAL(BaseDAL):
         end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)
         with self._connect() as conn:
             cursor = conn.execute(
-                "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled) VALUES (?, ?, ?, ?, ?)",
-                (booking.room_id, booking.guest_id, start_str, end_str, 0)
+                "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled, total_amount) VALUES (?, ?, ?, ?, ?, ?)",
+                (booking.room_id, booking.guest_id, start_str, end_str, 0, booking.total_amount)
             )
             conn.commit()
-            booking.id = cursor.lastrowid
+            booking.booking_id = cursor.lastrowid
         booking.is_cancelled = False
         return booking
 
@@ -47,7 +47,7 @@ class BookingDAL(BaseDAL):
         with self._connect() as conn:
             result = conn.execute(
                 "UPDATE Booking SET room_id=?, guest_id=?, check_in_date=?, check_out_date=?, is_cancelled=? WHERE booking_id=?",
-                (booking.room_id, booking.guest_id, start_str, end_str, status_val, booking.id)
+                (booking.room_id, booking.guest_id, start_str, end_str, status_val, booking.booking_id)
             )
             conn.commit()
         return result.rowcount > 0

@@ -12,6 +12,9 @@ class RoomManager:
         self.room_type_dal = RoomTypeDAL()
         self.facilities_dal = FacilitiesDAL()
 
+    def get_room_by_id(self, room_id: int) -> Room:
+        return self.room_dal.get_by_id(room_id)
+
     def get_rooms_by_hotel_id(self, hotel_id: int) -> list[Room]:
         # return all rooms for a given hotel
         return self.room_dal.get_rooms_by_hotel_id(hotel_id)

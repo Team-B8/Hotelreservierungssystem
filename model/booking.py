@@ -3,10 +3,8 @@ from model.room import Room
 from model.invoice import Invoice
 
 class Booking:
-    def __init__(self, booking_id: int, guest_id: int, room_id: int, check_in: date, check_out: date, is_cancelled: bool, total_amount: float):
-        if not booking_id:
-            raise ValueError("booking_id is required")
-        if not isinstance(booking_id, int):
+    def __init__(self, booking_id: int | None, guest_id: int, room_id: int, check_in: date, check_out: date, is_cancelled: bool, total_amount: float):
+        if booking_id is not None and not isinstance(booking_id, int):
             raise ValueError("booking_id must be an integer")
         if not guest_id:
             raise ValueError("guest_id is required")
@@ -48,6 +46,13 @@ class Booking:
     @property
     def booking_id(self) -> int:
         return self.__booking_id
+    
+    @booking_id.setter
+    def booking_id(self, booking_id: int) -> None:
+        if not isinstance(booking_id, int):
+            raise TypeError("booking_id must be an integer")
+        self.__booking_id = booking_id
+
 
     @property
     def guest_id(self) -> int:

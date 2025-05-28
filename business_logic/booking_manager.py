@@ -13,9 +13,9 @@ class BookingManager:
         self.guest_dal = GuestDAL()
         self.invoice_manager = invoice_manager
 
-    def create_booking_existing_guest(self, room_id: int, start_date, end_date, guest: Guest):
+    def create_booking_existing_guest(self, room_id: int, start_date, end_date, guest: Guest, total_amount: float):
         # create a Booking object for an existing guest
-        booking = Booking(room_id=room_id, guest_id=guest.guest_id, check_in=start_date, check_out=end_date, is_cancelled=False)
+        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=start_date, check_out=end_date, is_cancelled=False, total_amount=total_amount)
         # save the booking in the database
         booking = self.booking_dal.create(booking)
         # Generate invoice for the booking
@@ -23,7 +23,7 @@ class BookingManager:
         # return the created booking
         return booking
     
-    def create_booking_new_guest(self, room_id: int, start_date, end_date, first_name: str, last_name: str, email: str, street: str, zip_code: str, city: str):
+    def create_booking_new_guest(self, room_id: int, start_date, end_date, first_name: str, last_name: str, email: str, street: str, zip_code: str, city: str, total_amount: float):
         # Check if guest already exists
         guest = self.guest_dal.get_by_email(email)
         if guest:
@@ -38,7 +38,7 @@ class BookingManager:
             guest = self.guest_dal.create(new_guest)
 
         # Create booking
-        booking = Booking(room_id=room_id, guest_id=guest.guest_id, check_in=start_date, check_out=end_date, is_cancelled=False)
+        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=start_date, check_out=end_date, is_cancelled=False, total_amount=total_amount)
         booking = self.booking_dal.create_booking(booking)
         # Generate invoice
         self.invoice_manager.generate_invoice(booking)

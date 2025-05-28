@@ -1,6 +1,5 @@
 import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-from business_logic.hotel_manager import HotelManager
 from datetime import datetime
 from business_logic.room_manager import RoomManager
 from business_logic.room_type_manager import RoomTypeManager
@@ -328,12 +327,13 @@ def user_story_4():
         # create booking and invoice manager
         invoice_manager = InvoiceManager()
         booking_manager = BookingManager(invoice_manager)
+        nights = (check_out - check_in).days
+        room = RoomManager().get_room_by_id(room_id)
+        total_amount = nights * room.price_per_night
         if has_account == "j":
             # existing guest: ask for email only
             email = input("Bitte geben Sie Ihre E-Mail-Adresse ein: ").strip()
-            booking = booking_manager.create_booking_existing_guest(
-                room_id, check_in, check_out, email
-            )
+            booking = booking_manager.create_booking_existing_guest(room_id, check_in, check_out, email, total_amount)
         else:
             # new guest: collect full registration data
             print("\n--- Registrierung ---")
@@ -343,7 +343,7 @@ def user_story_4():
             street = input("Strasse: ")
             city = input("Stadt: ")
             zip_code = input("PLZ: ")
-            booking = booking_manager.create_booking_new_guest(room_id, check_in, check_out, first_name, last_name, email, street, city, zip_code)
+            booking = booking_manager.create_booking_new_guest(room_id, check_in, check_out, first_name, last_name, email, street, city, zip_code, total_amount)
         # show booking success and create invoice
         print(f"Buchung erfolgreich! Buchungs-ID: {booking.booking_id}")
         invoice = invoice_manager.generate_invoice(booking)
