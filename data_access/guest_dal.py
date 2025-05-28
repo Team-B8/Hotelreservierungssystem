@@ -8,7 +8,7 @@ class GuestDAL(BaseDAL):
 
     def create(self, guest: Guest) -> Guest:
         # Inserts a new guest into the database
-        sql = "INSERT INTO guests (first_name, last_name, email) VALUES (?, ?, ?)"
+        sql = "INSERT INTO Guest (first_name, last_name, email) VALUES (?, ?, ?)"
         params = (guest.first_name, guest.last_name, guest.email)
         with self._connect() as conn:
             cursor = conn.execute(sql, params)
@@ -18,7 +18,7 @@ class GuestDAL(BaseDAL):
 
     def get_by_id(self, guest_id: int) -> Guest | None:
         # Retrieves a guest by their ID
-        sql = "SELECT * FROM guests WHERE id = ?"
+        sql = "SELECT * FROM Guest WHERE id = ?"
         with self._connect() as conn:
             cursor = conn.execute(sql, (guest_id,))
             row = cursor.fetchone()
@@ -28,7 +28,7 @@ class GuestDAL(BaseDAL):
 
     def get_by_email(self, email: str) -> Guest | None:
         # Retrieves a guest by their email address
-        sql = "SELECT * FROM guests WHERE email = ?"
+        sql = "SELECT * FROM Guest WHERE email = ?"
         with self._connect() as conn:
             cursor = conn.execute(sql, (email,))
             row = cursor.fetchone()
@@ -38,7 +38,7 @@ class GuestDAL(BaseDAL):
 
     def delete(self, guest_id: int) -> bool:
         # Physically deletes a guest by their ID from the database (not just logical)
-        sql = "DELETE FROM guests WHERE id = ?"
+        sql = "DELETE FROM Guest WHERE id = ?"
         with self._connect() as conn:
             cursor = conn.execute(sql, (guest_id,))
             conn.commit()
