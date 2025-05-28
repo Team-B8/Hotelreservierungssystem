@@ -352,11 +352,13 @@ def user_story_4():
         # show error if something goes wrong
         print(f"Fehler bei der Buchung: {e}")
 
-    def user_story_5():
-        print("\n--- 5: Rechnung abrufen ---")
-        try:
-            email = input("Bitte geben Sie Ihre E-Mail-Adresse ein: ").strip()
-            invoices = InvoiceManager().get_invoices_by_guest_email(email)
+def user_story_5():
+    print("\n--- 5: Rechnung abrufen ---")
+    try:
+        wahl = input("Rechnung suchen nach: (1) E-Mail oder (2) Buchungs-ID: ").strip()
+        if wahl == "1":
+            email = input("E-Mail eingeben: ")
+            invoices = InvoiceManager().get_invoices_by_email(email)
             if not invoices:
                 print("Keine Rechnungen gefunden.")
                 return
@@ -365,9 +367,18 @@ def user_story_4():
                 print(f"Buchungs-ID: {invoice.booking_id}")
                 print(f"Betrag: {invoice.total_amount:.2f} CHF")
                 print(f"Datum: {invoice.issue_date}")
-                print(f"Bezahlt: {'Ja' if invoice.is_paid else 'Nein'}")
-        except Exception as e:
-            print(f"Fehler beim Abrufen der Rechnung: {e}")
+        elif wahl == "2":
+            booking_id = int(input("Buchungs-ID eingeben: "))
+            invoice = InvoiceManager().get_invoice_by_booking_id(booking_id)
+            if not invoice:
+                print("Keine Rechnung gefunden.")
+                return
+            print(f"\nRechnungs-ID: {invoice.invoice_id}")
+            print(f"Buchungs-ID: {invoice.booking_id}")
+            print(f"Betrag: {invoice.total_amount:.2f} CHF")
+            print(f"Datum: {invoice.issue_date}")
+    except Exception as e:
+        print(f"Fehler beim Abrufen der Rechnung: {e}")
 
 def gast_menu():
     while True:
@@ -402,7 +413,7 @@ def gast_menu():
             user_story_2_2()
         elif auswahl == "4":
             user_story_4()
-        elif auswahl == "4":
+        elif auswahl == "5":
             user_story_5()
         elif auswahl == "0":
             break
