@@ -55,7 +55,7 @@ class BookingDAL(BaseDAL):
     def cancel_booking(self, booking_id: int) -> bool:
         with self._connect() as conn:
             result = conn.execute(
-                "UPDATE Booking SET is_cancelled=1 WHERE id=? AND is_cancelled=0",
+                "UPDATE Booking SET is_cancelled=1 WHERE booking_id=? AND is_cancelled=0",
                 (booking_id,)
             )
             conn.commit()

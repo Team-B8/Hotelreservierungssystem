@@ -4,7 +4,6 @@ from model.guest import Guest
 from model.booking import Booking
 
 class BookingManager:
-    """Business logic for creating and cancelling bookings."""
     def __init__(self, invoice_manager):
         # invoice_manager is an instance of InvoiceManager for handling invoices
         self.booking_dal = BookingDAL()
@@ -12,7 +11,6 @@ class BookingManager:
         self.invoice_manager = invoice_manager
 
     def create_booking(self, room_id: int, start_date, end_date, first_name: str, last_name: str, email: str):
-        """Create a booking for the given room and guest information, and generate an invoice."""
         # Ensure guest exists or create new guest
         guest = self.guest_dal.get_by_email(email)
         if guest is None:
@@ -27,11 +25,9 @@ class BookingManager:
         return booking
 
     def cancel_booking(self, booking_id: int) -> bool:
-        """Cancel an existing booking by its ID."""
         return self.booking_dal.cancel_booking(booking_id)
 
     def get_bookings_for_guest(self, email: str):
-        """Retrieve active bookings for a guest by email."""
         guest = self.guest_dal.get_by_email(email)
         if guest is None:
             return []

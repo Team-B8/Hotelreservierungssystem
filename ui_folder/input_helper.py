@@ -8,6 +8,7 @@ from business_logic.facilities_manager import FacilitiesManager
 from business_logic.address_manager import AddressManager
 from business_logic.hotel_manager import HotelManager
 from business_logic.booking_manager import BookingManager
+from business_logic.invoice_manager import InvoiceManager
 
 def input_date(prompt):
     while True:
@@ -329,6 +330,9 @@ def user_story_4():
         )
         # show success message with booking ID
         print(f"Buchung erfolgreich! Buchungs-ID: {booking.booking_id}")
+        # create invoice
+        invoice = InvoiceManager().generate_invoice(booking)
+        print(f"Rechnung erstellt. Betrag: {invoice.total_amount:.2f} CHF")
     except Exception as e:
         # show error if something goes wrong
         print(f"Fehler bei der Buchung: {e}")
