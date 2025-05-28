@@ -1,12 +1,8 @@
 from datetime import date
 
 class Invoice:
-    def __init__(self, invoice_id: int, booking_id: int, issue_date: date, total_amount: float, is_paid: bool = False):
-        
-        if invoice_id < 0:
-            raise ValueError("invoice_id must be positive")
-        if not invoice_id:
-            raise ValueError("invoice_id is required")
+    def __init__(self, booking_id: int, issue_date: date, total_amount: float, is_paid: bool = False, invoice_id: int | None=None):
+
         if not booking_id:
             raise ValueError("booking_id is required")
         if not issue_date:
@@ -28,6 +24,10 @@ class Invoice:
     @property
     def invoice_id(self) -> int:
         return self.__invoice_id
+    
+    @invoice_id.setter
+    def invoice_id(self, value: int):
+        self.__invoice_id = value
 
     @property
     def issue_date(self) -> date:

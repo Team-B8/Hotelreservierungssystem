@@ -34,13 +34,7 @@ class InvoiceManager:
         total_amount = round(total_amount, 2)
 
         # Create invoice
-        invoice = Invoice(
-            invoice_id=0,
-            booking_id=booking.booking_id,
-            issue_date=date.today(),
-            total_amount=total_amount,
-            is_paid=False
-        )
+        invoice = Invoice(booking_id=booking.booking_id, issue_date=date.today(), total_amount=total_amount, is_paid=False)
 
         return self.invoice_dal.create(invoice)
     
