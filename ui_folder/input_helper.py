@@ -325,9 +325,7 @@ def user_story_4():
         last_name = input("Nachname: ")
         email = input("E-Mail: ")
         # create the booking
-        booking = BookingManager().create_booking(
-            room_id, check_in, check_out, first_name, last_name, email
-        )
+        booking = BookingManager(InvoiceManager()).create_booking(room_id, check_in, check_out, first_name, last_name, email)
         # show success message with booking ID
         print(f"Buchung erfolgreich! Buchungs-ID: {booking.booking_id}")
         # create invoice
