@@ -55,9 +55,11 @@ class BookingDAL(BaseDAL):
                 (booking.room_id, booking.guest_id, start_str, end_str, status_val, booking.booking_id)
             )
             conn.commit()
+        # return True if a booking was actually updated
         return result.rowcount > 0
 
     def cancel_booking(self, booking_id: int) -> bool:
+        # connect to the database and update the booking to set it as cancelled
         with self._connect() as conn:
             result = conn.execute(
                 "UPDATE Booking SET is_cancelled=1 WHERE booking_id=? AND is_cancelled=0",

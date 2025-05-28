@@ -46,6 +46,7 @@ class BookingManager:
         return booking
 
     def cancel_booking(self, booking_id: int) -> bool:
+        # call the cancel_booking method from the data access layer
         return self.booking_dal.cancel_booking(booking_id)
     
     def get_booking_by_id(self, booking_id: int):

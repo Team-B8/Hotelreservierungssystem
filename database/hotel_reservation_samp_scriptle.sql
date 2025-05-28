@@ -67,6 +67,7 @@ CREATE TABLE Invoice (
     booking_id     INTEGER NOT NULL,
     issue_date     DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     total_amount   REAL NOT NULL,
+    is_cancelled   BOOLEAN NOT NULL DEFAULT 0, -- 0 = confirmed, 1 = cancelled
     FOREIGN KEY (booking_id) REFERENCES Booking(booking_id) ON DELETE CASCADE
 );
 
@@ -141,12 +142,12 @@ INSERT INTO Booking (booking_id, guest_id, room_id, check_in_date, check_out_dat
 (4, 4, 4, '2025-09-05', '2025-09-10', 1, 0.00), -- Cancelled booking
 (5, 5, 5, '2025-10-01', '2025-10-07', 0, 9000.00);
 
-INSERT INTO Invoice (invoice_id, booking_id, issue_date, total_amount) VALUES
-(1, 1, '2025-06-05', 1000.00),
-(2, 2, '2025-07-15', 2000.00),
-(3, 3, '2025-08-22', 1300.00),
-(4, 5, '2025-10-07', 9000.00),
-(5, 4, '2025-09-10', 0.00); -- Cancelled booking, no charge
+INSERT INTO Invoice (invoice_id, booking_id, issue_date, total_amount, is_cancelled) VALUES
+(1, 1, '2025-06-05', 1000.00, 0),
+(2, 2, '2025-07-15', 2000.00, 0),
+(3, 3, '2025-08-22', 1300.00, 0),
+(4, 5, '2025-10-07', 9000.00, 0),
+(5, 4, '2025-09-10', 0.00, 1); -- Cancelled booking, no charge
 
 INSERT INTO Facilities (facility_id, facility_name) VALUES
 (1, 'WiFi'),
