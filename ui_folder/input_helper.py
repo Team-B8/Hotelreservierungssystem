@@ -103,7 +103,6 @@ def user_story_2_1():
     # show all available hotels
     hotels = HotelManager().get_all_hotels()
     print("\nVerfügbare Hotels:")
-    print("\nVerfügbare Hotels:")
     for h in hotels:
         print(f"{h.hotel_id}: {h.name} ({h.stars} Sterne)")
     try:
@@ -147,12 +146,15 @@ def user_story_2_2():
     hotels = HotelManager().get_all_hotels()
     print("\nVerfügbare Hotels:")
     for h in hotels:
-        print(f"- {h.name}")
-    # ask user to enter hotel name
-    hotel_name = input("Hotelname eingeben: ")
-    hotel = HotelManager().get_hotel_by_name(hotel_name)
-    if not hotel:
-        print("Hotel nicht gefunden.")
+        print(f"{h.hotel_id}: {h.name} ({h.stars} Sterne)")
+    try:
+        hotel_id = int(input("Hotel-ID eingeben: "))
+        hotel = HotelManager().get_hotel(hotel_id)
+        if not hotel:
+            print("Hotel nicht gefunden.")
+            return
+    except ValueError:
+        print("Ungültige Eingabe.")
         return
     hotel_id = hotel.hotel_id
     # ask user for check-in and check-out date
