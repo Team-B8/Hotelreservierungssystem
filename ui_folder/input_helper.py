@@ -372,6 +372,7 @@ def user_story_5():
                 print(f"Buchungs-ID: {invoice.booking_id}")
                 print(f"Betrag: {invoice.total_amount:.2f} CHF")
                 print(f"Datum: {invoice.issue_date}")
+                print(f"Storniert: {'Ja' if invoice.is_cancelled else 'Nein'}")
         elif wahl == "2":
             # search by booking ID
             booking_id = int(input("Buchungs-ID eingeben: "))
@@ -385,6 +386,7 @@ def user_story_5():
             print(f"Buchungs-ID: {invoice.booking_id}")
             print(f"Betrag: {invoice.total_amount:.2f} CHF")
             print(f"Datum: {invoice.issue_date}")
+            print(f"Storniert: {'Ja' if invoice.is_cancelled else 'Nein'}")
     except Exception as e:
         # show error message if something goes wrong
         print(f"Fehler beim Abrufen der Rechnung: {e}")

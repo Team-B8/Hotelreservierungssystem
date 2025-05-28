@@ -14,7 +14,8 @@ class InvoiceDAL(BaseDAL):
                 invoice_id=row["invoice_id"],
                 booking_id=row["booking_id"],
                 issue_date=row["issue_date"],
-                total_amount=row["total_amount"]
+                total_amount=row["total_amount"],
+                is_cancelled=row["is_cancelled"]
             )
         return None
 
@@ -27,7 +28,8 @@ class InvoiceDAL(BaseDAL):
                 invoice_id=row["invoice_id"],
                 booking_id=row["booking_id"],
                 issue_date=row["issue_date"],
-                total_amount=row["total_amount"]
+                total_amount=row["total_amount"],
+                is_cancelled=row["is_cancelled"]
             )
         return None
 
@@ -40,15 +42,16 @@ class InvoiceDAL(BaseDAL):
                 invoice_id=row["invoice_id"],
                 booking_id=row["booking_id"],
                 issue_date=row["issue_date"],
-                total_amount=row["total_amount"]
+                total_amount=row["total_amount"],
+                is_cancelled=row["is_cancelled"]
             ) for row in rows
         ]
 
     def create(self, invoice: Invoice) -> Invoice:
         with self._connect() as conn:
             cursor = conn.execute(
-                "INSERT INTO Invoice (booking_id, issue_date, total_amount) VALUES (?, ?, ?)",
-                (invoice.booking_id, invoice.issue_date, invoice.total_amount)
+                "INSERT INTO Invoice (booking_id, issue_date, total_amount, is_cancelled) VALUES (?, ?, ?, ?)",
+                (invoice.booking_id, invoice.issue_date, invoice.total_amount, invoice.is_cancelled)
             )
             conn.commit()
             invoice.invoice_id = cursor.lastrowid
@@ -57,8 +60,8 @@ class InvoiceDAL(BaseDAL):
     def update(self, invoice: Invoice) -> bool:
         with self._connect() as conn:
             result = conn.execute(
-                "UPDATE Invoice SET booking_id=?, issue_date=?, total_amount=?, WHERE invoice_id=?",
-                (invoice.booking_id, invoice.issue_date, invoice.total_amount, invoice.invoice_id)
+                "UPDATE Invoice SET booking_id=?, issue_date=?, total_amount=?, is_cancelled=? WHERE invoice_id=?",
+                (invoice.booking_id, invoice.issue_date, invoice.total_amount, invoice.is_cancelled, invoice.invoice_id)
             )
             conn.commit()
         return result.rowcount > 0
@@ -71,7 +74,7 @@ class InvoiceDAL(BaseDAL):
     
     def get_by_guest_email(self, email: str) -> list[Invoice]:
     # SQL query to get all invoices for a guest using their email
-        sql = """SELECT i.invoice_id, i.booking_id, i.issue_date, i.total_amount FROM Invoice i JOIN Booking b ON i.booking_id = b.booking_id JOIN Guest g ON b.guest_id = g.guest_id WHERE g.email = ?"""
+        sql = """SELECT i.invoice_id, i.booking_id, i.issue_date, i.total_amount, i.is_cancelled FROM Invoice i JOIN Booking b ON i.booking_id = b.booking_id JOIN Guest g ON b.guest_id = g.guest_id WHERE g.email = ?"""
         # connect to the database and run the query
         with self._connect() as conn:
             rows = conn.execute(sql, (email,)).fetchall()
@@ -81,7 +84,8 @@ class InvoiceDAL(BaseDAL):
                 invoice_id=row["invoice_id"],
                 booking_id=row["booking_id"],
                 issue_date=row["issue_date"],
-                total_amount=row["total_amount"]
+                total_amount=row["total_amount"],
+                is_cancelled=row["is_cancelled"]
             ) for row in rows
         ]
     

@@ -1,7 +1,7 @@
 from datetime import date
 
 class Invoice:
-    def __init__(self, booking_id: int, issue_date: date, total_amount: float, invoice_id: int | None=None):
+    def __init__(self, booking_id: int, issue_date: date, total_amount: float, invoice_id: int | None=None, is_cancelled: bool = False):
 
         if not booking_id:
             raise ValueError("booking_id is required")
@@ -14,9 +14,10 @@ class Invoice:
         self.__booking_id = booking_id
         self.__issue_date = issue_date
         self.__total_amount = total_amount
+        self.__is_cancelled = is_cancelled
 
     def __repr__(self):
-        return f"Invoice({self.__invoice_id}, total: {self.__total_amount})"
+        return f"Invoice({self.__invoice_id}, total: {self.__total_amount}, cancelled: {self.__is_cancelled})"
 
     @property
     def invoice_id(self) -> int:
@@ -49,4 +50,11 @@ class Invoice:
     @booking_id.setter
     def booking_id(self, booking: int):
         self.__booking_id = booking
+    
+    @property
+    def is_cancelled(self) -> bool:
+        return self.__is_cancelled
 
+    @is_cancelled.setter
+    def is_cancelled(self, value: bool):
+        self.__is_cancelled = value
