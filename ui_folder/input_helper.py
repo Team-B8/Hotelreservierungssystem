@@ -299,43 +299,60 @@ def user_story_4():
     print("Verfügbare Hotels:")
     for h in hotels:
         print(f"{h.hotel_id}: {h.name}")
-    #try:
-        # ask user to choose a hotel and enter dates
-    hotel_id = int(input("Hotel-ID auswählen: "))
-    check_in = input_date("Check-in Datum")
-    check_out = input_date("Check-out Datum")
-    # check if dates are valid
-    if check_out <= check_in:
-        print("Check-out muss nach dem Check-in liegen.")
-        return
-    # get available rooms for the selected hotel and dates
-    available_rooms = RoomManager().get_available_rooms_by_hotel_and_dates(
-        hotel_id, str(check_in), str(check_out)
-    )
-    # if no rooms found, show message
-    if not available_rooms:
-        print("Keine verfügbaren Zimmer für den Zeitraum.")
-        return
-    # show available rooms
-    print("Verfügbare Zimmer:")
-    for room in available_rooms:
-        print(f"{room.room_id}: Zimmer Nr. {room.room_no}, Preis: {room.price_per_night} CHF")
-    # ask user to select a room
-    room_id = int(input("Zimmer-ID zum Buchen wählen: "))
-    # collect guest information
-    first_name = input("Vorname: ")
-    last_name = input("Nachname: ")
-    email = input("E-Mail: ")
-    # create the booking
-    booking = BookingManager(InvoiceManager()).create_booking(room_id, check_in, check_out, first_name, last_name, email)
-    # show success message with booking ID
-    print(f"Buchung erfolgreich! Buchungs-ID: {booking.booking_id}")
-    # create invoice
-    invoice = InvoiceManager().generate_invoice(booking)
-    print(f"Rechnung erstellt. Betrag: {invoice.total_amount:.2f} CHF")
-    #except Exception as e:
+    try:
+        # ask user to select a hotel and enter booking dates
+        hotel_id = int(input("Hotel-ID auswählen: "))
+        check_in = input_date("Check-in Datum")
+        check_out = input_date("Check-out Datum")
+        # check if check-out is after check-in
+        if check_out <= check_in:
+            print("Check-out muss nach dem Check-in liegen.")
+            return
+        # get available rooms for the hotel and date range
+        available_rooms = RoomManager().get_available_rooms_by_hotel_and_dates(
+            hotel_id, str(check_in), str(check_out)
+        )
+        # if no rooms available, show message
+        if not available_rooms:
+            print("Keine verfügbaren Zimmer für den Zeitraum.")
+            return
+        # show available rooms
+        print("Verfügbare Zimmer:")
+        for room in available_rooms:
+            print(f"{room.room_id}: Zimmer Nr. {room.room_no}, Preis: {room.price_per_night} CHF")
+        # user selects a room to book
+        room_id = int(input("Zimmer-ID zum Buchen wählen: "))
+        # ask if user already has an account
+        print("\nHaben Sie bereits ein Konto?")
+        has_account = input("Ja (j) / Nein (n): ").strip().lower()
+        # create booking and invoice manager
+        invoice_manager = InvoiceManager()
+        booking_manager = BookingManager(invoice_manager)
+        if has_account == "j":
+            # existing guest: ask for email only
+            email = input("Bitte geben Sie Ihre E-Mail-Adresse ein: ").strip()
+            booking = booking_manager.create_booking_existing_guest(
+                room_id, check_in, check_out, email
+            )
+        else:
+            # new guest: collect full registration data
+            print("\n--- Registrierung ---")
+            first_name = input("Vorname: ")
+            last_name = input("Nachname: ")
+            email = input("E-Mail: ")
+            street = input("Straße: ")
+            city = input("Stadt: ")
+            zip_code = input("PLZ: ")
+            booking = booking_manager.create_booking_new_guest(
+                room_id, check_in, check_out, first_name, last_name, email, street, city, zip_code
+            )
+        # show booking success and create invoice
+        print(f"Buchung erfolgreich! Buchungs-ID: {booking.booking_id}")
+        invoice = invoice_manager.generate_invoice(booking)
+        print(f"Rechnung erstellt. Betrag: {invoice.total_amount:.2f} CHF")
+    except Exception as e:
         # show error if something goes wrong
-        #print(f"Fehler bei der Buchung: {e}")
+        print(f"Fehler bei der Buchung: {e}")
 
 def gast_menu():
     while True:
