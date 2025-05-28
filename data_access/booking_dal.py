@@ -28,16 +28,21 @@ class BookingDAL(BaseDAL):
         return [self.__row_to_booking(row) for row in rows]
 
     def create_booking(self, booking: Booking) -> Booking:
+        # convert dates to string format (ISO) if needed
         start_str = booking.check_in_date.isoformat() if hasattr(booking.check_in_date, "isoformat") else str(booking.check_in_date)
         end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)
+        # connect to the database and insert the booking
         with self._connect() as conn:
             cursor = conn.execute(
                 "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled, total_amount) VALUES (?, ?, ?, ?, ?, ?)",
                 (booking.room_id, booking.guest_id, start_str, end_str, 0, booking.total_amount)
             )
             conn.commit()
+            # store the new booking ID
             booking.booking_id = cursor.lastrowid
+        # set cancellation flag to False
         booking.is_cancelled = False
+        # return the saved booking object
         return booking
 
     def update_booking(self, booking: Booking) -> bool:
