@@ -340,12 +340,10 @@ def user_story_4():
             first_name = input("Vorname: ")
             last_name = input("Nachname: ")
             email = input("E-Mail: ")
-            street = input("Straße: ")
+            street = input("Strasse: ")
             city = input("Stadt: ")
             zip_code = input("PLZ: ")
-            booking = booking_manager.create_booking_new_guest(
-                room_id, check_in, check_out, first_name, last_name, email, street, city, zip_code
-            )
+            booking = booking_manager.create_booking_new_guest(room_id, check_in, check_out, first_name, last_name, email, street, city, zip_code)
         # show booking success and create invoice
         print(f"Buchung erfolgreich! Buchungs-ID: {booking.booking_id}")
         invoice = invoice_manager.generate_invoice(booking)
