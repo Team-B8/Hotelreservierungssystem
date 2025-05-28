@@ -1,6 +1,3 @@
-from business_logic.booking_manager import BookingManager
-from business_logic.address_manager import AddressManager
-
 class Guest:
     def __init__(self, guest_id: int, first_name: str, last_name: str, email: str, address_id: int):
         # Ensure values for not nullable attributes
