@@ -10,19 +10,30 @@ class BookingManager:
         self.guest_dal = GuestDAL()
         self.invoice_manager = invoice_manager
 
-    def create_booking(self, room_id: int, start_date, end_date, first_name: str, last_name: str, email: str):
-        # Ensure guest exists or create new guest
-        guest = self.guest_dal.get_by_email(email)
-        if guest is None:
-            # Create a new Guest record
-            guest = Guest(first_name=first_name, last_name=last_name, email=email)
-            guest = self.guest_dal.create(guest)
-        # Create booking record
-        booking = Booking(room_id=room_id, guest_id=guest.id, start_date=start_date, end_date=end_date, status=False)
+    def create_booking_existing_guest(self, room_id: int, start_date, end_date, guest: Guest):
+        # create a Booking object for an existing guest
+        booking = Booking(room_id=room_id, guest_id=guest.guest_id, start_date=start_date, end_date=end_date, status=False)
+        # save the booking in the database
         booking = self.booking_dal.create(booking)
         # Generate invoice for the booking
         self.invoice_manager.generate_invoice(booking)
+        # return the created booking
         return booking
+    
+    def create_booking_new_guest(self, room_id: int, start_date, end_date, first_name: str, last_name: str, email: str, address_id: int):
+        # create a new Guest object
+        new_guest = Guest(guest_id=None, first_name=first_name, last_name=last_name, email=email, address_id=address_id)
+        # save the guest in the database
+        guest = self.guest_dal.create(new_guest)
+        # create a booking for the new guest
+        booking = Booking(room_id=room_id, guest_id=guest.guest_id, start_date=start_date, end_date=end_date, status=False)
+        # save the booking in the database
+        booking = self.booking_dal.create(booking)
+        # generate invoice for the booking
+        self.invoice_manager.generate_invoice(booking)
+        # return the created booking
+        return booking
+
 
     def cancel_booking(self, booking_id: int) -> bool:
         return self.booking_dal.cancel_booking(booking_id)
