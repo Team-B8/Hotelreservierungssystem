@@ -419,15 +419,20 @@ def user_story_8():
     print("\n--- 8: Alle Buchungen anzeigen ---")
     try:
         # get all bookings from the booking manager
-        bookings = BookingManager().get_all_bookings()
+        manager = BookingManager()
+        bookings = manager.get_all_bookings_with_details()
         # if no bookings found, show message
         if not bookings:
             print("Keine Buchungen gefunden.")
             return
         # print details for each booking
         for b in bookings:
-            print(f"Buchungs-ID: {b.booking_id} | Zimmer-ID: {b.room_id} | Gast-ID: {b.guest_id} | "
-                  f"Check-in: {b.start_date} | Check-out: {b.end_date}")
+            booking_id, guest_name, room_no, hotel_name, check_in, check_out, total, is_cancelled = b
+            status = "Storniert" if is_cancelled else "Aktiv"
+            print(f"Buchung #{booking_id}: {guest_name} – {hotel_name}, Zimmer {room_no}")
+            print(f"  Zeitraum: {check_in} bis {check_out}")
+            print(f"  Betrag: {total:.2f} CHF – Status: {status}")
+            print("-" * 50)
     except Exception as e:
         # show error message if something goes wrong
         print(f"Fehler beim Abrufen der Buchungen: {e}")

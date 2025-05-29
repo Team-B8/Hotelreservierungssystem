@@ -13,7 +13,6 @@ class BookingManager:
         self.guest_dal = GuestDAL()
         self.invoice_manager = invoice_manager
 
-    
     def get_all_bookings(self):
         # return all bookings from the database
         return self.booking_dal.get_all_bookings()
@@ -70,3 +69,6 @@ class BookingManager:
             return self.booking_dal.get_by_guest_id(guest.guest_id)
         # if no guest found, return empty list
         return []
+    
+    def get_all_bookings_with_details(self):
+        return self.booking_dal.get_all_bookings_with_details()
