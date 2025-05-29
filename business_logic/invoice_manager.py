@@ -20,7 +20,7 @@ class InvoiceManager:
         else:
             return 1.0
 
-    def calculate_dynamic_price(self, check_in: date, check_out: date, base_price: float) -> float:
+    def calculate_dynamic_price(self, base_price: float, check_in: date, check_out: date) -> float:
         total = 0.0
         current_date = check_in
         while current_date < check_out:

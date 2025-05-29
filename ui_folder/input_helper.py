@@ -130,11 +130,12 @@ def user_story_2_1():
         # get facilities for room
         facilities = FacilitiesManager().get_facilities_for_room(room.room_id)
         # calculate total price for the stay
-        total_price = InvoiceManager().generate_invoice(room.price_per_night, check_in, check_out)
+        total_price = InvoiceManager().calculate_dynamic_price(room.price_per_night, check_in, check_out)
+        season_hint = " (inkl. Hochsaisonaufschlag)" if check_in.month in [6, 7, 8] else " (inkl. Nebensaisonrabatt)" if check_in.month in [1, 2, 11] else ""
         # print room information
         print(f"\nRaum Nummer: {room.room_no}")
         print(f"Type: {room_type.description} | Maximale Anzahl Gäste: {room_type.max_guests}")
-        print(f"Preis pro Nacht: {room.price_per_night} | Totaler Preis: {total_price}")
+        print(f"Preis pro Nacht: {room.price_per_night} | Totaler Preis: {total_price}{season_hint}")
         print("Einrichtungen: " + ", ".join([f.facility_name for f in facilities]))
 
 def user_story_2_2():
@@ -173,11 +174,12 @@ def user_story_2_2():
         # get facilities for room
         facilities = FacilitiesManager().get_facilities_for_room(room.room_id)
         # calculate total price for the stay
-        total_price = InvoiceManager().generate_invoice(room.price_per_night, check_in, check_out)
+        total_price = InvoiceManager().calculate_dynamic_price(room.price_per_night, check_in, check_out)
+        season_hint = " (inkl. Hochsaisonaufschlag)" if check_in.month in [6, 7, 8] else " (inkl. Nebensaisonrabatt)" if check_in.month in [1, 2, 11] else ""
         # print room information
         print(f"\nRaum Nummer: {room.room_no}")
         print(f"Type: {room_type.description} | Maximale Anzahl Gäste: {room_type.max_guests}")
-        print(f"Preis pro Nacht: {room.price_per_night} | Totaler Preis: {total_price}")
+        print(f"Preis pro Nacht: {room.price_per_night} | Totaler Preis: {total_price}{season_hint}")
         print("Einrichtungen: " + ", ".join([f.facility_name for f in facilities]))
     
 def user_story_3_1():
@@ -325,9 +327,8 @@ def user_story_4():
         # create booking and invoice manager
         invoice_manager = InvoiceManager()
         booking_manager = BookingManager(invoice_manager)
-        nights = (check_out - check_in).days
         room = RoomManager().get_room_by_id(room_id)
-        total_amount = nights * room.price_per_night
+        total_amount = InvoiceManager().calculate_dynamic_price(room.price_per_night, check_in, check_out)
         if has_account == "j":
             # existing guest: ask for email only
             email = input("Bitte geben Sie Ihre E-Mail-Adresse ein: ").strip()
