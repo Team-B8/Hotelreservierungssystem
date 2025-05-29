@@ -124,3 +124,10 @@ class BookingDAL(BaseDAL):
             rows = cursor.fetchall()
         # convert each row to a Booking object and return the list
         return [self.__row_to_booking(row) for row in rows]
+    
+    def get_all_bookings_with_details(self) -> list[tuple]:
+        # get all information for the booking
+        sql = """SELECT b.booking_id, g.first_name || ' ' || g.last_name AS guest_name, r.room_no, h.name AS hotel_name, b.check_in_date, b.check_out_date, b.total_amount, b.is_cancelled FROM Booking b JOIN Guest g ON b.guest_id = g.guest_id JOIN Room r ON b.room_id = r.room_id JOIN Hotel h ON r.hotel_id = h.hotel_id ORDER BY b.check_in_date DESC"""
+        with self._connect() as conn:
+            cursor = conn.execute(sql)
+            return cursor.fetchall()
