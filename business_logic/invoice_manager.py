@@ -13,20 +13,26 @@ class InvoiceManager:
         self.room_type_dal = RoomTypeDAL()
 
     def _get_season_factor(self, current_date):
+        # return a price factor based on the month (season)
         if current_date.month in [6, 7, 8]:        # Summer high season
             return 1.5
         elif current_date.month == 12:             # Winter holiday season
             return 1.3
         else:
-            return 1.0
+            return 1.0                             # normal season
 
     def calculate_dynamic_price(self, base_price: float, check_in: date, check_out: date) -> float:
         total = 0.0
         current_date = check_in
+        # loop through each day of the stay
         while current_date < check_out:
+            # get seasonal factor
             factor = self._get_season_factor(current_date)
+            # add adjusted price for the day
             total += base_price * factor
+            # go to next day
             current_date += timedelta(days=1)
+        # return the total price for the stay
         return total
 
     def generate_invoice(self, booking):
