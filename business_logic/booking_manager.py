@@ -13,6 +13,11 @@ class BookingManager:
         self.guest_dal = GuestDAL()
         self.invoice_manager = invoice_manager
 
+    
+    def get_all_bookings(self):
+        # return all bookings from the database
+        return self.booking_dal.get_all_bookings()
+
     def create_booking_existing_guest(self, room_id: int, check_in, check_out, email: str, total_amount: float):
         guest = GuestDAL().get_by_email(email)
         if not guest:
