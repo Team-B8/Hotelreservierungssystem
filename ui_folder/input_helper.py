@@ -438,6 +438,25 @@ def user_story_8():
         # show error message if something goes wrong
         print(f"Fehler beim Abrufen der Buchungen: {e}")
 
+def user_story_9():
+    # print the title for this user story
+    print("\n--- 9: Zimmer und Ausstattung anzeigen ---")
+    try:
+        # get all data of rooms
+        rooms_with_facilities = RoomManager().get_all_rooms_with_facilities()
+        if not rooms_with_facilities:
+            print("Keine Zimmer gefunden.")
+            return
+        # print every room with details
+        for room in rooms_with_facilities:
+            print(f"\nHotel: {room['hotel_name']}")
+            print(f"Zimmernummer: {room['room_number']}")
+            print(f"Typ: {room['room_type']}")
+            print(f"Preis pro Nacht: {room['price_per_night']} CHF")
+            print("Einrichtungen: " + (room['facilities'] or "Keine"))
+    except Exception as e:
+        print(f"Fehler beim Abrufen der Zimmerdaten: {e}")
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -488,6 +507,7 @@ def admin_menu():
         print("3.2 Hotel löschen")
         print("3.3 Hotelinformationen aktualisieren")
         print("8 Alle Buchungen anzeigen")
+        print("9 Zimmerdetails anzeigen")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Option wählen: ")
         if auswahl == "3.1":
@@ -498,6 +518,8 @@ def admin_menu():
             user_story_3_3()
         elif auswahl == "8":
             user_story_8()
+        elif auswahl == "9":
+            user_story_9()
         elif auswahl == "0":
             break
         else:

@@ -103,7 +103,7 @@ class RoomDAL(BaseDAL):
         sql = """
             SELECT r.room_id, r.room_number, r.hotel_id, rt.description AS room_type, r.price_per_night,
                 h.name AS hotel_name,
-                GROUP_CONCAT(f.name, ', ') AS facilities
+                GROUP_CONCAT(f.facility_name, ', ') AS facilities
             FROM room r
             JOIN room_type rt ON r.type_id = rt.type_id
             JOIN hotel h ON r.hotel_id = h.hotel_id
