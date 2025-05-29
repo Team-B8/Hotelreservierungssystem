@@ -414,6 +414,24 @@ def user_story_6():
     except Exception as e:
         print(f"Fehler bei der Stornierung: {e}")
 
+def user_story_8():
+    # print the title for this user story
+    print("\n--- 8: Alle Buchungen anzeigen ---")
+    try:
+        # get all bookings from the booking manager
+        bookings = BookingManager().get_all_bookings()
+        # if no bookings found, show message
+        if not bookings:
+            print("Keine Buchungen gefunden.")
+            return
+        # print details for each booking
+        for b in bookings:
+            print(f"Buchungs-ID: {b.booking_id} | Zimmer-ID: {b.room_id} | Gast-ID: {b.guest_id} | "
+                  f"Check-in: {b.start_date} | Check-out: {b.end_date}")
+    except Exception as e:
+        # show error message if something goes wrong
+        print(f"Fehler beim Abrufen der Buchungen: {e}")
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -463,6 +481,7 @@ def admin_menu():
         print("3.1 Hotel hinzufügen")
         print("3.2 Hotel löschen")
         print("3.3 Hotelinformationen aktualisieren")
+        print("8 Alle Buchungen anzeigen")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Option wählen: ")
         if auswahl == "3.1":
@@ -471,6 +490,8 @@ def admin_menu():
             user_story_3_2()
         elif auswahl == "3.3":
             user_story_3_3()
+        elif auswahl == "8":
+            user_story_8()
         elif auswahl == "0":
             break
         else:
