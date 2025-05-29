@@ -97,3 +97,34 @@ class RoomDAL(BaseDAL):
                 continue
 
         return str(max_number + 1).zfill(3)
+    
+    def get_rooms_with_facilities(self) -> list[dict]:
+        # SQL query to get rooms with their hotel name, type, price and facilities
+        sql = """
+            SELECT r.room_id, r.room_number, r.hotel_id, rt.description AS room_type, r.price_per_night,
+                h.name AS hotel_name,
+                GROUP_CONCAT(f.name, ', ') AS facilities
+            FROM room r
+            JOIN room_type rt ON r.type_id = rt.type_id
+            JOIN hotel h ON r.hotel_id = h.hotel_id
+            LEFT JOIN room_facilities rf ON r.room_id = rf.room_id
+            LEFT JOIN facilities f ON rf.facility_id = f.facility_id
+            GROUP BY r.room_id
+            ORDER BY h.name, r.room_number
+        """
+        # connect to the database and run the query
+        with self._connect() as conn:
+            cursor = conn.execute(sql)
+            rows = cursor.fetchall()
+        # build a list of dictionaries with room details
+        return [
+            {
+                "room_id": row["room_id"],
+                "room_number": row["room_number"],
+                "hotel_name": row["hotel_name"],
+                "room_type": row["room_type"],
+                "price_per_night": row["price_per_night"],
+                "facilities": row["facilities"] or "Keine"  # fallback if no facilities
+            }
+            for row in rows
+        ]

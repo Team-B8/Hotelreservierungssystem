@@ -426,6 +426,7 @@ def user_story_8():
             print("Keine Buchungen gefunden.")
             return
         # print details for each booking
+        print("-" * 50)
         for b in bookings:
             booking_id, guest_name, room_no, hotel_name, check_in, check_out, total, is_cancelled = b
             status = "Storniert" if is_cancelled else "Aktiv"

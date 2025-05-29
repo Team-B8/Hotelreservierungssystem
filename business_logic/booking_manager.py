@@ -7,11 +7,11 @@ from model.address import Address
 from business_logic.invoice_manager import InvoiceManager
 
 class BookingManager:
-    def __init__(self, invoice_manager):
+    def __init__(self, invoice_manager=None):
         # invoice_manager is an instance of InvoiceManager for handling invoices
         self.booking_dal = BookingDAL()
         self.guest_dal = GuestDAL()
-        self.invoice_manager = invoice_manager
+        self.invoice_manager = invoice_manager if invoice_manager else InvoiceManager()
 
     def get_all_bookings(self):
         # return all bookings from the database
@@ -71,4 +71,5 @@ class BookingManager:
         return []
     
     def get_all_bookings_with_details(self):
+        # call the get all bookings with details method from the data access layer
         return self.booking_dal.get_all_bookings_with_details()

@@ -68,3 +68,7 @@ class RoomManager:
         room_id = self.room_dal.create_room(hotel_id, room_no, type_id, price_per_night)
         # return a new Room object with the given data
         return Room(room_id=room_id, hotel_id=hotel_id, room_no=room_no, type_id=type_id, price_per_night=price_per_night)
+    
+    def get_all_rooms_with_facilities(self) -> list[dict]:
+        # call function from data access layer
+        return self.room_dal.get_rooms_with_facilities()
