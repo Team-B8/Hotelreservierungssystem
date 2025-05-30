@@ -30,3 +30,7 @@ class FacilitiesManager:
     def get_facilities_for_room(self, room_id: int):
         # Get all facilities assigned to a specific room
         return self.dal.get_facilities_by_room_id(room_id)
+    
+    def update_facility(self, facility_id: int, new_name: str) -> bool:
+        # Update the facility name in the database
+        return self.dal.update(facility_id, new_name)
