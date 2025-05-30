@@ -11,7 +11,7 @@ class FacilitiesManager:
         if existing:
             print("Facility already exists.")
             return existing[0]
-        new_facility = Facilities(None, facility_name)
+        new_facility = Facilities(facility_name, None)
         return self.dal.create(new_facility)
 
     def get_facility_by_id(self, facility_id: int) -> Facilities | None:

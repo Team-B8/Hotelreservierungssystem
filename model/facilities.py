@@ -1,10 +1,6 @@
 class Facilities:
-    def __init__(self, facility_id: int, facility_name: str):
+    def __init__(self, facility_name: str, facility_id: int = None):
         # Validate inputs immediately
-        if not facility_id:
-            raise ValueError("facility_id is required")
-        if not isinstance(facility_id, int):
-            raise ValueError("facility_id must be an integer")
         if not facility_name:
             raise ValueError("facility_name is required")
         if not isinstance(facility_name, str):

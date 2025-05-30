@@ -495,6 +495,11 @@ def user_story_10():
                 elif action == "b":
                     # edit existing room type
                     try:
+                        manager = RoomTypeManager()
+                        existing_type = manager.get_by_id(id)
+                        if not existing_type:
+                            print("Zimmertyp wurde nicht gefunden.")
+                            continue
                         id = int(input("Typ-ID zum Bearbeiten: "))
                         desc = input("Neue Beschreibung: ")
                         max_guests = int(input("Neue maximale Gästezahl: "))
@@ -507,6 +512,11 @@ def user_story_10():
                     # delete room type if not in use
                     try:
                         id = int(input("Typ-ID zum Löschen: "))
+                        manager = RoomTypeManager()
+                        existing_type = manager.get_by_id(id)
+                        if not existing_type:
+                            print("Zimmertyp wurde nicht gefunden.")
+                            continue
                         if manager.is_type_in_use(id):
                             print("Zimmertyp ist noch in Verwendung und kann nicht gelöscht werden.")
                         else:
@@ -527,7 +537,7 @@ def user_story_10():
                 facilities = FacilitiesManager().get_all_facilities()
                 for f in facilities:
                     print(f"{f.facility_id}: {f.facility_name}")
-                print("a Hinzufügen")
+                print("\na Hinzufügen")
                 print("b Bearbeiten")
                 print("c Löschen")
                 print("z Zurück")
@@ -546,6 +556,11 @@ def user_story_10():
                 elif action == "b":
                     # edit existing facility
                     try:
+                        manager = FacilitiesManager()
+                        existing = manager.get_facility_by_id(id)
+                        if not existing:
+                            print("Einrichtung wurde nicht gefunden.")
+                            continue                        
                         id = int(input("ID zum Bearbeiten: "))
                         name = input("Neuer Name: ")
                         manager.update_facility(id, name)
@@ -556,6 +571,11 @@ def user_story_10():
                 elif action == "c":
                     # delete facility
                     try:
+                        manager = FacilitiesManager()
+                        existing = manager.get_facility_by_id(id)
+                        if not existing:
+                            print("Einrichtung wurde nicht gefunden.")
+                            continue 
                         id = int(input("ID zum Löschen: "))
                         manager.delete_facility(id)
                         print("Einrichtung gelöscht.")
@@ -575,6 +595,11 @@ def user_story_10():
                 print(f"{h.hotel_id}: {h.name}")
             try:
                 hotel_id = int(input("Hotel-ID wählen: "))
+                manager = HotelManager()
+                existing = manager.get_hotel(id)
+                if not existing:
+                    print("Hotel wurde nicht gefunden.")
+                    continue 
                 rooms = RoomManager().get_rooms_by_hotel_id(hotel_id)
                 for r in rooms:
                     print(f"{r.room_id}: Zimmer {r.room_no}, Preis: {r.price_per_night}")
