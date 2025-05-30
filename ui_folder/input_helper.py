@@ -457,6 +457,147 @@ def user_story_9():
     except Exception as e:
         print(f"Fehler beim Abrufen der Zimmerdaten: {e}")
 
+def user_story_10():
+    while True:
+        # main menu for managing master data
+        print("\n--- 10: Stammdaten verwalten ---")
+        print("1 Zimmertypen verwalten")
+        print("2 Einrichtungen verwalten")
+        print("3 Zimmerpreise ändern")
+        print("4 Saisonregeln anzeigen")
+        print("0 Zurück")
+        wahl = input("Menüpunkt wählen: ").strip()
+
+        if wahl == "1":
+            # room type management submenu
+            while True:
+                print("\n--- Zimmertypen ---")
+                types = RoomTypeManager().get_all()
+                for t in types:
+                    print(f"{t.type_id}: {t.description} (max {t.max_guests} Gäste)")
+                print("a Hinzufügen")
+                print("b Bearbeiten")
+                print("c Löschen")
+                print("z Zurück")
+                action = input("Aktion wählen: ").strip().lower()
+                manager = RoomTypeManager()
+                
+                if action == "a":
+                    # add new room type
+                    desc = input("Beschreibung: ")
+                    try:
+                        max_guests = int(input("Maximale Gästezahl: "))
+                        manager.add_room_type(desc, max_guests)
+                        print("Zimmertyp hinzugefügt.")
+                    except Exception as e:
+                        print(f"Fehler: {e}")
+                
+                elif action == "b":
+                    # edit existing room type
+                    try:
+                        id = int(input("Typ-ID zum Bearbeiten: "))
+                        desc = input("Neue Beschreibung: ")
+                        max_guests = int(input("Neue maximale Gästezahl: "))
+                        manager.update_room_type(id, desc, max_guests)
+                        print("Zimmertyp aktualisiert.")
+                    except Exception as e:
+                        print(f"Fehler: {e}")
+                
+                elif action == "c":
+                    # delete room type if not in use
+                    try:
+                        id = int(input("Typ-ID zum Löschen: "))
+                        if manager.is_type_in_use(id):
+                            print("Zimmertyp ist noch in Verwendung und kann nicht gelöscht werden.")
+                        else:
+                            manager.delete_room_type(id)
+                            print("Zimmertyp gelöscht.")
+                    except Exception as e:
+                        print(f"Fehler: {e}")
+                
+                elif action == "z":
+                    break  # back to main menu
+                else:
+                    print("Ungültige Eingabe.")
+
+        elif wahl == "2":
+            # facilities management submenu
+            while True:
+                print("\n--- Einrichtungen ---")
+                facilities = FacilitiesManager().get_all_facilities()
+                for f in facilities:
+                    print(f"{f.facility_id}: {f.facility_name}")
+                print("a Hinzufügen")
+                print("b Bearbeiten")
+                print("c Löschen")
+                print("z Zurück")
+                action = input("Aktion wählen: ").strip().lower()
+                manager = FacilitiesManager()
+                
+                if action == "a":
+                    # add new facility
+                    name = input("Einrichtungsname: ")
+                    try:
+                        manager.add_facility(name)
+                        print("Einrichtung hinzugefügt.")
+                    except Exception as e:
+                        print(f"Fehler: {e}")
+                
+                elif action == "b":
+                    # edit existing facility
+                    try:
+                        id = int(input("ID zum Bearbeiten: "))
+                        name = input("Neuer Name: ")
+                        manager.update_facility(id, name)
+                        print("Einrichtung aktualisiert.")
+                    except Exception as e:
+                        print(f"Fehler: {e}")
+                
+                elif action == "c":
+                    # delete facility
+                    try:
+                        id = int(input("ID zum Löschen: "))
+                        manager.delete_facility(id)
+                        print("Einrichtung gelöscht.")
+                    except Exception as e:
+                        print(f"Fehler: {e}")
+                
+                elif action == "z":
+                    break
+                else:
+                    print("Ungültige Eingabe.")
+
+        elif wahl == "3":
+            # update room price
+            print("\n--- Zimmerpreise ändern ---")
+            hotels = HotelManager().get_all_hotels()
+            for h in hotels:
+                print(f"{h.hotel_id}: {h.name}")
+            try:
+                hotel_id = int(input("Hotel-ID wählen: "))
+                rooms = RoomManager().get_rooms_by_hotel_id(hotel_id)
+                for r in rooms:
+                    print(f"{r.room_id}: Zimmer {r.room_no}, Preis: {r.price_per_night}")
+                room_id = int(input("Zimmer-ID zum Bearbeiten: "))
+                new_price = float(input("Neuer Preis pro Nacht: "))
+                RoomManager().update_room_price(room_id, new_price)
+                print("Zimmerpreis aktualisiert.")
+            except Exception as e:
+                print(f"Fehler: {e}")
+
+        elif wahl == "4":
+            # show current seasonal pricing rules
+            print("\n--- Saisonregeln ---")
+            print("Aktuell gelten folgende Regeln:")
+            print("Hochsaison: Juni, Juli, August → +25%")
+            print("Nebensaison: Januar, Februar, November → -15%")
+            print("Normale Saison: alle übrigen Monate")
+
+        elif wahl == "0":
+            break  # exit the main menu
+        else:
+            print("Ungültige Eingabe.")
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -508,6 +649,7 @@ def admin_menu():
         print("3 Hotelinformationen aktualisieren")
         print("4 Alle Buchungen anzeigen")
         print("5 Zimmerdetails anzeigen")
+        print("6 Stammdaten verwalten")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Menupunkt wählen: ")
         if auswahl == "1":
@@ -520,6 +662,8 @@ def admin_menu():
             user_story_8()
         elif auswahl == "5":
             user_story_9()
+        elif auswahl == "6":
+            user_story_10()
         elif auswahl == "0":
             break
         else:

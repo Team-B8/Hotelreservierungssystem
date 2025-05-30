@@ -24,3 +24,7 @@ class RoomTypeManager:
     def delete_room_type(self, type_id: int) -> bool:
         # delete a room type by ID
         return self.dal.delete(type_id)
+    
+    def is_type_in_use(self, type_id: int) -> bool:
+        # check via data access if this room type is used by any room
+        return self.dal.is_type_in_use(type_id)

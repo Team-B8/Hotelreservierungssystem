@@ -61,3 +61,11 @@ class RoomTypeDAL(BaseDAL):
             conn.commit()  # save the changes
         # return True if a row was deleted
         return cursor.rowcount > 0
+    
+    def is_type_in_use(self, type_id: int) -> bool:
+        # SQL to delete a room type by its ID
+        sql = "SELECT COUNT(*) FROM room WHERE type_id = ?"
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (type_id,))
+            count = cursor.fetchone()[0]
+        return count > 0
