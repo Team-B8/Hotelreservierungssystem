@@ -495,12 +495,12 @@ def user_story_10():
                 elif action == "b":
                     # edit existing room type
                     try:
+                        id = int(input("Typ-ID zum Bearbeiten: "))
                         manager = RoomTypeManager()
                         existing_type = manager.get_by_id(id)
                         if not existing_type:
                             print("Zimmertyp wurde nicht gefunden.")
                             continue
-                        id = int(input("Typ-ID zum Bearbeiten: "))
                         desc = input("Neue Beschreibung: ")
                         max_guests = int(input("Neue maximale Gästezahl: "))
                         manager.update_room_type(id, desc, max_guests)
@@ -556,12 +556,12 @@ def user_story_10():
                 elif action == "b":
                     # edit existing facility
                     try:
+                        id = int(input("ID zum Bearbeiten: "))
                         manager = FacilitiesManager()
                         existing = manager.get_facility_by_id(id)
                         if not existing:
                             print("Einrichtung wurde nicht gefunden.")
                             continue                        
-                        id = int(input("ID zum Bearbeiten: "))
                         name = input("Neuer Name: ")
                         manager.update_facility(id, name)
                         print("Einrichtung aktualisiert.")
@@ -570,13 +570,13 @@ def user_story_10():
                 
                 elif action == "c":
                     # delete facility
-                    try:
+                    try: 
+                        id = int(input("ID zum Löschen: "))
                         manager = FacilitiesManager()
                         existing = manager.get_facility_by_id(id)
                         if not existing:
                             print("Einrichtung wurde nicht gefunden.")
-                            continue 
-                        id = int(input("ID zum Löschen: "))
+                            continue
                         manager.delete_facility(id)
                         print("Einrichtung gelöscht.")
                     except Exception as e:
