@@ -43,3 +43,10 @@ class FacilitiesDAL(BaseDAL):
             cursor = conn.execute(sql, (room_id,))
             rows = cursor.fetchall()
         return [Facilities(facility_id=row["facility_id"], facility_name=row["facility_name"]) for row in rows]
+    
+    def update(self, facility_id: int, new_name: str) -> bool:
+        sql = "UPDATE Facilities SET facility_name = ? WHERE facility_id = ?"
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (new_name, facility_id))
+            conn.commit()
+        return cursor.rowcount > 0
