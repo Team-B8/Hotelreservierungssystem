@@ -460,40 +460,40 @@ def user_story_9():
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
-        print("1.1 Hotels nach Stadt filtern")
-        print("1.2 Hotels nach Sternen in Stadt filtern")
-        print("1.3 Hotels mit passenden Zimmern für Gästezahl")
-        print("1.4 Hotels mit verfügbaren Zimmern im Zeitraum")
-        print("1.5 Hotels nach Stadt, Sterne, Gästezahl, Zeitraum")
-        print("1.6 Hotelinformationen anzeigen")
-        print("2.1 Zimmerdetails anzeigen")
-        print("2.2 Verfügbare Zimmer anzeigen")
-        print("4 Zimmer buchen")
-        print("5 Rechnung abrufen")
-        print("6 Buchung stornieren")
+        print("1 Hotels nach Stadt filtern")
+        print("2 Hotels nach Sternen in Stadt filtern")
+        print("3 Hotels mit passenden Zimmern für Gästezahl")
+        print("4 Hotels mit verfügbaren Zimmern im Zeitraum")
+        print("5 Hotels nach Stadt, Sterne, Gästezahl, Zeitraum")
+        print("6 Hotelinformationen anzeigen")
+        print("7 Zimmerdetails anzeigen")
+        print("8 Verfügbare Zimmer anzeigen")
+        print("9 Zimmer buchen")
+        print("10 Rechnung abrufen")
+        print("11 Buchung stornieren")
         print("0. Zurück zum Hauptmenü")
-        auswahl = input("Option wählen: ")
-        if auswahl == "1.1":
+        auswahl = input("Menupunkt wählen: ")
+        if auswahl == "1":
             user_story_1_1()
-        elif auswahl == "1.2":
+        elif auswahl == "2":
             user_story_1_2()
-        elif auswahl == "1.3":
+        elif auswahl == "3":
             user_story_1_3()
-        elif auswahl == "1.4":
-            user_story_1_4()
-        elif auswahl == "1.5":
-            user_story_1_5()
-        elif auswahl == "1.6":
-            user_story_1_6()
-        elif auswahl == "2.1":
-            user_story_2_1()
-        elif auswahl == "2.2":
-            user_story_2_2()
         elif auswahl == "4":
-            user_story_4()
+            user_story_1_4()
         elif auswahl == "5":
-            user_story_5()
+            user_story_1_5()
         elif auswahl == "6":
+            user_story_1_6()
+        elif auswahl == "7":
+            user_story_2_1()
+        elif auswahl == "8":
+            user_story_2_2()
+        elif auswahl == "9":
+            user_story_4()
+        elif auswahl == "10":
+            user_story_5()
+        elif auswahl == "11":
             user_story_6()
         elif auswahl == "0":
             break
@@ -503,22 +503,22 @@ def gast_menu():
 def admin_menu():
     while True:
         print("\n--- ADMIN MENÜ ---")
-        print("3.1 Hotel hinzufügen")
-        print("3.2 Hotel löschen")
-        print("3.3 Hotelinformationen aktualisieren")
-        print("8 Alle Buchungen anzeigen")
-        print("9 Zimmerdetails anzeigen")
+        print("1 Hotel hinzufügen")
+        print("2 Hotel löschen")
+        print("3 Hotelinformationen aktualisieren")
+        print("4 Alle Buchungen anzeigen")
+        print("5 Zimmerdetails anzeigen")
         print("0. Zurück zum Hauptmenü")
-        auswahl = input("Option wählen: ")
-        if auswahl == "3.1":
+        auswahl = input("Menupunkt wählen: ")
+        if auswahl == "1":
             user_story_3_1()
-        elif auswahl == "3.2":
+        elif auswahl == "2":
             user_story_3_2()
-        elif auswahl == "3.3":
+        elif auswahl == "3":
             user_story_3_3()
-        elif auswahl == "8":
+        elif auswahl == "4":
             user_story_8()
-        elif auswahl == "9":
+        elif auswahl == "5":
             user_story_9()
         elif auswahl == "0":
             break
