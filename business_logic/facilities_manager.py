@@ -34,3 +34,7 @@ class FacilitiesManager:
     def update_facility(self, facility_id: int, new_name: str) -> bool:
         # Update the facility name in the database
         return self.dal.update(facility_id, new_name)
+    
+    def get_all_facilities(self):
+        # Get all facilities from the database
+        return self.dal.get_all()

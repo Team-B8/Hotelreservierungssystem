@@ -72,3 +72,7 @@ class RoomManager:
     def get_all_rooms_with_facilities(self) -> list[dict]:
         # call function from data access layer
         return self.room_dal.get_rooms_with_facilities()
+    
+    def update_room_price(self, room_id: int, new_price: float) -> bool:
+        # update the room price using the DAL
+        return self.room_dal.update_price(room_id, new_price)

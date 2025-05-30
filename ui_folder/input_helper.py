@@ -475,7 +475,7 @@ def user_story_10():
                 types = RoomTypeManager().get_all()
                 for t in types:
                     print(f"{t.type_id}: {t.description} (max {t.max_guests} Gäste)")
-                print("a Hinzufügen")
+                print("\na Hinzufügen")
                 print("b Bearbeiten")
                 print("c Löschen")
                 print("z Zurück")
@@ -487,7 +487,7 @@ def user_story_10():
                     desc = input("Beschreibung: ")
                     try:
                         max_guests = int(input("Maximale Gästezahl: "))
-                        manager.add_room_type(desc, max_guests)
+                        manager.create_room_type(desc, max_guests)
                         print("Zimmertyp hinzugefügt.")
                     except Exception as e:
                         print(f"Fehler: {e}")

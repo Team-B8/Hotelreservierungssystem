@@ -128,3 +128,11 @@ class RoomDAL(BaseDAL):
             }
             for row in rows
         ]
+    
+    def update_price(self, room_id: int, new_price: float) -> bool:
+        # SQL query to update rooms with their price
+        sql = "UPDATE room SET price_per_night = ? WHERE room_id = ?"
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (new_price, room_id))
+            conn.commit()
+        return cursor.rowcount > 0
