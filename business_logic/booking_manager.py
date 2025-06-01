@@ -73,3 +73,7 @@ class BookingManager:
     def get_all_bookings_with_details(self):
         # call the get all bookings with details method from the data access layer
         return self.booking_dal.get_all_bookings_with_details()
+    
+    def get_room_type_occupancy_by_hotel(self, hotel_id: int):
+        # returns the booking count for each room type for the given hotel
+        return self.booking_dal.get_room_type_occupancy_by_hotel(hotel_id)
