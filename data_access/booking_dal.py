@@ -131,3 +131,20 @@ class BookingDAL(BaseDAL):
         with self._connect() as conn:
             cursor = conn.execute(sql)
             return cursor.fetchall()
+    
+    def get_room_type_occupancy_by_hotel(self, hotel_id: int) -> list[tuple[str, int]]:
+        # Returns a list of tuples (room_type_description, count_of_bookings) for the given hotel.
+        # SQL-Query counts how often a room_type was booked (not cancelled)
+        sql = """
+        SELECT rt.description, COUNT(b.booking_id) as bookings
+        FROM Booking b
+        JOIN Room r ON b.room_id = r.room_id
+        JOIN Room_Type rt ON r.type_id = rt.type_id
+        WHERE r.hotel_id = ? AND b.is_cancelled = 0
+        GROUP BY rt.description
+        ORDER BY bookings DESC
+        """
+        # connect to the database and run the query
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (hotel_id,))
+            return cursor.fetchall()
