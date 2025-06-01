@@ -103,7 +103,7 @@ INSERT INTO Address (address_id, street, city, zip_code) VALUES
 (2, 'Rue du Rhône 42', 'Genève', '1204'),
 (3, 'Pilatusstrasse 15', 'Luzern', '6003'),
 (4, 'Marktgasse 59', 'Bern', '3011'),
-(5, 'Freiestrasse 10', 'Basel', '4051');
+(5, 'Freiestrasse 10', 'Basel', '4051'),
 (6, 'Via Nassa 3', 'Lugano', '6900'),
 (7, 'Höhenweg 12', 'Interlaken', '3800'),
 (8, 'Dorfstrasse 25', 'Zermatt', '3920');
@@ -113,7 +113,7 @@ INSERT INTO Hotel (hotel_id, name, stars, address_id) VALUES
 (2, 'Four Seasons Hôtel des Bergues', 5, 2),
 (3, 'Grand Hotel National', 5, 3),
 (4, 'Bellevue Palace', 5, 4),
-(5, 'Les Trois Rois', 5, 5);
+(5, 'Les Trois Rois', 5, 5),
 (6, 'Hotel Splendide Royal', 5, 6),
 (7, 'Victoria Jungfrau Grand Hotel', 5, 7),
 (8, 'Mont Cervin Palace', 5, 8);
@@ -123,7 +123,7 @@ INSERT INTO Guest (guest_id, first_name, last_name, email, address_id) VALUES
 (2, 'Sophie', 'Meier', 'sophie.meier@example.ch', 2),
 (3, 'Luca', 'Rossi', 'luca.rossi@example.ch', 3),
 (4, 'Elena', 'Keller', 'elena.keller@example.ch', 4),
-(5, 'Marc', 'Weber', 'marc.weber@example.ch', 5);
+(5, 'Marc', 'Weber', 'marc.weber@example.ch', 5),
 (6, 'Anna', 'Schmidt', 'anna.schmidt@example.ch', 6),
 (7, 'Thomas', 'Fischer', 'thomas.fischer@example.ch', 7),
 (8, 'Nina', 'Graf', 'nina.graf@example.ch', 8);
@@ -142,7 +142,7 @@ INSERT INTO Room (room_id, hotel_id, room_number, type_id, price_per_night) VALU
 (2, 1, '102', 2, 400.00),
 (3, 2, '201', 3, 650.00),
 (4, 3, '301', 4, 900.00),
-(5, 4, '401', 5, 1500.00);
+(5, 4, '401', 5, 1500.00),
 (6, 6, '601', 2, 420.00),
 (7, 6, '602', 3, 750.00),
 (8, 7, '701', 1, 230.00),
@@ -154,7 +154,7 @@ INSERT INTO Booking (booking_id, guest_id, room_id, check_in_date, check_out_dat
 (2, 2, 2, '2025-07-10', '2025-07-15', 0, 2000.00),
 (3, 3, 3, '2025-08-20', '2025-08-22', 0, 1300.00),
 (4, 4, 4, '2025-09-05', '2025-09-10', 1, 0.00), -- Cancelled booking
-(5, 5, 5, '2025-10-01', '2025-10-07', 0, 9000.00);
+(5, 5, 5, '2025-10-01', '2025-10-07', 0, 9000.00),
 (6, 6, 6, '2025-06-12', '2025-06-15', 0, 1260.00),
 (7, 7, 7, '2025-07-20', '2025-07-23', 0, 2250.00),
 (8, 8, 8, '2025-08-05', '2025-08-10', 1, 0.00), -- Cancelled
@@ -166,7 +166,7 @@ INSERT INTO Invoice (invoice_id, booking_id, issue_date, total_amount, is_cancel
 (2, 2, '2025-07-15', 2000.00, 0),
 (3, 3, '2025-08-22', 1300.00, 0),
 (4, 5, '2025-10-07', 9000.00, 0),
-(5, 4, '2025-09-10', 0.00, 1); -- Cancelled booking, no charge
+(5, 4, '2025-09-10', 0.00, 1), -- Cancelled booking, no charge
 (6, 6, '2025-06-15', 1260.00, 0),
 (7, 7, '2025-07-23', 2250.00, 0),
 (8, 9, '2025-09-06', 4450.00, 0),
@@ -185,7 +185,7 @@ INSERT INTO Room_Facilities (room_id, facility_id) VALUES
 (1, 2), -- Room 101 has TV
 (2, 1), -- Room 102 has WiFi
 (3, 3), -- Room 201 has Air Conditioning
-(4, 4); -- Room 301 has Mini Bar
+(4, 4), -- Room 301 has Mini Bar
 (6, 1), -- WiFi
 (6, 3), -- Air Conditioning
 (7, 1),
@@ -204,7 +204,7 @@ INSERT INTO Rating (rating_id, guest_id, hotel_id, stars, comment, created_date)
 (1, 1, 1, 5, 'Wunderschönes Hotel mit hervorragendem Service.', '2025-06-06'),
 (2, 2, 2, 4, 'Tolles Frühstück und zentrale Lage.', '2025-07-16'),
 (3, 3, 3, 3, 'Schöne Aussicht, aber etwas laut in der Nacht.', '2025-08-23'),
-(4, 5, 5, 5, 'Ein Erlebnis der Extraklasse. Uneingeschränkt empfehlenswert.', '2025-10-08');
+(4, 5, 5, 5, 'Ein Erlebnis der Extraklasse. Uneingeschränkt empfehlenswert.', '2025-10-08'),
 (5, 6, 6, 4, 'Sehr elegantes Hotel mit wunderschönem Blick auf den See.', '2025-06-16'),
 (6, 7, 7, 5, 'Fantastischer Spa-Bereich, gerne wieder.', '2025-07-24'),
 (7, 6, 8, 5, 'Perfekte Lage in Zermatt, sehr luxuriös.', '2025-09-07');
