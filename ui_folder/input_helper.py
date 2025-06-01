@@ -641,7 +641,7 @@ def user_story_data_visualization():
             print("No booking data available.")
             return
         # Load results into a pandas DataFrame
-        df = pd.DataFrame(stats)
+        df = pd.DataFrame(stats, columns=["room_type", "count"])
         # Display as text table in the terminal
         print("\nBooking statistics:")
         print(df.to_string(index=False))
