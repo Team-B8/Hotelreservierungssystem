@@ -623,7 +623,7 @@ def user_story_10():
         else:
             print("Ungültige Eingabe.")
 
-def user_story_11():
+def user_story_data_visualization():
     import pandas as pd
     import matplotlib.pyplot as plt
     print("\n--- 11: Show occupancy rates per room type ---")
