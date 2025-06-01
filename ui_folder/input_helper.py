@@ -623,6 +623,39 @@ def user_story_10():
         else:
             print("Ungültige Eingabe.")
 
+def user_story_11():
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    print("\n--- 11: Show occupancy rates per room type ---")
+    try:
+        # List all available hotels
+        hotels = HotelManager().get_all_hotels()
+        for h in hotels:
+            print(f"{h.hotel_id}: {h.name}")
+        # Prompt user to select a hotel
+        hotel_id = int(input("Select Hotel ID: "))
+        manager = BookingManager()
+        # Get occupancy stats for the selected hotel
+        stats = manager.get_room_type_occupancy_by_hotel(hotel_id)
+        if not stats:
+            print("No booking data available.")
+            return
+        # Load results into a pandas DataFrame
+        df = pd.DataFrame(stats)
+        # Display as text table in the terminal
+        print("\nBooking statistics:")
+        print(df.to_string(index=False))
+        # Create a bar chart of occupancy counts by room type
+        df.plot(kind="bar", x="room_type", y="count", legend=False)
+        plt.title("Occupancy per Room Type")
+        plt.xlabel("Room Type")
+        plt.ylabel("Number of Bookings")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show() 
+    except Exception as e:
+        print(f"Error while retrieving occupancy rates: {e}")
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -675,6 +708,7 @@ def admin_menu():
         print("4 Alle Buchungen anzeigen")
         print("5 Zimmerdetails anzeigen")
         print("6 Stammdaten verwalten")
+        print("7 Belegungsraten anzeigen")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Menupunkt wählen: ")
         if auswahl == "1":
@@ -689,6 +723,8 @@ def admin_menu():
             user_story_9()
         elif auswahl == "6":
             user_story_10()
+        elif auswahl == "7":
+            user_story_data_visualization()
         elif auswahl == "0":
             break
         else:
