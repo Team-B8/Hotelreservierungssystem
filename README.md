@@ -13,12 +13,28 @@
 
 ## Methodologie / Projektmanagement
 Scrum erklären und wie wir gearbeitet haben. Auf Sprint Meeting und Reviews in DeepNote verweisen.
+Vorangehensweise
+Kommunikationskanal
+Zusammenarbeit --> wer hat was gemacht
+
+### Wichtige Entscheidungen
+Falls verzeichtet auf User Story
 
 ## ERD Diagramm
 ![ERD Diagramm](/images/ERD_Hotelreservierung.jpg)
 
 ## UML Diagramm
 ![UML Diagramm](/images/UML_Hotelreservierung.jpg)
+
+## Projektstruktur
+### Layers
+#### User Interface
+was warum und wie
+#### Model
+
+#### Business Logic
+
+#### Data Access Layer
 
 ## User Stories
 ### Minimale User Stories
@@ -90,3 +106,5 @@ Eine der folgenden User Stories auswählen:
 #### 2. Als Gastnutzer möchte ich die Details meiner Reservierung in einer lesbaren Form erhalten (z.B. die Reservierung in einer dauerhaften Datei speichern), damit ich meine Buchung später überprüfen kann. Hint: Erzeugt eine «booking.txt»-Datei oder verwendet die Python-Bibliothek «fpdf» oder eine ähnliche Library, um eine PDF-Version zu erzeugen.
 #### 3. Als Gastnutzer möchte ich eine Karte mit Zoom- und Filterfunktion sehen können, welche Sehenswürdigkeiten oder Restaurants in der Nähe meines gebuchten Hotels liegen, um meine Aufenthaltsplanung zu erleichtern. Hint: Verwende die Python-Bibliothek «geopandas» oder eine ähnliche.
 #### 4. Als Gastnutzer möchte ich ein Zimmer buchen und eine Buchungsbestätigung mit allen Details per E-Mail erhalten, um einen verbindlichen Nachweis meiner Reservierung zu haben. Hint: Verwende die Python-Bibliothek «smtplib» oder eine ähnliche.
+
+## Lessons Learned
