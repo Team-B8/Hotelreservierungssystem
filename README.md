@@ -13,7 +13,7 @@
 
 ## Methodologie / Projektmanagement
 Scrum erklären und wie wir gearbeitet haben. Auf Sprint Meeting und Reviews in DeepNote verweisen.
-Vorangehensweise
+Herangehensweise
 Kommunikationskanal
 Zusammenarbeit --> wer hat was gemacht
 
