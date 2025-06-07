@@ -10,8 +10,12 @@ class Rating:
             raise ValueError("hotel_id is required")
         if not guest_id:
             raise ValueError("guest_id is required")
+        if not comment:
+            raise ValueError("comment is required")
         if not isinstance(rating_id, int):
             raise TypeError("rating_id must be an integer")
+        if not isinstance(comment, str):
+            raise TypeError("comment must be a string")
         if not isinstance(guest_id, int):
             raise TypeError("guest_id must be an integer")
         if not isinstance(hotel_id, int):
@@ -23,8 +27,8 @@ class Rating:
         self.__stars = stars
         self.__comment = comment
         self.__created_date = created_date
-        self.__hotel_id = hotel_id
-        self.__guest_id = guest_id
+        self.hotel_id = hotel_id
+        self.guest_id = guest_id
     
 
 

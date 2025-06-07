@@ -152,8 +152,12 @@ class BookingDAL(BaseDAL):
 
     def can_guest_rate(self, checkout_date: date, is_cancelled: bool):
         sql = """
-        SELECT * FROM Booking WHERE checkout_date = ? AND is_cancelled = ?
+        SELECT * FROM Booking WHERE checkout_date = ?
+            AND is_cancelled = ?
+            AND is_cancelled = 0 AND checkout_date < Date('now')
+        LIMIT 1
         """
+        # LIMIT 1 ensures that the query returns at most one row.
         with self._connect() as conn:
             cursor = conn.execute(sql, (checkout_date, is_cancelled))
             return cursor.fetchone() is not None
