@@ -148,3 +148,12 @@ class BookingDAL(BaseDAL):
         with self._connect() as conn:
             cursor = conn.execute(sql, (hotel_id,))
             return cursor.fetchall()
+
+
+    def can_guest_rate(self, checkout_date: date, is_cancelled: bool):
+        sql = """
+        SELECT * FROM Booking WHERE checkout_date = ? AND is_cancelled = ?
+        """
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (checkout_date, is_cancelled))
+            return cursor.fetchone() is not None
