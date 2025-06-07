@@ -12,6 +12,7 @@ from business_logic.invoice_manager import InvoiceManager
 from business_logic.ratings_manager import RatingManager
 from data_access.booking_dal import BookingDAL
 from data_access.hotel_dal import HotelDAL
+from data_access.room_dal import RoomDAL
 
 
 def input_date(prompt):
@@ -663,37 +664,42 @@ def user_story_data_visualization():
 
 def user_story_db_schemaaenderung_3():
     print("\n--- 12: Hotelbewertung abgeben ---")
-    guest_id = int(input("Bitte geben Sie Ihre Gast-ID ein: "))
-    booking_dal = BookingDAL()
-    hotel_dal = HotelDAL()
-    rating_manager = RatingManager()
-
-    bookings= booking_dal.get_completed_bookings_by_guest_id(guest_id)
-
-    if not bookings:
-        print("Sie haben keine abgeschlossenen Buchungen, die bewertet werden können.")
-    print("Bitte wählen Sie eine Buchung aus:")
-    for i, (booking_id, hotel_id, check_in, check_out) in enumerate(bookings, start=1):
-        hotel = hotel_dal.read_hotel_by_id(hotel_id)
-        print(f"[{i}] {hotel.name} ({check_in} – {check_out})")
-
-    choice = input("Nummer der Buchung: ")
-    if not choice.isdigit() or int(choice) < 1 or int(choice) > len(bookings):
-        print("Ungültige Auswahl")
-        return
-
-    selected = bookings[int(choice) - 1]
-    _, selected_hotel_id, _, _ = selected
-    #Listen fangen bei Python mit 0 an. Deshalb -1.
-
-    # Bewertung erfassen
     try:
+        guest_id = int(input("Bitte geben Sie Ihre Gast-ID ein: "))
+        booking_dal = BookingDAL()
+        hotel_dal = HotelDAL()
+        rating_manager = RatingManager()
+        room_dal = RoomDAL()
+
+        bookings= booking_dal.get_completed_bookings_by_guest_id(guest_id)
+
+        if not bookings:
+            raise LookupError("Sie haben keine abgeschlossenen Buchungen, die bewertet werden können.")
+
+        print("Bitte wählen Sie eine Buchung aus:")
+        for i, (booking_id, room_id, check_in, check_out) in enumerate(bookings, start=1):
+            room = room_dal.get_by_id(room_id)
+            hotel = hotel_dal.read_hotel_by_id(room.hotel_id)
+            print(f"[{i}] {hotel.name} ({check_in} – {check_out})")
+
+        choice = input("Nummer der Buchung: ")
+        if not choice.isdigit() or int(choice) < 1 or int(choice) > len(bookings):
+            raise ValueError("Ungültige Auswahl")
+
+        selected = bookings[int(choice) - 1]
+        _, selected_room_id, _, _ = selected
+        room = room_dal.get_by_id(selected_room_id)
+        selected_hotel_id = room.hotel_id
+        #Listen fangen bei Python mit 0 an. Deshalb -1.
+
         stars = int(input("Wie viele Sterne möchten Sie geben? (1–5): "))
+        if not (1 <= stars <= 5):
+            raise ValueError("Ungültige Bewertung. Bitte zwischen 1 und 5 Sterne.")
         comment = input("Ihr Kommentar: ")
         created = date.today().isoformat()
 
         rating_manager.create_rating(stars, comment, created, selected_hotel_id, guest_id)
-        print("✅ Bewertung wurde erfolgreich gespeichert.")
+        print("Bewertung wurde erfolgreich gespeichert.")
     except Exception as e:
         print(f"Fehler: {e}")
 
@@ -738,7 +744,7 @@ def gast_menu():
             user_story_6()
         elif auswahl == "12":
             user_story_db_schemaaenderung_3()
-        elif auswahl == "0":
+        elif auswahl == "01":
             break
         else:
             print("Ungültige Eingabe.")
