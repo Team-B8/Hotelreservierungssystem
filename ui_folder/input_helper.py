@@ -8,6 +8,8 @@ from business_logic.address_manager import AddressManager
 from business_logic.hotel_manager import HotelManager
 from business_logic.booking_manager import BookingManager
 from business_logic.invoice_manager import InvoiceManager
+from business_logic.ratings_manager import RatingManager
+
 
 def input_date(prompt):
     while True:
