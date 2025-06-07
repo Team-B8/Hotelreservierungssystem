@@ -630,39 +630,6 @@ def user_story_10():
         else:
             print("Ungültige Eingabe.")
 
-def user_story_data_visualization():
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    print("\n--- 11: Belegungsraten anzeigen ---")
-    try:
-        # List all available hotels
-        hotels = HotelManager().get_all_hotels()
-        for h in hotels:
-            print(f"{h.hotel_id}: {h.name}")
-        # Prompt user to select a hotel
-        hotel_id = int(input("Hotel ID auswählen: "))
-        manager = BookingManager()
-        # Get occupancy stats for the selected hotel
-        stats = manager.get_room_type_occupancy_by_hotel(hotel_id)
-        if not stats:
-            print("Keine Buchungsdaten verfügbar.")
-            return
-        # Load results into a pandas DataFrame
-        df = pd.DataFrame(stats, columns=["room_type", "count"])
-        # Display as text table in the terminal
-        print("\nBuchungs Statsitiken:")
-        print(df.to_string(index=False))
-        # Create a bar chart of occupancy counts by room type
-        df.plot(kind="bar", x="room_type", y="count", legend=False)
-        plt.title("Begelgung pro Raum Type")
-        plt.xlabel("Raum Type")
-        plt.ylabel("Anazhl Buchungen")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        plt.show() 
-    except Exception as e:
-        print(f"Error while retrieving occupancy rates: {e}")
-
 def user_story_db_schemaaenderung_3():
     print("\n--- 12: Hotelbewertung abgeben ---")
     try:
@@ -737,6 +704,38 @@ def user_story_db_schemaaenderung_4():
         print(f"Fehler: {e}")
         input("Drücken Sie")
 
+def user_story_data_visualization():
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    print("\n--- 11: Belegungsraten anzeigen ---")
+    try:
+        # List all available hotels
+        hotels = HotelManager().get_all_hotels()
+        for h in hotels:
+            print(f"{h.hotel_id}: {h.name}")
+        # Prompt user to select a hotel
+        hotel_id = int(input("Hotel ID auswählen: "))
+        manager = BookingManager()
+        # Get occupancy stats for the selected hotel
+        stats = manager.get_room_type_occupancy_by_hotel(hotel_id)
+        if not stats:
+            print("Keine Buchungsdaten verfügbar.")
+            return
+        # Load results into a pandas DataFrame
+        df = pd.DataFrame(stats, columns=["room_type", "count"])
+        # Display as text table in the terminal
+        print("\nBuchungs Statsitiken:")
+        print(df.to_string(index=False))
+        # Create a bar chart of occupancy counts by room type
+        df.plot(kind="bar", x="room_type", y="count", legend=False)
+        plt.title("Begelgung pro Raum Type")
+        plt.xlabel("Raum Type")
+        plt.ylabel("Anazhl Buchungen")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.show() 
+    except Exception as e:
+        print(f"Error while retrieving occupancy rates: {e}")
 
 def gast_menu():
     while True:
