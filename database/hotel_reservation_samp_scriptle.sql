@@ -176,15 +176,15 @@ INSERT INTO Room (room_id, hotel_id, room_number, type_id, price_per_night) VALU
 (16, 7, '703', 4, 880.00);
 
 INSERT INTO Booking (booking_id, guest_id, room_id, check_in_date, check_out_date, is_cancelled, total_amount) VALUES
-(1, 1, 1, '2025-06-01', '2025-06-05', 0, 1000.00),
-(2, 2, 2, '2025-07-10', '2025-07-15', 0, 2000.00),
-(3, 3, 3, '2025-08-20', '2025-08-22', 0, 1300.00),
+(1, 1, 1, '2025-02-01', '2025-02-05', 0, 1000.00),
+(2, 2, 2, '2025-03-10', '2025-03-15', 0, 2000.00),
+(3, 3, 3, '2025-04-20', '2025-04-22', 0, 1300.00),
 (4, 4, 4, '2025-09-05', '2025-09-10', 1, 0.00), -- Cancelled booking
-(5, 5, 5, '2025-10-01', '2025-10-07', 0, 9000.00),
-(6, 6, 6, '2025-06-12', '2025-06-15', 0, 1260.00),
-(7, 7, 7, '2025-07-20', '2025-07-23', 0, 2250.00),
+(5, 5, 5, '2025-04-01', '2025-04-07', 0, 9000.00),
+(6, 6, 6, '2025-05-12', '2025-05-15', 0, 1260.00),
+(7, 7, 7, '2025-05-20', '2025-05-23', 0, 2250.00),
 (8, 8, 8, '2025-08-05', '2025-08-10', 1, 0.00), -- Cancelled
-(9, 6, 9, '2025-09-01', '2025-09-06', 0, 4450.00),
+(9, 6, 9, '2025-05-01', '2025-05-06', 0, 4450.00),
 (10, 7, 10, '2025-09-10', '2025-09-12', 0, 3200.00),
 (11, 9, 1, '2025-10-10', '2025-10-12', 0, 500.00),
 (12, 10, 2, '2025-10-10', '2025-10-15', 0, 2000.00),
@@ -201,14 +201,14 @@ INSERT INTO Booking (booking_id, guest_id, room_id, check_in_date, check_out_dat
 (23, 14, 16, '2025-12-24', '2025-12-29', 0, 4400.00);
 
 INSERT INTO Invoice (invoice_id, booking_id, issue_date, total_amount, is_cancelled) VALUES
-(1, 1, '2025-06-05', 1000.00, 0),
-(2, 2, '2025-07-15', 2000.00, 0),
-(3, 3, '2025-08-22', 1300.00, 0),
-(4, 5, '2025-10-07', 9000.00, 0),
+(1, 1, '2025-02-05', 1000.00, 0),
+(2, 2, '2025-03-15', 2000.00, 0),
+(3, 3, '2025-04-22', 1300.00, 0),
+(4, 5, '2025-04-07', 9000.00, 0),
 (5, 4, '2025-09-10', 0.00, 1), -- Cancelled booking, no charge
-(6, 6, '2025-06-15', 1260.00, 0),
-(7, 7, '2025-07-23', 2250.00, 0),
-(8, 9, '2025-09-06', 4450.00, 0),
+(6, 6, '2025-05-15', 1260.00, 0),
+(7, 7, '2025-05-23', 2250.00, 0),
+(8, 9, '2025-05-06', 4450.00, 0),
 (9, 10, '2025-09-12', 3200.00, 0),
 (10, 8, '2025-08-10', 0.00, 1), -- Cancelled booking, no charge
 (11, 11, '2025-10-12', 500.00, 0),
@@ -253,13 +253,13 @@ INSERT INTO Room_Facilities (room_id, facility_id) VALUES
 (10, 5);
 
 INSERT INTO Rating (rating_id, guest_id, hotel_id, stars, comment, created_date) VALUES
-(1, 1, 1, 5, 'Wunderschönes Hotel mit hervorragendem Service.', '2025-06-06'),
-(2, 2, 2, 4, 'Tolles Frühstück und zentrale Lage.', '2025-07-16'),
-(3, 3, 3, 3, 'Schöne Aussicht, aber etwas laut in der Nacht.', '2025-08-23'),
-(4, 5, 5, 5, 'Ein Erlebnis der Extraklasse. Uneingeschränkt empfehlenswert.', '2025-10-08'),
-(5, 6, 6, 4, 'Sehr elegantes Hotel mit wunderschönem Blick auf den See.', '2025-06-16'),
-(6, 7, 7, 5, 'Fantastischer Spa-Bereich, gerne wieder.', '2025-07-24'),
-(7, 6, 8, 5, 'Perfekte Lage in Zermatt, sehr luxuriös.', '2025-09-07'),
+(1, 1, 1, 5, 'Wunderschönes Hotel mit hervorragendem Service.', '2025-02-06'),
+(2, 2, 2, 4, 'Tolles Frühstück und zentrale Lage.', '2025-03-16'),
+(3, 3, 3, 3, 'Schöne Aussicht, aber etwas laut in der Nacht.', '2025-04-23'),
+(4, 5, 5, 5, 'Ein Erlebnis der Extraklasse. Uneingeschränkt empfehlenswert.', '2025-04-08'),
+(5, 6, 6, 4, 'Sehr elegantes Hotel mit wunderschönem Blick auf den See.', '2025-05-16'),
+(6, 7, 7, 5, 'Fantastischer Spa-Bereich, gerne wieder.', '2025-05-24'),
+(7, 6, 8, 5, 'Perfekte Lage in Zermatt, sehr luxuriös.', '2025-05-07'),
 (8, 9, 1, 4, 'Gutes Preis-Leistungs-Verhältnis, aber kleines Zimmer.', '2025-10-13'),
 (9, 10, 2, 5, 'Ein Traumurlaub – alles perfekt!', '2025-10-16'),
 (10, 11, 2, 4, 'Service sehr freundlich und hilfsbereit.', '2025-11-05'),
