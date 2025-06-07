@@ -164,13 +164,12 @@ class BookingDAL(BaseDAL):
     
     def get_completed_bookings_by_guest_id(self, guest_id: int) -> list:
         sql = """
-        SELECT B.booking_id, R.hotel_id, B.check_in_date, B.check_out_date
-        FROM Booking B
-        JOIN Room R ON B.room_id = R.room_id
-        WHERE B.guest_id = ?
-        AND B.is_cancelled = 0
-        AND B.check_out_date < DATE('now')
-        """
+            SELECT booking_id, room_id, check_in_date, check_out_date
+            FROM Booking
+            WHERE guest_id = ?
+            AND is_cancelled = 0
+            AND check_out_date < DATE('now')
+            """
         with self._connect() as conn:
             cursor = conn.execute(sql, (guest_id,))
         return cursor.fetchall()
