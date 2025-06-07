@@ -120,13 +120,13 @@ INSERT INTO Address (address_id, street, city, zip_code) VALUES
 
 INSERT INTO Hotel (hotel_id, name, stars, address_id) VALUES
 (1, 'Hotel Baur au Lac', 5, 1),
-(2, 'Four Seasons Hôtel des Bergues', 5, 2),
+(2, 'Four Seasons Hôtel des Bergues', 4, 2),
 (3, 'Grand Hotel National', 5, 3),
 (4, 'Bellevue Palace', 5, 4),
-(5, 'Les Trois Rois', 5, 5),
-(6, 'Hotel Splendide Royal', 5, 6),
+(5, 'Les Trois Rois', 3, 5),
+(6, 'Hotel Splendide Royal', 4, 6),
 (7, 'Victoria Jungfrau Grand Hotel', 5, 7),
-(8, 'Mont Cervin Palace', 5, 8);
+(8, 'Mont Cervin Palace', 4, 8);
 
 INSERT INTO Guest (guest_id, first_name, last_name, email, address_id) VALUES
 (1, 'Hans', 'Müller', 'hans.mueller@example.ch', 1),
