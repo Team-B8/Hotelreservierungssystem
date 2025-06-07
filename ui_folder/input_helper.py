@@ -10,10 +10,8 @@ from business_logic.hotel_manager import HotelManager
 from business_logic.booking_manager import BookingManager
 from business_logic.invoice_manager import InvoiceManager
 from business_logic.ratings_manager import RatingManager
-from data_access.booking_dal import BookingDAL
 from data_access.hotel_dal import HotelDAL
-from data_access.room_dal import RoomDAL
-from data_access.rating_dal import RatingDAL
+
 
 
 def input_date(prompt):
@@ -634,20 +632,17 @@ def user_story_db_schemaaenderung_3():
     print("\n--- 12: Hotelbewertung abgeben ---")
     try:
         guest_id = int(input("Bitte geben Sie Ihre Gast-ID ein: "))
-        booking_dal = BookingDAL()
-        hotel_dal = HotelDAL()
         rating_manager = RatingManager()
-        room_dal = RoomDAL()
 
-        bookings= booking_dal.get_completed_bookings_by_guest_id(guest_id)
+        bookings= rating_manager.get_completed_bookings_by_guest_id(guest_id)
 
         if not bookings:
             raise LookupError("Sie haben keine abgeschlossenen Buchungen, die bewertet werden können.")
 
         print("Bitte wählen Sie eine Buchung aus:")
         for i, (booking_id, room_id, check_in, check_out) in enumerate(bookings, start=1):
-            room = room_dal.get_by_id(room_id)
-            hotel = hotel_dal.read_hotel_by_id(room.hotel_id)
+            room = rating_manager.get_room_by_id(room_id)
+            hotel = rating_manager.get_hotel_by_id(room.hotel_id)
             print(f"[{i}] {hotel.name} ({check_in} – {check_out})")
 
         choice = input("Nummer der Buchung: ")
@@ -656,9 +651,11 @@ def user_story_db_schemaaenderung_3():
         
         selected = bookings[int(choice) - 1]
         _, selected_room_id, _, check_out = selected
-        if not booking_dal.has_completed_booking(check_out):
+
+        if not rating_manager.has_completed_booking(check_out):
             raise Exception("Gast kann nur nach einem abgeschlossenen, nicht stornierten Aufenthalt bewerten.")
-        room = room_dal.get_by_id(selected_room_id)
+        
+        room = rating_manager.get_room_by_id(selected_room_id)
         selected_hotel_id = room.hotel_id
         #Listen fangen bei Python mit 0 an. Deshalb -1.
 
@@ -676,10 +673,10 @@ def user_story_db_schemaaenderung_3():
     
 def user_story_db_schemaaenderung_4():
     print("\n--- 13: Hotelbewertungen einsehen ---")
-    hotel_dal = HotelDAL()
-    rating_dal = RatingDAL()
+    hotel_manager = HotelManager()
+    rating_manager = RatingManager()
 
-    hotels = hotel_dal.get_all_hotels()
+    hotels = hotel_manager.get_all_hotels()
     if not hotels:
         raise LookupError("Keine Hotels verfügbar.")
 
@@ -691,7 +688,7 @@ def user_story_db_schemaaenderung_4():
             raise ValueError("Ungültige Eingabe. Bitte eine numerische Hotel-ID eingeben.")
 
         hotel_id = int(hotel_id_input)
-        ratings = rating_dal.read_by_hotel_id(hotel_id)
+        ratings = rating_manager.get_ratings_by_hotel_id(hotel_id)
 
         if not ratings:
             raise LookupError(f"Keine Bewertungen für Hotel-ID {hotel_id} gefunden.")
