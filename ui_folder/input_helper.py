@@ -13,6 +13,7 @@ from business_logic.ratings_manager import RatingManager
 from data_access.booking_dal import BookingDAL
 from data_access.hotel_dal import HotelDAL
 from data_access.room_dal import RoomDAL
+from data_access.rating_dal import RatingDAL
 
 
 def input_date(prompt):
@@ -685,9 +686,11 @@ def user_story_db_schemaaenderung_3():
         choice = input("Nummer der Buchung: ")
         if not choice.isdigit() or int(choice) < 1 or int(choice) > len(bookings):
             raise ValueError("Ungültige Auswahl")
-
+        
         selected = bookings[int(choice) - 1]
-        _, selected_room_id, _, _ = selected
+        _, selected_room_id, _, check_out = selected
+        if not booking_dal.has_completed_booking(check_out):
+            raise Exception("Gast kann nur nach einem abgeschlossenen, nicht stornierten Aufenthalt bewerten.")
         room = room_dal.get_by_id(selected_room_id)
         selected_hotel_id = room.hotel_id
         #Listen fangen bei Python mit 0 an. Deshalb -1.
@@ -695,6 +698,7 @@ def user_story_db_schemaaenderung_3():
         stars = int(input("Wie viele Sterne möchten Sie geben? (1–5): "))
         if not (1 <= stars <= 5):
             raise ValueError("Ungültige Bewertung. Bitte zwischen 1 und 5 Sterne.")
+        
         comment = input("Ihr Kommentar: ")
         created = date.today().isoformat()
 
@@ -702,6 +706,37 @@ def user_story_db_schemaaenderung_3():
         print("Bewertung wurde erfolgreich gespeichert.")
     except Exception as e:
         print(f"Fehler: {e}")
+    
+def user_story_db_schemaaenderung_4():
+    print("\n--- 13: Hotelbewertungen einsehen ---")
+    hotel_dal = HotelDAL()
+    rating_dal = RatingDAL()
+
+    hotels = hotel_dal.get_all_hotels()
+    if not hotels:
+        raise LookupError("Keine Hotels verfügbar.")
+
+    for h in hotels:
+            print(f"{h.hotel_id}: {h.name} ({h.stars}★)")
+    try:
+        hotel_id_input = input("Bitte Hotel-ID eingeben: ")
+        if not hotel_id_input.isdigit():
+            raise ValueError("Ungültige Eingabe. Bitte eine numerische Hotel-ID eingeben.")
+
+        hotel_id = int(hotel_id_input)
+        ratings = rating_dal.read_by_hotel_id(hotel_id)
+
+        if not ratings:
+            raise LookupError(f"Keine Bewertungen für Hotel-ID {hotel_id} gefunden.")
+
+        print(f"\n⭐ Bewertungen für Hotel-ID {hotel_id}:")
+        for r in ratings:
+            print(f"{r.stars}★ – {r.comment} ({r.created_date})")
+
+    except (ValueError, LookupError) as e:
+        print(f"Fehler: {e}")
+        input("Drücken Sie")
+
 
 def gast_menu():
     while True:
@@ -718,6 +753,7 @@ def gast_menu():
         print("10 Rechnung abrufen")
         print("11 Buchung stornieren")
         print("12 Hotelbewertung abgeben")
+        print("13 Hotelbewertungen ansehen")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Menupunkt wählen: ")
         if auswahl == "1":
@@ -744,7 +780,9 @@ def gast_menu():
             user_story_6()
         elif auswahl == "12":
             user_story_db_schemaaenderung_3()
-        elif auswahl == "01":
+        elif auswahl == "13":
+            user_story_db_schemaaenderung_4()
+        elif auswahl == "0":
             break
         else:
             print("Ungültige Eingabe.")

@@ -136,3 +136,4 @@ class RoomDAL(BaseDAL):
             cursor = conn.execute(sql, (new_price, room_id))
             conn.commit()
         return cursor.rowcount > 0
+    

@@ -149,26 +149,25 @@ class BookingDAL(BaseDAL):
             cursor = conn.execute(sql, (hotel_id,))
             return cursor.fetchall()
 
-
-    def has_completed_booking(self, checkout_date: date, is_cancelled: bool):
+    def has_completed_booking(self, check_out_date: date) -> bool:
         sql = """
-        SELECT * FROM Booking WHERE checkout_date = ?
-            AND is_cancelled = ?
-            AND is_cancelled = 0 AND checkout_date < Date('now')
+        SELECT 1 FROM Booking
+        WHERE check_out_date = ?
+        AND is_cancelled = 0
+        AND check_out_date < DATE('now')
         LIMIT 1
         """
-        # LIMIT 1 ensures that the query returns at most one row.
         with self._connect() as conn:
-            cursor = conn.execute(sql, (checkout_date, is_cancelled))
+            cursor = conn.execute(sql, (check_out_date,))
             return cursor.fetchone() is not None
-    
+
     def get_completed_bookings_by_guest_id(self, guest_id: int) -> list:
         sql = """
             SELECT booking_id, room_id, check_in_date, check_out_date
             FROM Booking
             WHERE guest_id = ?
             AND is_cancelled = 0
-            AND check_out_date < DATE('now')
+            AND check_out_date <= DATE('now')
             """
         with self._connect() as conn:
             cursor = conn.execute(sql, (guest_id,))

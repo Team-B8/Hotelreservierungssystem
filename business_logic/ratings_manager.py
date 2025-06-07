@@ -14,9 +14,7 @@ class RatingManager:
             raise ValueError("Stars must be between 1 and 5")
         if not comment:
             raise ValueError("Comment cannot be empty")
-        if not self.__booking_dal.has_completed_booking(guest_id, hotel_id):
-            raise PermissionError("Guest can only rate after a completed, non cancelled stay.")
-        rating = Rating(stars, comment, created_date, hotel_id, guest_id)
+        rating = Rating(None, stars, comment, created_date, hotel_id, guest_id)
         return self.__rating_dal.create(rating)
     
 
