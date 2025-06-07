@@ -702,7 +702,6 @@ def user_story_db_schemaaenderung_4():
 
     except (ValueError, LookupError) as e:
         print(f"Fehler: {e}")
-        input("Drücken Sie")
 
 def user_story_data_visualization():
     import pandas as pd
