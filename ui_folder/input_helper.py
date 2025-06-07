@@ -1,6 +1,7 @@
 import sys, os
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from datetime import datetime
+from datetime import date
 from business_logic.room_manager import RoomManager
 from business_logic.room_type_manager import RoomTypeManager
 from business_logic.facilities_manager import FacilitiesManager
@@ -9,6 +10,8 @@ from business_logic.hotel_manager import HotelManager
 from business_logic.booking_manager import BookingManager
 from business_logic.invoice_manager import InvoiceManager
 from business_logic.ratings_manager import RatingManager
+from data_access.booking_dal import BookingDAL
+from data_access.hotel_dal import HotelDAL
 
 
 def input_date(prompt):
@@ -658,6 +661,42 @@ def user_story_data_visualization():
     except Exception as e:
         print(f"Error while retrieving occupancy rates: {e}")
 
+def user_story_db_schemaaenderung_3():
+    print("\n--- 12: Hotelbewertung abgeben ---")
+    guest_id = int(input("Bitte geben Sie Ihre Gast-ID ein: "))
+    booking_dal = BookingDAL()
+    hotel_dal = HotelDAL()
+    rating_manager = RatingManager()
+
+    bookings= booking_dal.get_completed_bookings_by_guest_id(guest_id)
+
+    if not bookings:
+        print("Sie haben keine abgeschlossenen Buchungen, die bewertet werden können.")
+    print("Bitte wählen Sie eine Buchung aus:")
+    for i, (booking_id, hotel_id, check_in, check_out) in enumerate(bookings, start=1):
+        hotel = hotel_dal.read_hotel_by_id(hotel_id)
+        print(f"[{i}] {hotel.name} ({check_in} – {check_out})")
+
+    choice = input("Nummer der Buchung: ")
+    if not choice.isdigit() or int(choice) < 1 or int(choice) > len(bookings):
+        print("Ungültige Auswahl")
+        return
+
+    selected = bookings[int(choice) - 1]
+    _, selected_hotel_id, _, _ = selected
+    #Listen fangen bei Python mit 0 an. Deshalb -1.
+
+    # Bewertung erfassen
+    try:
+        stars = int(input("Wie viele Sterne möchten Sie geben? (1–5): "))
+        comment = input("Ihr Kommentar: ")
+        created = date.today().isoformat()
+
+        rating_manager.create_rating(stars, comment, created, selected_hotel_id, guest_id)
+        print("✅ Bewertung wurde erfolgreich gespeichert.")
+    except Exception as e:
+        print(f"Fehler: {e}")
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -672,6 +711,7 @@ def gast_menu():
         print("9 Zimmer buchen")
         print("10 Rechnung abrufen")
         print("11 Buchung stornieren")
+        print("12 Hotelbewertung abgeben")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Menupunkt wählen: ")
         if auswahl == "1":
@@ -696,6 +736,8 @@ def gast_menu():
             user_story_5()
         elif auswahl == "11":
             user_story_6()
+        elif auswahl == "12":
+            user_story_db_schemaaenderung_3()
         elif auswahl == "0":
             break
         else:

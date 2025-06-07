@@ -150,7 +150,7 @@ class BookingDAL(BaseDAL):
             return cursor.fetchall()
 
 
-    def can_guest_rate(self, checkout_date: date, is_cancelled: bool):
+    def has_completed_booking(self, checkout_date: date, is_cancelled: bool):
         sql = """
         SELECT * FROM Booking WHERE checkout_date = ?
             AND is_cancelled = ?
@@ -161,3 +161,15 @@ class BookingDAL(BaseDAL):
         with self._connect() as conn:
             cursor = conn.execute(sql, (checkout_date, is_cancelled))
             return cursor.fetchone() is not None
+    
+    def get_completed_bookings_by_guest_id(self, guest_id: int) -> list:
+        sql = """
+        SELECT booking_id, hotel_id, check_in_date, check_out_date
+        FROM Booking
+        WHERE guest_id = ?
+        AND is_cancelled = 0
+        AND checkout_date < DATE('now')
+        """
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (guest_id,))
+        return cursor.fetchall()

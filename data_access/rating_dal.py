@@ -7,7 +7,7 @@ class RatingDAL(BaseDAL):
 
     def create(self, rating: Rating) -> Rating:
     #Inserts a new rating into the database
-        sql = "INSERT INTO Rating (stars, comment, hotel_id, created_date, guest_id) VALUES (?, ?, ?, ?)"
+        sql = "INSERT INTO Rating (stars, comment, hotel_id, created_date, guest_id) VALUES (?, ?, ?, ?, ?)"
         params = (rating.stars, rating.comment, rating.created_date, rating.hotel_id, rating.guest_id)
         with self._connect() as conn:
             cursor = conn.execute(sql, params)
