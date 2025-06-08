@@ -140,24 +140,32 @@ Eine der folgenden User Stories auswählen:
 #### 3. Als Gastnutzer möchte ich eine Karte mit Zoom- und Filterfunktion sehen können, welche Sehenswürdigkeiten oder Restaurants in der Nähe meines gebuchten Hotels liegen, um meine Aufenthaltsplanung zu erleichtern. Hint: Verwende die Python-Bibliothek «geopandas» oder eine ähnliche.
 #### 4. Als Gastnutzer möchte ich ein Zimmer buchen und eine Buchungsbestätigung mit allen Details per E-Mail erhalten, um einen verbindlichen Nachweis meiner Reservierung zu haben. Hint: Verwende die Python-Bibliothek «smtplib» oder eine ähnliche.
 
-## Lessons Learned
+## Projekterkenntnisse
+
 ### 1. Projektstruktur und Modularisierung
-Schon zu Beginn war klar, wie wichtig eine saubere Struktur ist. Wir haben die Anwendung in vier Hauptbereiche aufgeteilt: Benutzeroberfläche (ui_folder), Geschäftslogik (business_logic), Datenzugriff (data_access) und Datenmodelle (model). Diese Trennung hat geholfen, den Überblick zu behalten. Neue Funktionen konnten gezielt in einem Bereich umgesetzt werden, ohne andere Teile zu stören. Auch das Testen wurde einfacher, weil die Logik klar voneinander getrennt war. Das hat die Wartbarkeit und Erweiterbarkeit des Projekts deutlich verbessert.
+
+Schon zu Beginn war klar, wie wichtig eine saubere Struktur ist. Wir haben die Anwendung in vier Hauptbereiche aufgeteilt: **Benutzeroberflaeche (`ui_folder`)**, **Geschaeftslogik (`business_logic`)**, **Datenzugriff (`data_access`)** und **Datenmodelle (`model`)**. Diese Trennung hat geholfen, den Ueberblick zu behalten. Neue Funktionen konnten gezielt in einem Bereich umgesetzt werden, ohne andere Teile zu stoeren. Auch das Testen wurde einfacher, weil die Logik klar voneinander getrennt war. Das hat die Wartbarkeit und Erweiterbarkeit des Projekts deutlich verbessert.
 
 ### 2. Datenkonsistenz in relationalen Datenbanken
-Im Umgang mit SQLite wurde deutlich: Konsistenz zwischen Tabellen ist zentral. Bei verknüpften Daten wie Guest, Booking, Room und Invoice traten schnell Probleme auf, wenn Foreign Keys fehlten oder falsche Werte gespeichert wurden. Durch korrekte Verknüpfungen und Validierungen konnten wir solche Fehler vermeiden. Auch kleinere Anomalien, etwa doppelte Buchungen oder ungültige Verweise, wurden so verhindert.
 
-### 3. Fehlermanagement und Nutzerführung
-Fehlermeldungen sind nicht nur für Entwickler wichtig. Auch Nutzer müssen verstehen, was schiefgelaufen ist. Wir haben mit try-except-Blöcken gearbeitet, um Fehler frühzeitig abzufangen. Für die Benutzeroberfläche wurden klare Rückmeldungen formuliert, zum Beispiel bei ungültigen Eingaben oder fehlenden Daten. So konnten wir Probleme schneller erkennen und gezielt beheben.
+Im Umgang mit SQLite wurde deutlich: Konsistenz zwischen Tabellen ist zentral. Bei verknuepften Daten wie `Guest`, `Booking`, `Room` und `Invoice` traten schnell Probleme auf, wenn Foreign Keys fehlten oder falsche Werte gespeichert wurden. Durch korrekte Verknuepfungen und Validierungen konnten wir solche Fehler vermeiden. Auch kleinere Anomalien, etwa doppelte Buchungen oder ungueltige Verweise, wurden so verhindert.
+
+### 3. Fehlermanagement und Nutzerfuehrung
+
+Fehlermeldungen sind nicht nur fuer Entwickler wichtig. Auch Nutzer muessen verstehen, was schieflief. Wir haben mit `try-except`-Bloecken gearbeitet, um Fehler fruehzeitig abzufangen. Fuer die Benutzeroberflaeche wurden klare Rueckmeldungen formuliert, zum Beispiel bei ungueltigen Eingaben oder fehlenden Daten. So konnten wir Probleme schneller erkennen und gezielt beheben.
 
 ### 4. Getter, Setter und Kapselung im Klassendesign
-Wir haben unsere Klassen so aufgebaut, dass interne Daten nicht direkt verändert werden können. Stattdessen kamen private Attribute und Properties zum Einsatz. Dadurch konnten wir sicherstellen, dass nur gültige Daten gespeichert werden. Gleichzeitig blieb die Struktur übersichtlich. Diese Art von Kapselung hat unser Verständnis für objektorientiertes Design vertieft und den Code stabiler gemacht.
+
+Wir haben unsere Klassen so aufgebaut, dass interne Daten nicht direkt veraendert werden koennen. Stattdessen kamen private Attribute und Properties zum Einsatz. Dadurch konnten wir sicherstellen, dass nur gueltige Daten gespeichert werden. Gleichzeitig blieb die Struktur uebersichtlich. Diese Art von Kapselung hat unser Verstaendnis fuer objektorientiertes Design vertieft und den Code stabiler gemacht.
 
 ### 5. Iteratives Arbeiten mit User Stories
-Wir haben das Projekt in kleine Schritte unterteilt. Jede User Story stand für eine konkrete Funktion. Diese wurde einzeln geplant, umgesetzt und getestet. Erst wenn eine Story abgeschlossen war, ging es zur nächsten. Dieses schrittweise Vorgehen war hilfreich, um den Fortschritt zu verfolgen und Fehler früh zu erkennen. Es entstand ein klarer Arbeitsrhythmus, der sich gut steuern liess.
+
+Wir haben das Projekt in kleine Schritte unterteilt. Jede **User Story** stand fuer eine konkrete Funktion. Diese wurde einzeln geplant, umgesetzt und getestet. Erst wenn eine Story abgeschlossen war, ging es zur naechsten. Dieses schrittweise Vorgehen war hilfreich, um den Fortschritt zu verfolgen und Fehler frueh zu erkennen. Es entstand ein klarer Arbeitsrhythmus, der sich gut steuern liess.
 
 ### 6. Verbindung von Frontend und Backend
-Frontend und Backend greifen ineinander. Das wurde besonders bei Änderungen in der Logik deutlich. Als wir zum Beispiel neue Prüfungen in booking_manager.py eingeführt haben, mussten wir auch den input_helper.py anpassen. Sonst hätten Nutzer keine gültigen Eingaben mehr machen können. Solche Zusammenhänge zu erkennen, war wichtig für eine stabile Anwendung.
+
+**Frontend** und **Backend** greifen ineinander. Das wurde besonders bei Aenderungen in der Logik deutlich. Als wir zum Beispiel neue Pruefungen in `booking_manager.py` eingefuehrt haben, mussten wir auch den `input_helper.py` anpassen. Sonst haetten Nutzer keine gueltigen Eingaben mehr machen koennen. Solche Zusammenhaenge zu erkennen, war wichtig fuer eine stabile Anwendung.
 
 ### 7. Umgang mit SQLite und SQL-Skripten
-Die Arbeit mit SQL-Dateien war anfangs fehleranfällig. Besonders beim Wiederverwenden von bestehenden Tabellen kam es schnell zu Konflikten. Wir haben gelernt, dass die Datenbank geleert oder neu erstellt werden muss, bevor SQL-Dateien erneut eingespielt werden. Nur so konnten doppelte Einträge oder fehlerhafte Verknüpfungen vermieden werden.
+
+Die Arbeit mit SQL-Dateien war anfangs fehleranfaellig. Besonders beim Wiederverwenden von bestehenden Tabellen kam es schnell zu Konflikten. Wir haben gelernt, dass die Datenbank geleert oder neu erstellt werden muss, bevor SQL-Dateien erneut eingespielt werden. Nur so konnten doppelte Eintraege oder fehlerhafte Verknuepfungen vermieden werden.
