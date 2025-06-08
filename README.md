@@ -27,7 +27,7 @@ Zu Beginn wurde das System in vier Module aufgeteilt:
 - `data_access` für den Zugriff auf die Datenbank  
 - `model` für die Datenstrukturen
 
-Diese Trennung sorgte für mehr Übersicht. Jeder Bereich hatte eine klare Aufgabe. Das machte die Arbeit im Team einfacher, da Aufgaben klar verteilt werden konnten. Neue Funktionen ließen sich gezielt in einem Modul ergänzen, ohne andere Teile zu beeinflussen. Auch Tests und Erweiterungen wurden dadurch einfacher.
+Diese Trennung sorgte für mehr Übersicht. Jeder Bereich hatte eine klare Aufgabe. Das machte die Arbeit im Team einfacher, da Aufgaben klar verteilt werden konnten. Neue Funktionen liessen sich gezielt in einem Modul ergänzen, ohne andere Teile zu beeinflussen. Auch Tests und Erweiterungen wurden dadurch einfacher.
 
 #### 2. Klassen mit Properties und Kapselung
 
@@ -49,9 +49,9 @@ Für die Verwaltung von Zimmertypen, Einrichtungen und Preisen wurde ein Menü i
 
 Laut ursprünglicher Anforderung sollte die Rechnung erst nach dem Aufenthalt erstellt werden. Wir haben uns aber bewusst dafür entschieden, die Rechnung sofort bei der Buchung zu generieren. So war sichergestellt, dass zu jeder Buchung eine vollständige Rechnung existiert – inklusive Preisberechnung. Das machte spätere Auswertungen einfacher und verhinderte vergessene Rechnungen.
 
-#### 7. Einsatz eines ER-Diagramms als feste Referenz
+#### 7. Einsatz des ERD als feste Referenz
 
-Das relationale Datenmodell wurde vor der Implementierung als ER-Diagramm entworfen. Dieses Diagramm wurde im Projektverlauf regelmäßig genutzt, um sicherzustellen, dass Struktur und Umsetzung übereinstimmen. So konnten Inkonsistenzen zwischen Code und Datenbank vermieden werden. Das ERD diente als gemeinsame Grundlage für alle Entscheidungen rund um die Datenstruktur.
+Das relationale Datenmodell wurde vor der Implementierung als ER-Diagramm entworfen. Dieses Diagramm wurde im Projektverlauf regelmässig genutzt, um sicherzustellen, dass Struktur und Umsetzung übereinstimmen. So konnten Inkonsistenzen zwischen Code und Datenbank vermieden werden. Das ERD diente als gemeinsame Grundlage für alle Entscheidungen rund um die Datenstruktur.
 
 ## ERD Diagramm
 ![ERD Diagramm](/images/ERD_Hotelreservierung.jpg)
