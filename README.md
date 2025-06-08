@@ -18,7 +18,32 @@ Kommunikationskanal
 Zusammenarbeit --> wer hat was gemacht
 
 ### Wichtige Entscheidungen
-Falls verzeichtet auf User Story
+1. Modularer Aufbau des Systems
+Zu Beginn wurde das System in vier Module aufgeteilt:
+	•	ui_folder für die Benutzeroberfläche
+	•	business_logic für die Geschäftslogik
+	•	data_access für den Zugriff auf die Datenbank
+	•	model für die Datenstrukturen
+
+Diese Trennung sorgte für mehr Übersicht. Jeder Bereich hatte eine klare Aufgabe. Das machte die Arbeit im Team einfacher, da Aufgaben klar verteilt werden konnten. Neue Funktionen liessen sich gezielt in einem Modul ergänzen, ohne andere Teile zu beeinflussen. Auch Tests und Erweiterungen wurden dadurch einfacher.
+
+2. Klassen mit Properties und Kapselung
+Für Objekte wie Guest, Hotel oder Booking haben wir private Attribute und @property-Methoden eingesetzt. Dadurch konnten wir die Daten absichern. Änderungen an Attributen waren nur über definierte Schnittstellen möglich. So wurden ungültige Zustände verhindert. Validierungen konnten direkt in der Klasse eingebaut werden. Das stärkte die Kapselung und sorgte für saubere, wartbare Klassen.
+
+3. Entwicklung anhand von User Stories
+Alle Funktionen wurden entlang der vorgegebenen User Stories umgesetzt. Jede Story stand für ein konkretes Ziel. Bevor die nächste angefangen wurde, musste die aktuelle vollständig umgesetzt, getestet und dokumentiert sein. Diese klare Struktur half, den Fokus zu halten und das Projekt Schritt für Schritt stabil aufzubauen.
+
+4. Dynamische Preisberechnung im InvoiceManager
+Die Preisberechnung sollte je nach Saison angepasst werden. Dafür wurde eine zentrale Methode calculate_dynamic_price() im InvoiceManager erstellt. So blieb die Logik an einer Stelle und musste nicht mehrfach im Code eingebaut werden. Das senkte die Fehleranfälligkeit und machte spätere Anpassungen einfacher.
+
+5. Flexible Stammdatenverwaltung mit Einschränkungen
+Für die Verwaltung von Zimmertypen, Einrichtungen und Preisen wurde ein Menü im input_helper.py entwickelt. Hier kann der Admin neue Einträge hinzufügen oder bestehende bearbeiten. Gelöscht werden kann aber nur, was nicht mehr verwendet wird – zum Beispiel keine Zimmerkategorie, die noch in Buchungen vorkommt. Diese Einschränkung verhindert fehlerhafte Zustände in der Datenbank.
+
+6. Rechnung direkt bei Buchung erzeugen
+Laut ursprünglicher Anforderung sollte die Rechnung erst nach dem Aufenthalt erstellt werden. Wir haben uns aber bewusst dafür entschieden, die Rechnung sofort bei der Buchung zu generieren. So war sichergestellt, dass zu jeder Buchung eine vollständige Rechnung existiert – inklusive Preisberechnung. Das machte spätere Auswertungen einfacher und verhinderte vergessene Rechnungen.
+
+7. Einsatz eines ER-Diagramms als feste Referenz
+Das relationale Datenmodell wurde vor der Implementierung als ER-Diagramm entworfen. Dieses Diagramm wurde im Projektverlauf regelmässig genutzt, um sicherzustellen, dass Struktur und Umsetzung übereinstimmen. So konnten Inkonsistenzen zwischen Code und Datenbank vermieden werden. Das ERD diente als gemeinsame Grundlage für alle Entscheidungen rund um die Datenstruktur.
 
 ## ERD Diagramm
 ![ERD Diagramm](/images/ERD_Hotelreservierung.jpg)
