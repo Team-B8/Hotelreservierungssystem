@@ -38,7 +38,6 @@ class Booking:
         self.__check_out = check_out
         self.__is_cancelled = is_cancelled
         self.__total_amount = float(total_amount)
-        self.__booking_date = booking_date
         self.__invoice: Invoice | None = None
         self.__guest = None
         self.__room: Room | None = None
@@ -106,16 +105,6 @@ class Booking:
         if not isinstance(is_cancelled, bool):
             raise TypeError("is_cancelled must be a boolean")
         self.__is_cancelled = is_cancelled
-
-    @property
-    def booking_date(self) -> date:  # ⬅️ Getter
-        return self.__booking_date
-
-    @booking_date.setter
-    def booking_date(self, date_: date) -> None:  # ⬅️ Setter
-        if not isinstance(date_, date):
-            raise TypeError("booking_date must be a date object")
-        self.__booking_date = date_
 
     @property
     def room(self) -> Room | None:
