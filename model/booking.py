@@ -3,7 +3,7 @@ from model.room import Room
 from model.invoice import Invoice
 
 class Booking:
-    def __init__(self, booking_id: int | None, guest_id: int, room_id: int, check_in: date, check_out: date, is_cancelled: bool, total_amount: float, booking_date: date):
+    def __init__(self, booking_id: int | None, guest_id: int, room_id: int, check_in: date, check_out: date, is_cancelled: bool, total_amount: float):
         if booking_id is not None and not isinstance(booking_id, int):
             raise ValueError("booking_id must be an integer")
         if not guest_id:
@@ -28,8 +28,6 @@ class Booking:
             raise TypeError("total_amount must be a number")
         if total_amount < 0:
             raise ValueError("total_amount cannot be negative")
-        if not isinstance(booking_date, date):
-            raise TypeError("booking_date must be a date object")
 
         self.__booking_id = booking_id
         self.__guest_id = guest_id
