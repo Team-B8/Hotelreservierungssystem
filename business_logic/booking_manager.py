@@ -1,3 +1,5 @@
+from datetime import date
+from collections import defaultdict
 from data_access.booking_dal import BookingDAL
 from data_access.guest_dal import GuestDAL
 from data_access.address_dal import AddressDAL
