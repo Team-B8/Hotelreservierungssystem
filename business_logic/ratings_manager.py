@@ -19,7 +19,7 @@ class RatingManager:
 
 
     def create_rating(self, stars: int, comment: str, created_date: str, hotel_id: int, guest_id: int) -> Rating:
-        # Business-Logik: Sterne müssen zwischen 1 und 5 sein
+        # Business-Logic: Stars must be between 1 and 5
         if not (1 <= stars <= 5):
             raise ValueError("Stars must be between 1 and 5")
         if not comment:
@@ -44,8 +44,7 @@ class RatingManager:
 
     #def get_rating(self, rating_id: int) -> model.Rating | None:
         return self.__rating_dal.read_rating_by_id(rating_id)
-    #get_rating(rating_id) wäre z. B. sinnvoll, wenn ein Admin eine bestimmte Bewertung prüfen oder ändern möchte oder gezielt ein Rating aus einer ID nachschlagen will
-
+    #get_rating(rating_id) would be useful, for example, if an admin wants to check or change a specific rating or wants to look up a specific rating from an ID
     #def delete_rating(self, rating_id: int) -> None:
         self.__rating_dal.delete_rating(rating_id)
 
