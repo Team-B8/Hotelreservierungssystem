@@ -3,7 +3,7 @@ from model.room import Room
 from model.invoice import Invoice
 
 class Booking:
-    def __init__(self, booking_id: int | None, guest_id: int, room_id: int, check_in: date, check_out: date, is_cancelled: bool, total_amount: float):
+    def __init__(self, booking_id: int | None, guest_id: int, room_id: int, check_in: date, check_out: date, is_cancelled: bool, total_amount: float, booking_date: date):
         if booking_id is not None and not isinstance(booking_id, int):
             raise ValueError("booking_id must be an integer")
         if not guest_id:
@@ -28,6 +28,8 @@ class Booking:
             raise TypeError("total_amount must be a number")
         if total_amount < 0:
             raise ValueError("total_amount cannot be negative")
+        if not isinstance(booking_date, date):
+            raise TypeError("booking_date must be a date object")
 
         self.__booking_id = booking_id
         self.__guest_id = guest_id
@@ -36,6 +38,7 @@ class Booking:
         self.__check_out = check_out
         self.__is_cancelled = is_cancelled
         self.__total_amount = float(total_amount)
+        self.__booking_date = booking_date
         self.__invoice: Invoice | None = None
         self.__guest = None
         self.__room: Room | None = None
@@ -103,6 +106,16 @@ class Booking:
         if not isinstance(is_cancelled, bool):
             raise TypeError("is_cancelled must be a boolean")
         self.__is_cancelled = is_cancelled
+
+    @property
+    def booking_date(self) -> date:  # ⬅️ Getter
+        return self.__booking_date
+
+    @booking_date.setter
+    def booking_date(self, date_: date) -> None:  # ⬅️ Setter
+        if not isinstance(date_, date):
+            raise TypeError("booking_date must be a date object")
+        self.__booking_date = date_
 
     @property
     def room(self) -> Room | None:
