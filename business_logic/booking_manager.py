@@ -80,7 +80,7 @@ class BookingManager:
         # returns the booking count for each room type for the given hotel
         return self.booking_dal.get_room_type_occupancy_by_hotel(hotel_id)
 
-        def get_total_revenue(self, start_date: date, end_date: date) -> float:
+    def get_total_revenue(self, start_date: date, end_date: date) -> float:
         """
         Gibt die Gesamteinnahmen aus allen Buchungen im gegebenen Zeitraum zurück.
         """
