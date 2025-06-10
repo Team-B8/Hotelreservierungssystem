@@ -95,7 +95,7 @@ class BookingManager:
         monthly_revenue = defaultdict(float)
 
         for booking in bookings:
-            key = booking.booking_date.strftime("%Y-%m")  # z. B. "2025-06"
+            key = booking.check_in_date.strftime("%Y-%m")  # statt booking_date
             monthly_revenue[key] += booking.total_amount
 
         return dict(monthly_revenue)
