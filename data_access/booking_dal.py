@@ -92,7 +92,7 @@ class BookingDAL(BaseDAL):
         end_str = check_out_date.isoformat() if hasattr(check_out_date, "isoformat") else str(check_out_date)
         with self._connect() as conn:
             cursor = conn.execute(
-                "SELECT * FROM Booking WHERE check_in_date <= ? AND check_out_date >= ?",
+                "SELECT * FROM Booking WHERE check_in_date BETWEEN ? AND ? AND is_cancelled = 0",
                 (end_str, start_str)
             )
             rows = cursor.fetchall()
@@ -176,13 +176,13 @@ class BookingDAL(BaseDAL):
             cursor = conn.execute(sql, (guest_id,))
         return cursor.fetchall()
 
-def get_bookings_by_check_in_range(self, start_date: date, end_date: date) -> list[Booking]:
-    sql = """
-        SELECT * FROM Booking
-        WHERE check_in_date BETWEEN ? AND ?
-        AND is_cancelled = 0
-    """
-    with self._connect() as conn:
-        cursor = conn.execute(sql, (start_date, end_date))
-        rows = cursor.fetchall()
-    return [self.__row_to_booking(row) for row in rows]
+    def get_bookings_by_check_in_range(self, start_date: date, end_date: date) -> list[Booking]:
+        sql = """
+            SELECT * FROM Booking
+            WHERE check_in_date BETWEEN ? AND ?
+            AND is_cancelled = 0
+            """
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (start_date, end_date))
+            rows = cursor.fetchall()
+        return [self.__row_to_booking(row) for row in rows]
