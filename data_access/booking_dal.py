@@ -31,6 +31,7 @@ class BookingDAL(BaseDAL):
         # convert dates to string format (ISO) if needed
         start_str = booking.check_in_date.isoformat() if hasattr(booking.check_in_date, "isoformat") else str(booking.check_in_date)
         end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)
+        booking_date_str = booking.booking_date.isoformat() if hasattr(booking.booking_date, "isoformat") else str(booking.booking_date)
         # connect to the database and insert the booking
         with self._connect() as conn:
             cursor = conn.execute(
@@ -48,6 +49,7 @@ class BookingDAL(BaseDAL):
     def update_booking(self, booking: Booking) -> bool:
         start_str = booking.check_in_date.isoformat() if hasattr(booking.check_in_date, "isoformat") else str(booking.check_in_date)
         end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)
+        booking_date_str = booking.booking_date.isoformat() if hasattr(booking.booking_date, "isoformat") else str(booking.booking_date)
         status_val = 1 if booking.is_cancelled else 0
         with self._connect() as conn:
             result = conn.execute(
@@ -113,6 +115,7 @@ class BookingDAL(BaseDAL):
             check_out=row[4],
             is_cancelled=bool(row[5]),
             total_amount=row[6]
+            booking_date=row[7]
         )
     
     def get_by_guest_email(self, email: str) -> list[Booking]:
@@ -172,3 +175,15 @@ class BookingDAL(BaseDAL):
         with self._connect() as conn:
             cursor = conn.execute(sql, (guest_id,))
         return cursor.fetchall()
+
+ # ✅ NEU: Umsatzrelevante Methode
+    def get_bookings_by_booking_date_range(self, start_date: date, end_date: date) -> list[Booking]:
+        sql = """
+            SELECT * FROM Booking
+            WHERE booking_date BETWEEN ? AND ?
+            AND is_cancelled = 0
+        """
+        with self._connect() as conn:
+            cursor = conn.execute(sql, (start_date, end_date))
+            rows = cursor.fetchall()
+        return [self.__row_to_booking(row) for row in rows]
