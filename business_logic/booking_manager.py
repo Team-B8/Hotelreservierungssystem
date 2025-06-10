@@ -91,7 +91,7 @@ class BookingManager:
         """
         Gibt die Einnahmen gruppiert nach Monat zurück, z. B. {'2025-06': 1800.0, '2025-07': 1500.0}
         """
-        bookings = self.booking_dal.get_bookings_by_booking_date_range(start_date, end_date)
+        bookings = self.booking_dal.get_by_date_range(start_date, end_date)
         monthly_revenue = defaultdict(float)
 
         for booking in bookings:
