@@ -77,3 +77,23 @@ class BookingManager:
     def get_room_type_occupancy_by_hotel(self, hotel_id: int):
         # returns the booking count for each room type for the given hotel
         return self.booking_dal.get_room_type_occupancy_by_hotel(hotel_id)
+
+        def get_total_revenue(self, start_date: date, end_date: date) -> float:
+        """
+        Gibt die Gesamteinnahmen aus allen Buchungen im gegebenen Zeitraum zurück.
+        """
+        bookings = self.booking_dal.get_bookings_by_booking_date_range(start_date, end_date)
+        return sum(b.total_amount for b in bookings)
+
+    def get_monthly_revenue_breakdown(self, start_date: date, end_date: date) -> dict:
+        """
+        Gibt die Einnahmen gruppiert nach Monat zurück, z. B. {'2025-06': 1800.0, '2025-07': 1500.0}
+        """
+        bookings = self.booking_dal.get_bookings_by_booking_date_range(start_date, end_date)
+        monthly_revenue = defaultdict(float)
+
+        for booking in bookings:
+            key = booking.booking_date.strftime("%Y-%m")  # z. B. "2025-06"
+            monthly_revenue[key] += booking.total_amount
+
+        return dict(monthly_revenue)
