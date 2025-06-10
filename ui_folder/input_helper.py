@@ -733,6 +733,53 @@ def user_story_data_visualization():
     except Exception as e:
         print(f"Error while retrieving occupancy rates: {e}")
 
+def user_story_revenue_analysis():
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    from datetime import date
+    from business_logic.booking_manager import BookingManager
+
+    print("\n--- 8: Umsatzanalyse ---")
+    try:
+        start_input = input("Startdatum (YYYY-MM-DD): ")
+        end_input = input("Enddatum (YYYY-MM-DD): ")
+
+        start_date = date.fromisoformat(start_input)
+        end_date = date.fromisoformat(end_input)
+
+        manager = BookingManager()
+        total = manager.get_total_revenue(start_date, end_date)
+        monthly = manager.get_monthly_revenue_breakdown(start_date, end_date)
+
+        print(f"\nGesamteinnahmen von {start_date} bis {end_date}: CHF {total:.2f}")
+
+        if not monthly:
+            print("Keine Buchungen im gewählten Zeitraum.")
+            return
+
+        df = pd.DataFrame(list(monthly.items()), columns=["Monat", "Umsatz"])
+        df["Monat"] = pd.to_datetime(df["Monat"])
+        df = df.sort_values("Monat")
+        print("\nMonatliche Einnahmen:")
+        print(df.to_string(index=False))
+
+        # Visualisierung
+        plt.figure(figsize=(10,6))
+        sns.barplot(data=df, x="Monat", y="Umsatz", color="skyblue", label="Umsatz")
+        sns.regplot(data=df, x=df.index, y="Umsatz", scatter=False, color="red", label="Trendlinie")
+        plt.title("Umsatzanalyse pro Monat")
+        plt.xlabel("Monat")
+        plt.ylabel("CHF")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.legend()
+        plt.grid(True)
+        plt.show()
+
+    except Exception as e:
+        print(f"Fehler bei der Umsatzanzeige: {e}")
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -792,6 +839,7 @@ def admin_menu():
         print("5 Zimmerdetails anzeigen")
         print("6 Stammdaten verwalten")
         print("7 Belegungsraten anzeigen")
+        print("8 Umsatzanalyse")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Menupunkt wählen: ")
         if auswahl == "1":
@@ -808,6 +856,8 @@ def admin_menu():
             user_story_10()
         elif auswahl == "7":
             user_story_data_visualization()
+        elif auswahl == "8":
+            user_story_revenue_analysis()
         elif auswahl == "0":
             break
         else:
