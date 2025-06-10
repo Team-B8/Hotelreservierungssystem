@@ -84,7 +84,7 @@ class BookingManager:
         """
         Gibt die Gesamteinnahmen aus allen Buchungen im gegebenen Zeitraum zurück.
         """
-        bookings = self.booking_dal.get_bookings_by_booking_date_range(start_date, end_date)
+        bookings = self.booking_dal.get_by_date_range(start_date, end_date)
         return sum(b.total_amount for b in bookings)
 
     def get_monthly_revenue_breakdown(self, start_date: date, end_date: date) -> dict:
