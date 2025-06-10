@@ -176,14 +176,13 @@ class BookingDAL(BaseDAL):
             cursor = conn.execute(sql, (guest_id,))
         return cursor.fetchall()
 
- # ✅ NEU: Umsatzrelevante Methode
-    def get_bookings_by_booking_date_range(self, start_date: date, end_date: date) -> list[Booking]:
-        sql = """
-            SELECT * FROM Booking
-            WHERE booking_date BETWEEN ? AND ?
-            AND is_cancelled = 0
-        """
-        with self._connect() as conn:
-            cursor = conn.execute(sql, (start_date, end_date))
-            rows = cursor.fetchall()
-        return [self.__row_to_booking(row) for row in rows]
+def get_bookings_by_check_in_range(self, start_date: date, end_date: date) -> list[Booking]:
+    sql = """
+        SELECT * FROM Booking
+        WHERE check_in_date BETWEEN ? AND ?
+        AND is_cancelled = 0
+    """
+    with self._connect() as conn:
+        cursor = conn.execute(sql, (start_date, end_date))
+        rows = cursor.fetchall()
+    return [self.__row_to_booking(row) for row in rows]
