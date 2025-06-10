@@ -25,13 +25,13 @@ class BookingManager:
             print("Gast nicht gefunden.")
             return
         # create a Booking object for an existing guest
-        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount, booking_date=date.today())
+        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount)
         # save the booking in the database
         booking = self.booking_dal.create_booking(booking)
         # return the created booking
         return booking
     
-    def create_booking_new_guest(self, room_id: int, check_in, check_out, first_name: str, last_name: str, email: str, street: str, zip_code: str, city: str, total_amount: float, booking_date=date.today()):
+    def create_booking_new_guest(self, room_id: int, check_in, check_out, first_name: str, last_name: str, email: str, street: str, zip_code: str, city: str, total_amount: float):
         # Check if guest already exists
         guest = self.guest_dal.get_by_email(email)
         if guest:
@@ -46,7 +46,7 @@ class BookingManager:
             guest = self.guest_dal.create(new_guest)
 
         # Create booking
-        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount, booking_date=date.today())
+        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount,)
         booking = self.booking_dal.create_booking(booking)
         # return the created booking
         return booking
