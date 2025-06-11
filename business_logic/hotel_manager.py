@@ -141,9 +141,12 @@ class HotelManager:
         return None
     
     def get_hotel_with_address(self, hotel_id: int):
-        # get all hotels from the database by address
+        # Retrieve the hotel object by ID
         hotel = self.get_hotel(hotel_id)
         if not hotel:
+            # Return None if the hotel doesn't exist
             return None, None
+        # Retrieve the address associated with the hotel
         address = self.address_dal.get_address_by_hotel(hotel_id)
+        # Return both hotel and address objects
         return hotel, address
