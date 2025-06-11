@@ -30,12 +30,10 @@ class BookingDAL(BaseDAL):
     def create_booking(self, booking: Booking) -> Booking:
         # convert dates to string format (ISO) if needed
         start_str = booking.check_in_date.isoformat() if hasattr(booking.check_in_date, "isoformat") else str(booking.check_in_date)
-        end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)
-        booking_date_str = booking.booking_date.isoformat() if hasattr(booking.booking_date, "isoformat") else str(booking.booking_date)
-        # connect to the database and insert the booking
+        end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)        # connect to the database and insert the booking
         with self._connect() as conn:
             cursor = conn.execute(
-                "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled, total_amount) VALUES (?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled, total_amount) VALUES (?, ?, ?, ?, ?, ?)",
     (booking.room_id, booking.guest_id, start_str, end_str, 0, booking.total_amount)
             )
             conn.commit()
@@ -49,7 +47,6 @@ class BookingDAL(BaseDAL):
     def update_booking(self, booking: Booking) -> bool:
         start_str = booking.check_in_date.isoformat() if hasattr(booking.check_in_date, "isoformat") else str(booking.check_in_date)
         end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)
-        booking_date_str = booking.booking_date.isoformat() if hasattr(booking.booking_date, "isoformat") else str(booking.booking_date)
         status_val = 1 if booking.is_cancelled else 0
         with self._connect() as conn:
             result = conn.execute(

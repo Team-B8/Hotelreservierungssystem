@@ -36,16 +36,16 @@ class BookingManager:
         guest = self.guest_dal.get_by_email(email)
         if guest:
             print("A guest with this email already exists. Using existing record.")
-            # Create address
-            address = Address(address_id=None, street=street, zip_code=zip_code, city=city)
-            address_dal = AddressDAL()
-            saved_address = address_dal.create(address)
-            # Create new Guest
-            new_guest = Guest(guest_id=None, first_name=first_name, last_name=last_name, email=email, address_id=saved_address.address_id)
-            guest = self.guest_dal.create(new_guest)
+        # Create address
+        address = Address(address_id=None, street=street, zip_code=zip_code, city=city)
+        address_dal = AddressDAL()
+        saved_address = address_dal.create(address)
+        # Create new Guest
+        new_guest = Guest(guest_id=None, first_name=first_name, last_name=last_name, email=email, address_id=saved_address.address_id)
+        guest = self.guest_dal.create(new_guest)
 
         # Create booking
-        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount,)
+        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount)
         booking = self.booking_dal.create_booking(booking)
         # return the created booking
         return booking
