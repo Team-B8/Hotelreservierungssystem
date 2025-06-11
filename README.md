@@ -60,14 +60,23 @@ Das relationale Datenmodell wurde vor der Implementierung als ER-Diagramm entwor
 ![UML Diagramm](/images/UML_Hotelreservierung.jpg)
 
 ## Projektstruktur
+Das Projekt ist nach dem klassischen Schichtenmodell aufgebaut, um eine klare Trennung der Verantwortlichkeiten zwischen Benutzeroberfläche, Geschäftslogik, Datenzugriff und Datenmodellierung zu gewährleisten. Der Projektordner team-b8-hotelreservierungssystem enthält die folgenden zentralen Komponenten:
+
 ### Layers
 #### User Interface
-was warum und wie
-#### Model
+Der Ordner ui_folder/ enthält die Komponenten, die für die Interaktion mit den Benutzer:innen zuständig sind. Hier wird die Eingabe entgegengenommen und die Ausgabe erzeugt. Die UI ruft Funktionen aus der Business Logic auf und zeigt deren Ergebnisse an. In dieser Schicht erfolgt keine direkte Datenverarbeitung oder Datenbankabfrage. Die Datei input_helper.py#### Model
 
 #### Business Logic
+Im Verzeichnis business_logic/ befindet sich die gesamte Geschäftslogik des Systems. Jede wichtige Funktionalität, wie z. B. das Verwalten von Buchungen, Hotels, Gästen, Rechnungen oder Bewertungen, ist in einer eigenen Manager-Klasse gekapselt. Diese Manager arbeiten mit den Datenmodellen aus dem model/-Verzeichnis und verwenden die Data Access Layer (DAL), um Daten abzurufen oder zu speichern. Die Business Logic stellt damit die zentrale Verarbeitungs- und Entscheidungsschicht des Systems dar.
 
 #### Data Access Layer
+Der Ordner data_access/ enthält die Datenzugriffslogik. Hier befinden sich Klassen, die den Zugriff auf die SQLite-Datenbank kapseln. Jede Domäne (z. B. Hotel, Gast, Bewertung) hat ihr eigenes Data Access Object, das in einer separaten Datei implementiert ist. Diese Schicht stellt Methoden bereit, um Datenbankoperationen (z. B. SELECT, INSERT, UPDATE, DELETE) auszuführen. Der Zugriff erfolgt ausschließlich über diese Schicht. Weder UI noch Business Logic kommunizieren direkt mit der Datenbank.
+
+#### Model
+Im model/-Verzeichnis sind die Datenstrukturen, mit denen innerhalb des Systems gearbeitet wird. Jede Klasse repräsentiert eine zentrale Entität des Hotelreservierungssystems, wie z. B. Guest, Room, Booking oder Rating. Diese Klassen enthalten Konstruktoren, Attribute ( mit privaten Zugriffen), sowie Methoden zur Darstellung oder Modifikation von Instanzdaten. Sie halten die relevanten Informationen wie z. B. Namen, IDs oder Buchungsdaten und werden von den verschiedenen Schichten genutzt, um damit weiterzuarbeiten.
+
+#### Data Base
+Der Ordner database/ enthält die SQLite-Datenbanken, die für Entwicklung und Test genutzt werden, sowie das zugehörige SQL-Skript zur Erstellung der Tabellenstruktur. Die Datei hotel_reservation_samp_scriptle.sql definiert dabei den Aufbau der Datenbank, während z. B. hotel_reservation_db.db die aktuell verwendete SQLite-Datenbank enthält.
 
 ## User Stories
 ### Minimale User Stories
