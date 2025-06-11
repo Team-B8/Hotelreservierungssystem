@@ -35,7 +35,8 @@ class BookingManager:
         # Check if guest already exists
         guest = self.guest_dal.get_by_email(email)
         if guest:
-            print("A guest with this email already exists. Using existing record.")
+            print("Es exisitiert bereits ein Konto mit dieser Mail.")
+            return
         # Create address
         address = Address(address_id=None, street=street, zip_code=zip_code, city=city)
         address_dal = AddressDAL()

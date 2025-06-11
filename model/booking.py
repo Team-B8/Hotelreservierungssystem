@@ -63,21 +63,21 @@ class Booking:
         return self.__room_id
 
     @property
-    def check_in_date(self) -> date:
+    def check_in(self) -> date:
         return self.__check_in
 
-    @check_in_date.setter
-    def check_in_date(self, date_: date) -> None:
+    @check_in.setter
+    def check_in(self, date_: date) -> None:
         if not isinstance(date_, date):
             raise TypeError("check_in_date muss ein Datumsobjekt sein")
         self.__check_in = date_
 
     @property
-    def check_out_date(self) -> date:
+    def check_out(self) -> date:
         return self.__check_out
 
-    @check_out_date.setter
-    def check_out_date(self, date_: date) -> None:
+    @check_out.setter
+    def check_out(self, date_: date) -> None:
         if not isinstance(date_, date):
             raise TypeError("check_out_date muss ein Datumsobjekt sein")
         self.__check_out = date_

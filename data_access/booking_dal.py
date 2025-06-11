@@ -28,9 +28,9 @@ class BookingDAL(BaseDAL):
         return [self.__row_to_booking(row) for row in rows]
 
     def create_booking(self, booking: Booking) -> Booking:
-        # convert dates to string format (ISO) if needed
-        start_str = booking.check_in_date.isoformat() if hasattr(booking.check_in_date, "isoformat") else str(booking.check_in_date)
-        end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)        # connect to the database and insert the booking
+        # convert dates to string format (ISO)
+        start_str = booking.check_in.isoformat() if hasattr(booking.check_in, "isoformat") else str(booking.check_in)
+        end_str = booking.check_out.isoformat() if hasattr(booking.check_out, "isoformat") else str(booking.check_out)        # connect to the database and insert the booking
         with self._connect() as conn:
             cursor = conn.execute(
                 "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled, total_amount) VALUES (?, ?, ?, ?, ?, ?)",

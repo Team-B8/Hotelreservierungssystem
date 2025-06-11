@@ -312,7 +312,7 @@ def user_story_4():
         if check_out <= check_in:
             print("Check-out muss nach dem Check-in liegen.")
             return
-        if check_in < date.today():
+        if check_in <= date.today():
             print("Check-in darf nicht in der Vergangenheit liegen.")
             return
         # get available rooms for the hotel and date range
