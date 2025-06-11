@@ -17,8 +17,6 @@ class RatingManager:
         self.__room_dal = RoomDAL()
         self.__hotel_dal = HotelDAL()
         self.__guest_dal = GuestDAL()
-    
-
 
     def create_rating(self, stars: int, comment: str, created_date: str, hotel_id: int, guest_id: int) -> Rating:
         # Business-Logic: Stars must be between 1 and 5
@@ -49,10 +47,3 @@ class RatingManager:
         if guest is None:
             raise ValueError("No guest found with this email.")
         return guest.guest_id
-
-    #def get_rating(self, rating_id: int) -> model.Rating | None:
-        return self.__rating_dal.read_rating_by_id(rating_id)
-    #get_rating(rating_id) would be useful, for example, if an admin wants to check or change a specific rating or wants to look up a specific rating from an ID
-    #def delete_rating(self, rating_id: int) -> None:
-        self.__rating_dal.delete_rating(rating_id)
-

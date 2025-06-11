@@ -4,13 +4,13 @@ class Invoice:
     def __init__(self, booking_id: int, issue_date: date, total_amount: float, invoice_id: int | None=None, is_cancelled: bool = False):
 
         if not booking_id:
-            raise ValueError("booking_id is required")
+            raise ValueError("booking_id ist erforderlich")
         if not issue_date:
-            raise ValueError("issue_date is required")
+            raise ValueError("issue_date ist erforderlich")
         if not isinstance(issue_date, date):
-            raise TypeError("issue_date must be a date")
+            raise TypeError("issue_date muss ein Datum sein")
         if total_amount is None:
-            raise ValueError("total_amount is required")
+            raise ValueError("total_amount ist erforderlich")
         
         self.__invoice_id = invoice_id
         self.__booking_id = booking_id
