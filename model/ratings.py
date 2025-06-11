@@ -3,17 +3,17 @@ from datetime import date
 class Rating:
     def __init__(self, rating_id: int | None, stars: int, comment: str, created_date: date, hotel_id: int, guest_id: int):
         if rating_id is not None and not isinstance(rating_id, int):
-            raise TypeError("rating_id must be an integer or None")
+            raise TypeError("rating_id muss eine Ganzzahl oder kein Wert sein")
         if not isinstance(stars, int) or not (1 <= stars <= 5):
-            raise ValueError("Stars must be an integer between 1 and 5.")
+            raise ValueError("Die Sterne müssen eine ganze Zahl zwischen 1 und 5 sein.")
         if not comment:
-            raise ValueError("comment is required")
+            raise ValueError("Kommentar ist erforderlich")
         if not isinstance(comment, str):
-            raise TypeError("comment must be a string")
+            raise TypeError("Kommentar muss eine Zeichenkette sein")
         if not isinstance(hotel_id, int):
-            raise TypeError("hotel_id must be an integer")
+            raise TypeError("hotel_id muss eine ganze Zahl sein")
         if not isinstance(guest_id, int):
-            raise TypeError("guest_id must be an integer")        
+            raise TypeError("guest_id muss eine ganze Zahl sein")        
         self.__rating_id = rating_id
         self.__stars = stars
         self.__comment = comment
@@ -31,7 +31,7 @@ class Rating:
     @rating_id.setter
     def rating_id(self, value: int):
         if not isinstance(value, int) and value is not None:
-            raise ValueError("rating_id must be an Integer")
+            raise ValueError("rating_id muss eine ganze Zahl sein")
         self.__rating_id = value
         
     @property
@@ -41,7 +41,7 @@ class Rating:
     @stars.setter
     def stars(self, value: int):
         if not isinstance(value, int) or not (1 <= value <= 5):
-            raise ValueError("Stars musst be an Integer between 1 and 5.")
+            raise ValueError("Sterne müssen eine ganze Zahl zwischen 1 und 5 sein.")
         self.__stars = value
 
     @property
@@ -51,7 +51,7 @@ class Rating:
     @comment.setter
     def comment(self, value: str):
         if not isinstance(value, str) and value is not None:
-            raise TypeError("comment must be a string or None")
+            raise TypeError("Kommentar muss ein String oder None sein")
         self.__comment = value
 
     @property

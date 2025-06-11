@@ -5,29 +5,29 @@ from model.invoice import Invoice
 class Booking:
     def __init__(self, booking_id: int | None, guest_id: int, room_id: int, check_in: date, check_out: date, is_cancelled: bool, total_amount: float):
         if booking_id is not None and not isinstance(booking_id, int):
-            raise ValueError("booking_id must be an integer")
+            raise ValueError("booking_id muss eine ganze Zahl sein")
         if not guest_id:
-            raise ValueError("guest_id is required")
+            raise ValueError("guest_id ist erforderlich")
         if not isinstance(guest_id, int):
-            raise ValueError("guest_id must be an integer")
+            raise ValueError("guest_id muss eine ganze Zahl sein")
         if not room_id:
-            raise ValueError("room_id is required")
+            raise ValueError("room_id ist erforderlich")
         if not isinstance(room_id, int):
-            raise ValueError("room_id must be an integer")
+            raise ValueError("room_id muss eine ganze Zahl sein")
         if not check_in:
-            raise ValueError("check_in is required")
+            raise ValueError("check_in ist erforderlich")
         if not isinstance(check_in, date):
-            raise TypeError("check_in must be a date object")
+            raise TypeError("check_in muss ein Datumsobjekt sein")
         if not check_out:
-            raise ValueError("check_out is required")
+            raise ValueError("check_out ist erforderlich")
         if not isinstance(check_out, date):
-            raise TypeError("check_out must be a date object")
+            raise TypeError("check_out muss ein Datumsobjekt sein")
         if not isinstance(is_cancelled, bool):
-            raise TypeError("is_cancelled must be a boolean")
+            raise TypeError("is_cancelled muss ein boolescher Wert sein")
         if not isinstance(total_amount, (int, float)):
-            raise TypeError("total_amount must be a number")
+            raise TypeError("total_amount muss eine Zahl sein")
         if total_amount < 0:
-            raise ValueError("total_amount cannot be negative")
+            raise ValueError("total_amount kann nicht negativ sein")
 
         self.__booking_id = booking_id
         self.__guest_id = guest_id
@@ -50,7 +50,7 @@ class Booking:
     @booking_id.setter
     def booking_id(self, booking_id: int) -> None:
         if not isinstance(booking_id, int):
-            raise TypeError("booking_id must be an integer")
+            raise TypeError("booking_id muss eine ganze Zahl sein")
         self.__booking_id = booking_id
 
 
@@ -69,7 +69,7 @@ class Booking:
     @check_in_date.setter
     def check_in_date(self, date_: date) -> None:
         if not isinstance(date_, date):
-            raise TypeError("check_in_date must be a date object")
+            raise TypeError("check_in_date muss ein Datumsobjekt sein")
         self.__check_in = date_
 
     @property
@@ -79,7 +79,7 @@ class Booking:
     @check_out_date.setter
     def check_out_date(self, date_: date) -> None:
         if not isinstance(date_, date):
-            raise TypeError("check_out_date must be a date object")
+            raise TypeError("check_out_date muss ein Datumsobjekt sein")
         self.__check_out = date_
 
     @property
@@ -89,9 +89,9 @@ class Booking:
     @total_amount.setter
     def total_amount(self, amount: float) -> None:
         if not isinstance(amount, (int, float)):
-            raise TypeError("total_amount must be a number")
+            raise TypeError("total_amount muss eine Zahl sein")
         if amount < 0:
-            raise ValueError("total_amount cannot be negative")
+            raise ValueError("total_amount kann nicht negativ sein")
         self.__total_amount = float(amount)
 
     @property
@@ -101,7 +101,7 @@ class Booking:
     @is_cancelled.setter
     def is_cancelled(self, is_cancelled: bool) -> None:
         if not isinstance(is_cancelled, bool):
-            raise TypeError("is_cancelled must be a boolean")
+            raise TypeError("is_cancelled muss ein boolescher Wert sein")
         self.__is_cancelled = is_cancelled
 
     @property

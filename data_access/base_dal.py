@@ -15,10 +15,10 @@ def date_to_db(d: date) -> str:
 def db_to_date(s: str) -> date:
     return datetime.strptime(s.decode(), "%Y-%m-%d").date()
 
-## Adapter: Converts `date` objects to `TEXT` for storage in the DB
+## Adapter: Converts data objects to text
 sqlite3.register_adapter(date, date_to_db)
 
-## Converter: Converts stored `TEXT` values back to `date` objects
+## Converter: Converts saved TEXT values back into date
 sqlite3.register_converter("DATE", db_to_date)
 
 
@@ -30,7 +30,7 @@ class BaseDAL:
         else:
             self.__connection_str = os.environ.get("DB_FILE")
             if self.__connection_str is None:
-                raise Exception("DB_FILE environment variable or parameter connection_str has to be set.")
+                raise Exception("DB_Datei Umgebungsvariable oder der Parameter connection_str muss gesetzt sein.")
     
     def _connect(self):
         conn = sqlite3.connect(self.__connection_str, detect_types=sqlite3.PARSE_DECLTYPES)
@@ -39,7 +39,7 @@ class BaseDAL:
 
     def fetchone(self, sql: str, params: tuple = None):
         if params is None:
-            # empty tuple for SQL parameters if params is None
+            # empty tuple for sql parameter if params is None
             params = ()
         with self._connect() as conn:
             try:
@@ -52,7 +52,7 @@ class BaseDAL:
 
     def fetchall(self, sql: str, params: tuple = None):
         if params is None:
-            # empty tuple for SQL parameters if params is None
+            # empty tuple for sql parameter if params is None
             params = ()
         with self._connect() as conn:
             try:
@@ -65,7 +65,7 @@ class BaseDAL:
 
     def execute(self, sql: str, params: tuple = None):
         if params is None:
-            # empty tuple for SQL parameters if params is None
+            # empty tuple for sql parameter if params is None
             params = ()
         with self._connect() as conn:
             try:
