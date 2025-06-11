@@ -631,9 +631,10 @@ def user_story_10():
 def user_story_db_schemaaenderung_3():
     print("\n--- 12: Hotelbewertung abgeben ---")
     try:
-        guest_id = int(input("Bitte geben Sie Ihre Gast-ID ein: "))
         rating_manager = RatingManager()
-
+        email = input("Bitte geben Sie Ihre E-Mail-Adresse ein: ")
+        guest_id = rating_manager.get_guest_id_by_email(email)
+        rating_manager = RatingManager()
         bookings= rating_manager.get_completed_bookings_by_guest_id(guest_id)
 
         if not bookings:

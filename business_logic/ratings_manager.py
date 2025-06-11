@@ -6,6 +6,7 @@ from data_access.hotel_dal import HotelDAL
 from model.ratings import Rating
 from model.room import Room
 from model.hotel import Hotel
+from model.guest import Guest
 from datetime import date
 
 
@@ -15,6 +16,7 @@ class RatingManager:
         self.__booking_dal = BookingDAL()
         self.__room_dal = RoomDAL()
         self.__hotel_dal = HotelDAL()
+        self.__guest_dal = GuestDAL()
     
 
 
@@ -41,6 +43,12 @@ class RatingManager:
 
     def get_completed_bookings_by_guest_id(self, guest_id: int) -> list:
         return self.__booking_dal.get_completed_bookings_by_guest_id(guest_id)
+
+    def get_guest_id_by_email(self, email: str) -> int:
+        guest = self.__guest_dal.get_by_email(email)
+        if guest is None:
+            raise ValueError("Kein Gast mit dieser E-Mail gefunden.")
+        return guest.guest_id
 
     #def get_rating(self, rating_id: int) -> model.Rating | None:
         return self.__rating_dal.read_rating_by_id(rating_id)
