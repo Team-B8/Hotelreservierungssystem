@@ -10,7 +10,7 @@ class GuestManager:
         # Creates a new guest if the email doesn't already exist
         guest = self.dal.get_by_email(email)
         if guest:
-            print("A guest with this email already exists.")
+            print("Ein Gast mit dieser E-Mail existiert bereits.")
             return guest
         new_guest = Guest(None, first_name, last_name, email)
         return self.dal.create(new_guest)

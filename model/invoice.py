@@ -7,7 +7,9 @@ class Invoice:
             raise ValueError("booking_id is required")
         if not issue_date:
             raise ValueError("issue_date is required")
-        if not total_amount:
+        if not isinstance(issue_date, date):
+            raise TypeError("issue_date must be a date")
+        if total_amount is None:
             raise ValueError("total_amount is required")
         
         self.__invoice_id = invoice_id
