@@ -7,7 +7,7 @@ source = "database/hotel_reservation_db.db"
 db_file = "database/working_db.db"
 os.environ["DB_FILE"] = db_file
 
-shutil.copyfile(source, db_file) #Copy original DB first to always start fresh.
+shutil.copyfile(source, db_file) # Copy original DB first to always start fresh.
 
 def date_to_db(d: date) -> str:
     return d.isoformat()
@@ -15,10 +15,10 @@ def date_to_db(d: date) -> str:
 def db_to_date(s: str) -> date:
     return datetime.strptime(s.decode(), "%Y-%m-%d").date()
 
-## Adapter: Wandelt `date`-Objekt in `TEXT` um
+## Adapter: Converts `date` objects to `TEXT` for storage in the DB
 sqlite3.register_adapter(date, date_to_db)
 
-## Konverter: Wandelt gespeicherte `TEXT`-Werte wieder in `date`
+## Converter: Converts stored `TEXT` values back to `date` objects
 sqlite3.register_converter("DATE", db_to_date)
 
 
@@ -39,7 +39,7 @@ class BaseDAL:
 
     def fetchone(self, sql: str, params: tuple = None):
         if params is None:
-            # leeres tuple für sql parameter wenn params None ist
+            # empty tuple for SQL parameters if params is None
             params = ()
         with self._connect() as conn:
             try:
@@ -52,7 +52,7 @@ class BaseDAL:
 
     def fetchall(self, sql: str, params: tuple = None):
         if params is None:
-            # leeres tuple für sql parameter wenn params None ist
+            # empty tuple for SQL parameters if params is None
             params = ()
         with self._connect() as conn:
             try:
@@ -65,7 +65,7 @@ class BaseDAL:
 
     def execute(self, sql: str, params: tuple = None):
         if params is None:
-            # leeres tuple für sql parameter wenn params None ist
+            # empty tuple for SQL parameters if params is None
             params = ()
         with self._connect() as conn:
             try:
