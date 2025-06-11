@@ -22,7 +22,7 @@ class BookingManager:
     def create_booking_existing_guest(self, room_id: int, check_in, check_out, email: str, total_amount: float):
         guest = GuestDAL().get_by_email(email)
         if not guest:
-            print("Gast nicht gefunden.")
+            print("Guest not found.")
             return
         # create a Booking object for an existing guest
         booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount)
@@ -35,8 +35,7 @@ class BookingManager:
         # Check if guest already exists
         guest = self.guest_dal.get_by_email(email)
         if guest:
-            print("Ein Gast mit dieser E-Mail existiert bereits. Verwende vorhandenen Datensatz.")
-        else:
+            print("A guest with this email already exists. Using existing record.")
             # Create address
             address = Address(address_id=None, street=street, zip_code=zip_code, city=city)
             address_dal = AddressDAL()

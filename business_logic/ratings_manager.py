@@ -47,7 +47,7 @@ class RatingManager:
     def get_guest_id_by_email(self, email: str) -> int:
         guest = self.__guest_dal.get_by_email(email)
         if guest is None:
-            raise ValueError("Kein Gast mit dieser E-Mail gefunden.")
+            raise ValueError("No guest found with this email.")
         return guest.guest_id
 
     #def get_rating(self, rating_id: int) -> model.Rating | None:

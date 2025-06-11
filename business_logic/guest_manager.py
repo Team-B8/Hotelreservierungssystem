@@ -17,18 +17,3 @@ class GuestManager:
 
     def get_guest_by_id(self, guest_id: int) -> Guest | None:
         return self.dal.get_by_id(guest_id)
-
-    def delete_guest(self, guest_id: int) -> bool:
-        # Marks guest as logically deleted
-        guest = self.dal.get_by_id(guest_id)
-        if guest:
-            guest.delete()
-            return True
-        return False
-
-    def restore_guest(self, guest_id: int) -> None:
-        # Logically restores a previously deleted guest (not in DB)
-        guest = self.dal.get_by_id(guest_id)
-        if guest and guest.is_deleted:
-            guest.restore()
-            print(f"Guest {guest.full_name} was restored.")
