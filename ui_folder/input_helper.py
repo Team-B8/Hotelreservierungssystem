@@ -740,46 +740,44 @@ def user_story_revenue_analysis():
     import seaborn as sns
 
     print("\n--- 8: Umsatzanalyse ---")
-    #try:
-    start_input = input("Startdatum (YYYY-MM-DD): ")
-    end_input = input("Enddatum (YYYY-MM-DD): ")
+    try:
+        hotels = HotelManager().get_all_hotels()
+        for h in hotels:
+            print(f"{h.hotel_id}: {h.name}")
+        hotel_id = int(input("Hotel-ID auswählen: "))
+        start_input = input("Startdatum (YYYY-MM-DD): ")
+        end_input = input("Enddatum (YYYY-MM-DD): ")
 
-    start_date = date.fromisoformat(start_input)
-    end_date = date.fromisoformat(end_input)
-
-    manager = InvoiceManager()
-    total = manager.get_total_revenue(start_date, end_date)
-    monthly = manager.get_monthly_revenue_range(start_date, end_date)
-
-    print(f"\nGesamteinnahmen von {start_date} bis {end_date}: CHF {total:.2f}")
-
-    if not monthly:
-        print("Keine Buchungen im gewählten Zeitraum.")
-        return
-    # load data in dataframe
-    df = pd.DataFrame(list(monthly.items()), columns=["Monat", "Umsatz"])
-    df["Monat"] = pd.to_datetime(df["Monat"])
-    df = df.sort_values("Monat")
-
-    # show output in table
-    print("\nMonatliche Einnahmen:")
-    print(df.to_string(index=False))
-
-    # visualization
-    plt.figure(figsize=(10,6))
-    sns.barplot(data=df, x="Monat", y="Umsatz", color="skyblue", label="Umsatz")
-    sns.regplot(data=df, x=df.index, y="Umsatz", scatter=False, color="red", label="Trendlinie")
-    plt.title("Umsatzanalyse pro Monat")
-    plt.xlabel("Monat")
-    plt.ylabel("CHF")
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    plt.legend()
-    plt.grid(True)
-    plt.show()
-
-    #except Exception as e:
-    #    print(f"Fehler bei der Umsatzanzeige: {e}")
+        start_date = date.fromisoformat(start_input)
+        end_date = date.fromisoformat(end_input)
+        manager = InvoiceManager()
+        total = manager.get_total_revenue(start_date, end_date, hotel_id)
+        monthly = manager.get_monthly_revenue_range(start_date, end_date, hotel_id)
+        print(f"\nGesamteinnahmen von {start_date} bis {end_date}: CHF {total:.2f}")
+        if not monthly:
+            print("Keine Buchungen im gewählten Zeitraum.")
+            return
+        # load data in dataframe
+        df = pd.DataFrame(list(monthly.items()), columns=["Monat", "Umsatz"])
+        df["Monat"] = pd.to_datetime(df["Monat"])
+        df = df.sort_values("Monat")
+        # show output in table
+        print("\nMonatliche Einnahmen:")
+        print(df.to_string(index=False))
+        # visualization
+        plt.figure(figsize=(10,6))
+        sns.barplot(data=df, x="Monat", y="Umsatz", color="skyblue", label="Umsatz")
+        sns.regplot(data=df, x=df.index, y="Umsatz", scatter=False, color="red", label="Trendlinie")
+        plt.title("Umsatzanalyse pro Monat")
+        plt.xlabel("Monat")
+        plt.ylabel("CHF")
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+        plt.legend()
+        plt.grid(True)
+        plt.show()
+    except Exception as e:
+        print(f"Fehler bei der Umsatzanzeige: {e}")
 
 def gast_menu():
     while True:

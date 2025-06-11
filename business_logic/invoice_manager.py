@@ -81,30 +81,34 @@ class InvoiceManager:
         # mark invoice as cancelled
         return self.invoice_dal.mark_invoice_as_cancelled(booking_id)
     
-    def get_total_revenue(self, start_date: date, end_date: date) -> float:
+    def get_total_revenue(self, start_date: date, end_date: date, hotel_id: int| None = None) -> float:
         # Retrieve all invoices from the database
-        invoices = self.invoice_dal.get_all()
+        invoices = self.invoice_dal.get_all_by_date_and_hotel(start_date, end_date, hotel_id)
         total = 0.0
         # Loop through each invoice
         for invoice in invoices:
-            # Only include invoices within the specified date range and not cancelled
-            if start_date <= invoice.issue_date <= end_date and not invoice.is_cancelled:
-                total += invoice.total_amount  # Add the invoice amount to the total revenue
+            if invoice.is_cancelled or not (start_date <= invoice.issue_date <= end_date):
+                continue
+            if hotel_id:
+                booking = BookingDAL().get_by_id(invoice.booking_id)
+                room = self.room_dal.get_by_id(booking.room_id)
+                if room.hotel_id != hotel_id:
+                    continue
+            total += invoice.total_amount
         # Return the total revenue for the period
         return total
     
-    def get_monthly_revenue_range(self, start_date: date, end_date: date) -> dict[str, float]:
-        # Retrieve all invoices from the database
-        invoices = self.invoice_dal.get_all()
+    def get_monthly_revenue_range(self, start_date: date, end_date: date, hotel_id: int | None = None) -> dict[str, float]:
+        invoices = self.invoice_dal.get_all_by_date_and_hotel(start_date, end_date, hotel_id)
         revenue = {}
-        # Iterate over each invoice
         for invoice in invoices:
-            # Skip cancelled invoices
             if invoice.is_cancelled or not (start_date <= invoice.issue_date <= end_date):
                 continue
-            # Format the invoice date to a year-month key (e.g., '2025-06')
-            month_key = invoice.issue_date.strftime("%Y-%m")
-            # Add the invoice amount to the corresponding month’s total
-            revenue[month_key] = revenue.get(month_key, 0) + invoice.total_amount
-        # Return a dictionary mapping each month to total revenue
+            if hotel_id:
+                booking = BookingDAL().get_by_id(invoice.booking_id)
+                room = self.room_dal.get_by_id(booking.room_id)
+                if room.hotel_id != hotel_id:
+                    continue
+            month_key = invoice.issue_date.strftime("%Y-%m-01")
+            revenue[month_key] = revenue.get(month_key, 0.0) + invoice.total_amount
         return revenue

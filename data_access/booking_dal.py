@@ -35,8 +35,8 @@ class BookingDAL(BaseDAL):
         # connect to the database and insert the booking
         with self._connect() as conn:
             cursor = conn.execute(
-                "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled, total_amount, booking_date) VALUES (?, ?, ?, ?, ?, ?, ?)",
-    (booking.room_id, booking.guest_id, start_str, end_str, 0, booking.total_amount, booking_date_str)
+                "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled, total_amount) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    (booking.room_id, booking.guest_id, start_str, end_str, 0, booking.total_amount)
             )
             conn.commit()
             # store the new booking ID
@@ -115,7 +115,6 @@ class BookingDAL(BaseDAL):
             check_out=row[4],
             is_cancelled=bool(row[5]),
             total_amount=row[6],
-            booking_date=row[7]
         )
     
     def get_by_guest_email(self, email: str) -> list[Booking]:

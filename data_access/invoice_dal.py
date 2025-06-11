@@ -98,3 +98,23 @@ class InvoiceDAL(BaseDAL):
             conn.commit()
         # return True if at least one row was updated
         return cursor.rowcount > 0
+    
+    def get_all_by_date_and_hotel(self, start_date: str, end_date: str, hotel_id: int) -> list[Invoice]:
+        sql = """
+        SELECT i.invoice_id, i.booking_id, i.issue_date, i.total_amount, i.is_cancelled
+        FROM Invoice i
+        JOIN Booking b ON i.booking_id = b.booking_id
+        JOIN Room r ON b.room_id = r.room_id
+        WHERE i.issue_date BETWEEN ? AND ? AND r.hotel_id = ?
+        """
+        with self._connect() as conn:
+            rows = conn.execute(sql, (start_date, end_date, hotel_id)).fetchall()
+        return [
+            Invoice(
+                invoice_id=row["invoice_id"],
+                booking_id=row["booking_id"],
+                issue_date=row["issue_date"],
+                total_amount=row["total_amount"],
+                is_cancelled=row["is_cancelled"]
+            ) for row in rows
+        ]
