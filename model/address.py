@@ -3,9 +3,9 @@ class Address:
         if address_id is not None and not isinstance(address_id, int):
             raise ValueError("address_id muss eine ganze Zahl sein")
         if not street:
-            raise ValueError("street is required")
+            raise ValueError("Strasse ist erforderlich")
         if not city:
-            raise ValueError("Straße ist erforderlich")
+            raise ValueError("Stadt ist erforderlich")
         if not zip_code:
             raise ValueError("zip_code ist erforderlich")
         
@@ -45,9 +45,9 @@ class Address:
     @street.setter
     def street(self, street: str) -> None:
         if not street:
-            raise ValueError("Straße ist erforderlich")
+            raise ValueError("Strasse ist erforderlich")
         if not isinstance(street, str):
-            raise ValueError("Straße muss eine Zeichenkette sein")
+            raise ValueError("Strasse muss eine Zeichenkette sein")
         self.__street = street
 
     @city.setter
