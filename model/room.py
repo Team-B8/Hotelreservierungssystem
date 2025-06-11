@@ -18,7 +18,7 @@ class Room:
     @room_id.setter
     def room_id(self, value: int):
         if not isinstance(value, int):
-            raise TypeError("room_id must be an integer")
+            raise TypeError("room_id muss eine ganze Zahl sein")
         self.__room_id = value
 
     @property
@@ -28,7 +28,7 @@ class Room:
     @hotel_id.setter
     def hotel_id(self, value: int):
         if not isinstance(value, int):
-            raise TypeError("hotel_id must be an integer")
+            raise TypeError("hotel_id muss eine ganze Zahl sein")
         self.__hotel_id = value
 
     @property
@@ -38,7 +38,7 @@ class Room:
     @room_no.setter
     def room_no(self, value: str):
         if not isinstance(value, str):
-            raise TypeError("room_no must be a string")
+            raise TypeError("room_no muss eine Zeichenkette sein")
         self.__room_no = value
 
     @property
@@ -48,7 +48,7 @@ class Room:
     @type_id.setter
     def type_id(self, value: int):
         if not isinstance(value, int):
-            raise TypeError("type_id must be an integer")
+            raise TypeError("type_id muss eine ganze Zahl sein")
         self.__type_id = value
 
     @property
@@ -58,7 +58,7 @@ class Room:
     @price_per_night.setter
     def price_per_night(self, value: float):
         if not isinstance(value, (int, float)):
-            raise TypeError("price_per_night must be numeric")
+            raise TypeError("price_per_night muss numerisch sein")
         self.__price_per_night = float(value)
     
     @property
