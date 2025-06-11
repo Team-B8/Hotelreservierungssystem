@@ -85,11 +85,6 @@ class BookingManager:
         bookings = self.booking_dal.get_by_date_range(start_date, end_date)
         return sum(b.total_amount for b in bookings)
     
-    def get_total_revenue_invoice(self, start_date: date, end_date: date) -> float:
-        # Gibt die Gesamteinnahmen aus allen Buchungen im gegebenen Zeitraum zurück.
-        invoices = self.invoice_dal.get_by_date_range(start_date, end_date)
-        return sum(b.total_amount for i in invoices)
-
     def get_monthly_revenue_breakdown(self, start_date: date, end_date: date) -> dict:
         # Gibt die Einnahmen gruppiert nach Monat zurück, z. B. {'2025-06': 1800.0, '2025-07': 1500.0}
         bookings = self.booking_dal.get_by_date_range(start_date, end_date)
