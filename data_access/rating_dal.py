@@ -4,7 +4,6 @@ from model.ratings import Rating
 class RatingDAL(BaseDAL):
     def __init__(self):
     # Call the constructor of the base class (BaseDAL)
-    # This sets up the database connection
         super().__init__()
 
     def create(self, rating: Rating) -> Rating:
@@ -27,5 +26,7 @@ class RatingDAL(BaseDAL):
         sql = "SELECT rating_id, stars, comment, created_date, guest_id, hotel_id FROM Rating WHERE hotel_id = ?"
         with self._connect() as conn:
             cursor = conn.execute(sql, (hotel_id,))
+            # Fetch all matching rows from the result
             rows = cursor.fetchall()
+        #create a list of Rating object from the database rows
         return [Rating(*row) for row in rows]
