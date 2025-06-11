@@ -1,10 +1,10 @@
 class Room:
     def __init__(self, room_id: int, hotel_id: int, room_no: str, type_id: int, price_per_night: float):
-        self.room_id = room_id
-        self.hotel_id = hotel_id
-        self.room_no = room_no
-        self.type_id = type_id
-        self.price_per_night = price_per_night
+        self.__room_id = room_id
+        self.__hotel_id = hotel_id
+        self.__room_no = room_no
+        self.__type_id = type_id
+        self.__price_per_night = price_per_night
         self.__room_type = None
         self.__facilities = []
 

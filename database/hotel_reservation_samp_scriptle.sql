@@ -135,7 +135,7 @@ INSERT INTO Guest (guest_id, first_name, last_name, email, address_id) VALUES
 (4, 'Elena', 'Keller', 'elena.keller@example.ch', 4),
 (5, 'Marc', 'Weber', 'marc.weber@example.ch', 5),
 (6, 'Anna', 'Schmidt', 'anna.schmidt@example.ch', 6),
-(7, 'Thomas', 'Fischer', ' ', 7),
+(7, 'Thomas', 'Fischer', 'thomas.fischer@example.ch', 7),
 (8, 'Nina', 'Graf', 'nina.graf@example.ch', 8),
 (9, 'Isabelle', 'Brunner', 'isabelle.brunner@example.ch', 9),
 (10, 'Jan', 'Ziegler', 'jan.ziegler@example.ch', 10),
