@@ -12,10 +12,32 @@
 - Link zum Scrum Board: [Scrum-Board](https://github.com/orgs/Team-B8/projects/1)
 
 ## Methodologie / Projektmanagement
-Scrum erklären und wie wir gearbeitet haben. Auf Sprint Meeting und Reviews in DeepNote verweisen.
-Herangehensweise
-Kommunikationskanal
-Zusammenarbeit --> wer hat was gemacht
+Für das Projektmanagement wurde die agile Scrum-Methode eingesetzt. Die vier Unterrichtseinheiten wurden jeweils als einzelne Sprints organisiert, wobei jedes Teammitglied einmal die Rolle des Scrum Masters übernahm. Die Aufgaben wurden auf GitHub unter "Projects" vom Scrum Master verteilt. Die Zusammenarbeit und der Fortschritt wurden fortlaufend auf Deepnote dokumentiert. Dort hielten die Mitglieder ihre individuellen Beiträge fest und besprachen diese im Rahmen der wöchentlichen Scrum-Meetings. Kommuniziert wurde über Teams und ergänzende meetings für die bearbeitung des Projekts wurden auch auf Teams gehalten. Am Ende jedes Sprints fand ein Sprint Review statt, in dem der erreichte Stand gemeinsam bewertet wurde. Diese Bewertungen sowie offene Aufgaben und neue Ziele wurden auf einem gemeinsamen Scrum-Board (siehe Link) festgehalten. 
+
+Inhaltlich waren die Sprints klar strukturiert:
+
+Sprint 1 diente dem Einstieg in das Projekt. Ziel war es, sich mit den Grundlagen von Python vertraut zu machen, erste Programmierübungen durchzuführen, den Projektbeschrieb zu verstehen sowie eine Struktur für die Dokumentation zu erarbeiten.
+
+Sprint 2 konzentrierte sich auf das Verständnis der Unterrichtsinhalte, insbesondere von Object Oriented Programming (OOP). Zudem wurden die bereits behandelten Konzepte miteinander verknüpft und erste Schritte in Richtung Projektumsetzung eingeleitet. Der Sprint endete mit der Erstellung eines UML-Diagramms, das als Grundlage für die Codierung der Geschäftsobjekt-Klassen (Model-Schicht) diente.
+
+In Sprint 3 lag der Fokus auf dem Modellieren einzelner Systemkomponenten und dem praktischen Umsetzen erster User Stories. Diese wurden parallel dokumentiert. Auch in diesem Sprint wurde der Theorieanteil aus dem Unterricht weiter vertieft und direkt auf das Projekt angewendet.
+
+Sprint 4 widmete sich der Finalisierung des Projekts. Ziel war es, alle noch offenen Aufgaben zu erledigen, die Funktionalität zu überprüfen und die vollständige Projektarbeit inklusive Dokumentation fristgerecht abzugeben.
+
+Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugleich flexible Arbeitsweise etabliert werden, bei der alle Teammitglieder aktiv in Planung, Umsetzung und Reflexion eingebunden waren.
+
+### Tools 
+Deepnote: Codieren und Dokumentation
+Visual Studio Code: Codieren
+GitHub: Systemablage, Systemadmninistration, Aufgabenverteilung
+Teams: Kommunikation, Video-Calls
+
+### Projektbeiträge
+Yaren Akinci: 
+Kerem Akkaya: 
+Lou Brauchli: 
+Haris Salii: 
+
 
 ### Wichtige Entscheidungen
 #### 1. Modularer Aufbau des Systems
