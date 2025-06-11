@@ -85,32 +85,26 @@ class InvoiceManager:
         # Retrieve all invoices from the database
         invoices = self.invoice_dal.get_all()
         total = 0.0
-
         # Loop through each invoice
         for invoice in invoices:
             # Only include invoices within the specified date range and not cancelled
             if start_date <= invoice.issue_date <= end_date and not invoice.is_cancelled:
                 total += invoice.total_amount  # Add the invoice amount to the total revenue
-
         # Return the total revenue for the period
         return total
     
-    def get_revenue_by_month(self) -> dict[str, float]:
+    def get_monthly_revenue_range(self, start_date: date, end_date: date) -> dict[str, float]:
         # Retrieve all invoices from the database
         invoices = self.invoice_dal.get_all()
         revenue = {}
-
         # Iterate over each invoice
         for invoice in invoices:
             # Skip cancelled invoices
-            if invoice.is_cancelled:
+            if invoice.is_cancelled or not (start_date <= invoice.issue_date <= end_date):
                 continue
-            
             # Format the invoice date to a year-month key (e.g., '2025-06')
             month_key = invoice.issue_date.strftime("%Y-%m")
-
             # Add the invoice amount to the corresponding month’s total
             revenue[month_key] = revenue.get(month_key, 0) + invoice.total_amount
-
         # Return a dictionary mapping each month to total revenue
         return revenue
