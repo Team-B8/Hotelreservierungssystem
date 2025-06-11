@@ -737,8 +737,6 @@ def user_story_revenue_analysis():
     import pandas as pd
     import matplotlib.pyplot as plt
     import seaborn as sns
-    from datetime import date
-    from business_logic.booking_manager import BookingManager
 
     print("\n--- 8: Umsatzanalyse ---")
     try:

@@ -186,7 +186,7 @@ class BookingDAL(BaseDAL):
                 WHERE check_in_date <= ? AND check_out_date >= ?
                 AND is_cancelled = 0
                 """,
-                (end_str, start_str)
+                (start_str, end_str)
             )
             rows = cursor.fetchall()
         return [self.__row_to_booking(row) for row in rows]
