@@ -10,7 +10,7 @@ class RatingDAL(BaseDAL):
         # Inserts a new rating into the database
         sql = "INSERT INTO Rating (stars, comment, hotel_id, created_date, guest_id) VALUES (?, ?, ?, ?, ?)"
         # Collect values from the Rating object
-        params = (rating.stars, rating.comment, rating.created_date, rating.hotel_id, rating.guest_id)
+        params = (rating.stars, rating.comment, rating.hotel_id, rating.created_date, rating.guest_id)
         # Open a database connection using the inherited method _connect()
         with self._connect() as conn:
             # Execute the SQL statement with the given parameters

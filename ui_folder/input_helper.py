@@ -634,8 +634,7 @@ def user_story_db_schemaaenderung_3():
         rating_manager = RatingManager()
         email = input("Bitte geben Sie Ihre E-Mail-Adresse ein: ")
         guest_id = rating_manager.get_guest_id_by_email(email)
-        rating_manager = RatingManager()
-        bookings= rating_manager.get_completed_bookings_by_guest_id(guest_id)
+        bookings = rating_manager.get_completed_bookings_by_guest_id(guest_id)
 
         if not bookings:
             raise LookupError("Sie haben keine abgeschlossenen Buchungen, die bewertet werden können.")
@@ -665,7 +664,7 @@ def user_story_db_schemaaenderung_3():
             raise ValueError("Ungültige Bewertung. Bitte zwischen 1 und 5 Sterne.")
         
         comment = input("Ihr Kommentar: ")
-        created = date.today().isoformat()
+        created = date.today()
 
         rating_manager.create_rating(stars, comment, created, selected_hotel_id, guest_id)
         print("Bewertung wurde erfolgreich gespeichert.")

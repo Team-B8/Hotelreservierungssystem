@@ -152,6 +152,7 @@ class BookingDAL(BaseDAL):
             return cursor.fetchall()
 
     def has_completed_booking(self, check_out_date: date) -> bool:
+        # Check if there exists at least one completed (not cancelled) booking where the check-out date is in the past and matches the given date
         sql = """
         SELECT 1 FROM Booking
         WHERE check_out_date = ?
@@ -161,9 +162,11 @@ class BookingDAL(BaseDAL):
         """
         with self._connect() as conn:
             cursor = conn.execute(sql, (check_out_date,))
+            # Returns True if a matching row is found, otherwise False
             return cursor.fetchone() is not None
 
     def get_completed_bookings_by_guest_id(self, guest_id: int) -> list:
+        # Retrieve all bookings for a guest that are completed (i.e. past and not cancelled)
         sql = """
             SELECT booking_id, room_id, check_in_date, check_out_date
             FROM Booking
@@ -173,4 +176,5 @@ class BookingDAL(BaseDAL):
             """
         with self._connect() as conn:
             cursor = conn.execute(sql, (guest_id,))
+        # Returns a list of all matching booking rows
         return cursor.fetchall()
