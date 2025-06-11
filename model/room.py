@@ -72,7 +72,3 @@ class Room:
     @property
     def facilities(self):
         return self.__facilities
-
-    def add_facility(self, facility_obj):
-        if facility_obj not in self.__facilities:
-            self.__facilities.append(facility_obj)
