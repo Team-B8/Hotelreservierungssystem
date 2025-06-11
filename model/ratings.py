@@ -21,8 +21,6 @@ class Rating:
         self.hotel_id = hotel_id
         self.guest_id = guest_id
     
-
-
     def __repr__(self):
         return f"Rating(id={self.__rating_id}, stars={self.__stars}, comment{self.__comment}, created_date{self.__created_date}, hotel_id{self.hotel_id}. guest_id{self.guest_id})"
 
@@ -36,7 +34,6 @@ class Rating:
             raise ValueError("rating_id must be an Integer")
         self.__rating_id = value
         
-
     @property
     def stars(self) -> int:
         return self.__stars

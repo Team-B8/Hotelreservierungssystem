@@ -98,3 +98,18 @@ class InvoiceDAL(BaseDAL):
             conn.commit()
         # return True if at least one row was updated
         return cursor.rowcount > 0
+    
+    def get_by_date_range(self, check_in_date, check_out_date) -> list[Booking]:
+        start_str = check_in_date.isoformat()
+        end_str = check_out_date.isoformat()
+        with self._connect() as conn:
+            cursor = conn.execute(
+                """
+                SELECT * FROM Invoice
+                WHERE check_in_date <= ? AND check_out_date >= ?
+                AND is_cancelled = 0
+                """,
+                (start_str, end_str)
+            )
+            rows = cursor.fetchall()
+        return [self.__row_to_booking(row) for row in rows]

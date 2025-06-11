@@ -739,44 +739,44 @@ def user_story_revenue_analysis():
     import seaborn as sns
 
     print("\n--- 8: Umsatzanalyse ---")
-    try:
-        start_input = input("Startdatum (YYYY-MM-DD): ")
-        end_input = input("Enddatum (YYYY-MM-DD): ")
+    #try:
+    start_input = input("Startdatum (YYYY-MM-DD): ")
+    end_input = input("Enddatum (YYYY-MM-DD): ")
 
-        start_date = date.fromisoformat(start_input)
-        end_date = date.fromisoformat(end_input)
+    start_date = date.fromisoformat(start_input)
+    end_date = date.fromisoformat(end_input)
 
-        manager = BookingManager()
-        total = manager.get_total_revenue(start_date, end_date)
-        monthly = manager.get_monthly_revenue_breakdown(start_date, end_date)
+    manager = BookingManager()
+    total = manager.get_total_revenue(start_date, end_date)
+    monthly = manager.get_monthly_revenue_breakdown(start_date, end_date)
 
-        print(f"\nGesamteinnahmen von {start_date} bis {end_date}: CHF {total:.2f}")
+    print(f"\nGesamteinnahmen von {start_date} bis {end_date}: CHF {total:.2f}")
 
-        if not monthly:
-            print("Keine Buchungen im gewählten Zeitraum.")
-            return
+    if not monthly:
+        print("Keine Buchungen im gewählten Zeitraum.")
+        return
 
-        df = pd.DataFrame(list(monthly.items()), columns=["Monat", "Umsatz"])
-        df["Monat"] = pd.to_datetime(df["Monat"])
-        df = df.sort_values("Monat")
-        print("\nMonatliche Einnahmen:")
-        print(df.to_string(index=False))
+    df = pd.DataFrame(list(monthly.items()), columns=["Monat", "Umsatz"])
+    df["Monat"] = pd.to_datetime(df["Monat"])
+    df = df.sort_values("Monat")
+    print("\nMonatliche Einnahmen:")
+    print(df.to_string(index=False))
 
-        # Visualisierung
-        plt.figure(figsize=(10,6))
-        sns.barplot(data=df, x="Monat", y="Umsatz", color="skyblue", label="Umsatz")
-        sns.regplot(data=df, x=df.index, y="Umsatz", scatter=False, color="red", label="Trendlinie")
-        plt.title("Umsatzanalyse pro Monat")
-        plt.xlabel("Monat")
-        plt.ylabel("CHF")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        plt.legend()
-        plt.grid(True)
-        plt.show()
+    # Visualisierung
+    plt.figure(figsize=(10,6))
+    sns.barplot(data=df, x="Monat", y="Umsatz", color="skyblue", label="Umsatz")
+    sns.regplot(data=df, x=df.index, y="Umsatz", scatter=False, color="red", label="Trendlinie")
+    plt.title("Umsatzanalyse pro Monat")
+    plt.xlabel("Monat")
+    plt.ylabel("CHF")
+    plt.xticks(rotation=45)
+    plt.tight_layout()
+    plt.legend()
+    plt.grid(True)
+    plt.show()
 
-    except Exception as e:
-        print(f"Fehler bei der Umsatzanzeige: {e}")
+    #except Exception as e:
+        #print(f"Fehler bei der Umsatzanzeige: {e}")
 
 def gast_menu():
     while True:
