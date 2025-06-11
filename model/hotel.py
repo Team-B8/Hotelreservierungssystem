@@ -15,7 +15,7 @@ class Hotel:
     @hotel_id.setter
     def hotel_id(self, value: int):
         if not isinstance(value, int):
-            raise TypeError("Hotel-ID muss ein Integer sein.")
+            raise TypeError("Hotel-ID must be an Integer")
         self.__hotel_id = value
 
     @property
@@ -25,7 +25,7 @@ class Hotel:
     @name.setter
     def name(self, value: str):
         if not value or not isinstance(value, str):
-            raise ValueError("Name muss ein nicht-leerer String sein.")
+            raise ValueError("name must be a non-empty string.")
         self.__name = value
 
     @property
@@ -35,7 +35,7 @@ class Hotel:
     @stars.setter
     def stars(self, value: int):
         if not isinstance(value, int) or not (1 <= value <= 5):
-            raise ValueError("Sterne müssen ein Integer zwischen 1 und 5 sein.")
+            raise ValueError("stars must be an integer between 1 and 5.")
         self.__stars = value
 
     @property
@@ -45,5 +45,5 @@ class Hotel:
     @address_id.setter
     def address_id(self, value: int):
         if not isinstance(value, int):
-            raise TypeError("Address-ID muss ein Integer sein.")
+            raise TypeError("address_id must be an integer.")
         self.__address_id = value

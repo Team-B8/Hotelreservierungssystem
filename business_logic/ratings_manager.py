@@ -23,9 +23,9 @@ class RatingManager:
     def create_rating(self, stars: int, comment: str, created_date: str, hotel_id: int, guest_id: int) -> Rating:
         # Business-Logic: Stars must be between 1 and 5
         if not (1 <= stars <= 5):
-            raise ValueError("Stars must be between 1 and 5")
+            raise ValueError("Sterne müssen zwischen 1 und 5 liegen")
         if not comment:
-            raise ValueError("Comment cannot be empty")
+            raise ValueError("Kommentar darf nicht leer sein")
         rating = Rating(rating_id=None, stars=stars, comment=comment, created_date=created_date, hotel_id=hotel_id, guest_id=guest_id)
         return self.__rating_dal.create(rating)
 
@@ -47,7 +47,7 @@ class RatingManager:
     def get_guest_id_by_email(self, email: str) -> int:
         guest = self.__guest_dal.get_by_email(email)
         if guest is None:
-            raise ValueError("Kein Gast mit dieser E-Mail gefunden.")
+            raise ValueError("No guest found with this email.")
         return guest.guest_id
 
     #def get_rating(self, rating_id: int) -> model.Rating | None:

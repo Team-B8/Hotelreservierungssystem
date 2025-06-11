@@ -2,9 +2,9 @@ class Facilities:
     def __init__(self, facility_name: str, facility_id: int = None):
         # Validate inputs immediately
         if not facility_name:
-            raise ValueError("facility_name is required")
+            raise ValueError("facility_name ist erforderlich")
         if not isinstance(facility_name, str):
-            raise ValueError("facility_name must be a string")
+            raise ValueError("facility_name muss eine Zeichenkette sein")
 
         self.__facility_id = facility_id
         self.__facility_name = facility_name
@@ -26,9 +26,9 @@ class Facilities:
     @facility_name.setter
     def facility_name(self, new_facility_name):
         if not new_facility_name:
-            raise ValueError("facility_name is required")
+            raise ValueError("facility_name ist erforderlich")
         if not isinstance(new_facility_name, str):
-            raise ValueError("facility_name must be a string")
+            raise ValueError("facility_name muss eine Zeichenkette sein")
         self.__facility_name = new_facility_name
 
     @property
@@ -43,9 +43,9 @@ class Facilities:
     def delete_facility(self):
         if not self.__is_deleted:
             self.__is_deleted = True
-            print(f"Facility {self.__facility_name} was marked as deleted.")
+            print(f"Facility {self.__facility_name} wurde als gelöscht markiert.")
         else:
-            print(f"Facility {self.__facility_name} is already deleted.")
+            print(f"Facility {self.__facility_name} ist bereits gelöscht.")
 
     @property
     def is_deleted(self):
@@ -54,6 +54,6 @@ class Facilities:
     def restore(self):
         if self.__is_deleted:
             self.__is_deleted = False
-            print(f"Facility {self.__facility_name} was restored.")
+            print(f"Facility {self.__facility_name} wurde wiederhergestellt.")
         else:
-            print(f"Facility {self.__facility_name} is already active.")
+            print(f"Facility {self.__facility_name} ist bereits aktiv.")
