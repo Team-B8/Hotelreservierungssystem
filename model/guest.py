@@ -86,14 +86,6 @@ class Guest:
     def is_deleted(self):
         return self.__is_deleted
 
-    def restore(self):
-        # reverses the logical deletion of the guest
-        if self.__is_deleted:
-            self.__is_deleted = False
-            print(f"{self.__first_name} {self.__last_name} was restored.")
-        else:
-            print(f"{self._first_name} {self.__last_name} is already active.")
-
     @property
     def full_name(self) -> str:
         return f"{self.__first_name} {self.__last_name}"
@@ -101,12 +93,6 @@ class Guest:
     @property
     def bookings(self) -> str:
         return self.__bookings
-
-    def create_booking(self, room, check_in, check_out):
-        # creates a new booking and adds it to the list of this guest
-        new_booking = Booking(room, check_in, check_out)
-        self.__bookings.append(new_booking)
-        return new_booking
 
     @property
     def address_id(self) -> int:

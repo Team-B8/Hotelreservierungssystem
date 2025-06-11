@@ -3,7 +3,7 @@ from model.address import Address
 
 class AddressManager:
     def __init__(self):
-        # Initialize the data access layer for addresses
+        # Input of the data access layer for addresses
         self.__address_dal = AddressDAL()
 
     def create_address(self, street: str, city: str, zip_code: str) -> Address:
@@ -12,7 +12,7 @@ class AddressManager:
         return self.__address_dal.create(address)
 
     def get_address(self, address_id: int) -> Address | None:
-        # Retrieve an address by its ID
+        # Get an address by its ID
         return self.__address_dal.get_address_by_id(address_id)
 
     def delete_address(self, address_id: int) -> None:

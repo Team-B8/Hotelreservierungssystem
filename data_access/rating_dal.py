@@ -6,7 +6,7 @@ class RatingDAL(BaseDAL):
         super().__init__()
 
     def create(self, rating: Rating) -> Rating:
-    #Inserts a new rating into the database
+        # Inserts a new rating into the database
         sql = "INSERT INTO Rating (stars, comment, hotel_id, created_date, guest_id) VALUES (?, ?, ?, ?, ?)"
         params = (rating.stars, rating.comment, rating.created_date, rating.hotel_id, rating.guest_id)
         with self._connect() as conn:
@@ -14,7 +14,7 @@ class RatingDAL(BaseDAL):
             conn.commit()
             rating.rating_id = cursor.lastrowid
         return rating
-    
+
     def read_by_hotel_id(self, hotel_id: int) -> list[Rating]:
         sql = "SELECT rating_id, stars, comment, created_date, guest_id, hotel_id FROM Rating WHERE hotel_id = ?"
         with self._connect() as conn:

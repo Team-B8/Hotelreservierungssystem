@@ -75,6 +75,9 @@ Laut ursprünglicher Anforderung sollte die Rechnung erst nach dem Aufenthalt er
 
 Das relationale Datenmodell wurde vor der Implementierung als ER-Diagramm entworfen. Dieses Diagramm wurde im Projektverlauf regelmässig genutzt, um sicherzustellen, dass Struktur und Umsetzung übereinstimmen. So konnten Inkonsistenzen zwischen Code und Datenbank vermieden werden. Das ERD diente als gemeinsame Grundlage für alle Entscheidungen rund um die Datenstruktur.
 
+#### 8. Zugriffsschutz in der Model-Ebene
+Die Attribute in den Klassen der Model-Ebene haben wir als privat deklariert. Dadurch soll sichergestellt werden, dass von aussen nicht direkt auf die Daten zugegriffen oder sie ungewollt verändert werden können. Um trotzdem kontrollierten Zugriff zu ermöglichen, haben wir gezielt Getter- und Setter-Methoden erstellt. So behalten wir die Kontrolle darüber, wie und wann bestimmte Werte gelesen oder geändert werden. Z.B können in den Settern auch einfache Prüfungen ergänzt werden. 
+
 ## ERD Diagramm
 ![ERD Diagramm](/images/ERD_Hotelreservierung.jpg)
 

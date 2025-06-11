@@ -26,7 +26,7 @@ class RatingManager:
             raise ValueError("Stars must be between 1 and 5")
         if not comment:
             raise ValueError("Comment cannot be empty")
-        rating = Rating(None, stars, comment, created_date, hotel_id, guest_id)
+        rating = Rating(rating_id=None, stars=stars, comment=comment, created_date=created_date, hotel_id=hotel_id, guest_id=guest_id)
         return self.__rating_dal.create(rating)
 
     def get_ratings_by_hotel_id(self, hotel_id: int) -> list[Rating]:

@@ -10,7 +10,7 @@ from business_logic.invoice_manager import InvoiceManager
 
 class BookingManager:
     def __init__(self, invoice_manager=None):
-        # invoice_manager is an instance of InvoiceManager for handling invoices
+        # invoice_manager is an entity of InvoiceManager for managing invoices.
         self.booking_dal = BookingDAL()
         self.guest_dal = GuestDAL()
         self.invoice_manager = invoice_manager if invoice_manager else InvoiceManager()
@@ -81,17 +81,17 @@ class BookingManager:
         return self.booking_dal.get_room_type_occupancy_by_hotel(hotel_id)
 
     def get_total_revenue(self, start_date: date, end_date: date) -> float:
-        # Gibt die Gesamteinnahmen aus allen Buchungen im gegebenen Zeitraum zurück.
+        # Returns the total income from all bookings in the given time.
         bookings = self.booking_dal.get_by_date_range(start_date, end_date)
         return sum(b.total_amount for b in bookings)
-
+    
     def get_monthly_revenue_breakdown(self, start_date: date, end_date: date) -> dict:
-        # Gibt die Einnahmen gruppiert nach Monat zurück, z. B. {'2025-06': 1800.0, '2025-07': 1500.0}
+        # Returns the income by month, exampel {‘2025-06’: 1800.0, ‘2025-07’: 1500.0}
         bookings = self.booking_dal.get_by_date_range(start_date, end_date)
         monthly_revenue = defaultdict(float)
 
         for booking in bookings:
-            key = booking.check_in_date.strftime("%Y-%m")  # statt booking_date
+            key = booking.check_in_date.strftime("%Y-%m")
             monthly_revenue[key] += booking.total_amount
 
         return dict(monthly_revenue)
