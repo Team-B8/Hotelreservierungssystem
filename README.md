@@ -7,8 +7,8 @@
 <p>Haris Salii</p>
 
 ## Ressourcen
-- Link zur Deepnote-Dokumentation:
-- Link zu den Scrum Meetings und Sprint Reviews: [Projektdokumentation](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Projektdokumentation-0a3411e6d6224bf6bff262c03516407d?utm_content=a048451d-c7e6-46c3-a824-c0d893d5e1b2)
+- Link zur Deepnote-Dokumentation: [Projektdokumentation](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Projektdokumentation-0a3411e6d6224bf6bff262c03516407d)
+- Link zu den Scrum Meetings und Sprint Reviews: [Scrum Meetings und Sprint Reviews](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Projektdokumentation-0a3411e6d6224bf6bff262c03516407d?utm_content=a048451d-c7e6-46c3-a824-c0d893d5e1b2)
 - Link zum Scrum Board: [Scrum-Board](https://github.com/orgs/Team-B8/projects/1)
 
 ## Methodologie / Projektmanagement
