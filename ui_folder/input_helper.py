@@ -787,6 +787,40 @@ def user_story_revenue_analysis():
     except Exception as e:
         print(f"Fehler bei der Umsatzanzeige: {e}")
 
+def user_story_geocard():
+    import folium
+    from geopy.geocoders import Nominatim
+    import webbrowser
+    import tempfile
+    print("\n--- 3.4: Karte mit Umgebung ---")
+    try:
+        hotels = HotelManager().get_all_hotels()
+        for h in hotels:
+            print(f"{h.hotel_id}: {h.name} ({h.stars} Sterne)")
+        hotel_id = int(input("Hotel-ID auswählen: "))
+        manager = HotelManager()
+        hotel, address = manager.get_hotel_with_address(hotel_id)
+        if not hotel or not address:
+            print("Hotel oder Adresse nicht gefunden.")
+            return
+        full_address = f"{address.street}, {address.zip_code} {address.city}"
+        geolocator = Nominatim(user_agent="hotel_locator")
+        location = geolocator.geocode(full_address)
+        if not location:
+            print("Standort konnte nicht gefunden werden.")
+            return
+        map_ = folium.Map(location=[location.latitude, location.longitude], zoom_start=15)
+        folium.Marker(
+            [location.latitude, location.longitude],
+            popup=f"{hotel.name}\n{full_address}",
+            tooltip=f"Hotelstandort von {hotel.name}"
+        ).add_to(map_)
+        with tempfile.NamedTemporaryFile(suffix=".html", delete=False) as tmp:
+            map_.save(tmp.name)
+            webbrowser.open('file://' + tmp.name)
+    except Exception as e:
+        print(f"Fehler bei der Kartenerstellung: {e}")
+
 def gast_menu():
     while True:
         print("\n--- GAST MENÜ ---")
@@ -803,6 +837,7 @@ def gast_menu():
         print("11 Buchung stornieren")
         print("12 Hotelbewertung abgeben")
         print("13 Hotelbewertungen ansehen")
+        print("14 Karte mit Umgebung anzeigen")
         print("0. Zurück zum Hauptmenü")
         auswahl = input("Menupunkt wählen: ")
         if auswahl == "1":
@@ -831,6 +866,8 @@ def gast_menu():
             user_story_db_schemaaenderung_3()
         elif auswahl == "13":
             user_story_db_schemaaenderung_4()
+        elif auswahl == "14":
+            user_story_geocard()
         elif auswahl == "0":
             break
         else:

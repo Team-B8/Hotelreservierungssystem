@@ -140,3 +140,10 @@ class HotelManager:
                 return hotel
         return None
     
+    def get_hotel_with_address(self, hotel_id: int):
+        # get all hotels from the database by address
+        hotel = self.get_hotel(hotel_id)
+        if not hotel:
+            return None, None
+        address = self.address_dal.get_address_by_hotel(hotel_id)
+        return hotel, address
