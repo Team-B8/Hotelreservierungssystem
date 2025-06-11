@@ -31,11 +31,12 @@ class BookingDAL(BaseDAL):
         # convert dates to string format (ISO) if needed
         start_str = booking.check_in_date.isoformat() if hasattr(booking.check_in_date, "isoformat") else str(booking.check_in_date)
         end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)
+        booking_date_str = booking.booking_date.isoformat() if hasattr(booking.booking_date, "isoformat") else str(booking.booking_date)
         # connect to the database and insert the booking
         with self._connect() as conn:
             cursor = conn.execute(
-                "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled, total_amount) VALUES (?, ?, ?, ?, ?, ?)",
-                (booking.room_id, booking.guest_id, start_str, end_str, 0, booking.total_amount)
+                "INSERT INTO Booking (room_id, guest_id, check_in_date, check_out_date, is_cancelled, total_amount, booking_date) VALUES (?, ?, ?, ?, ?, ?, ?)",
+    (booking.room_id, booking.guest_id, start_str, end_str, 0, booking.total_amount, booking_date_str)
             )
             conn.commit()
             # store the new booking ID
@@ -48,6 +49,7 @@ class BookingDAL(BaseDAL):
     def update_booking(self, booking: Booking) -> bool:
         start_str = booking.check_in_date.isoformat() if hasattr(booking.check_in_date, "isoformat") else str(booking.check_in_date)
         end_str = booking.check_out_date.isoformat() if hasattr(booking.check_out_date, "isoformat") else str(booking.check_out_date)
+        booking_date_str = booking.booking_date.isoformat() if hasattr(booking.booking_date, "isoformat") else str(booking.booking_date)
         status_val = 1 if booking.is_cancelled else 0
         with self._connect() as conn:
             result = conn.execute(
@@ -90,7 +92,7 @@ class BookingDAL(BaseDAL):
         end_str = check_out_date.isoformat() if hasattr(check_out_date, "isoformat") else str(check_out_date)
         with self._connect() as conn:
             cursor = conn.execute(
-                "SELECT * FROM Booking WHERE check_in_date <= ? AND check_out_date >= ?",
+                "SELECT * FROM Booking WHERE check_in_date BETWEEN ? AND ? AND is_cancelled = 0",
                 (end_str, start_str)
             )
             rows = cursor.fetchall()
@@ -112,7 +114,8 @@ class BookingDAL(BaseDAL):
             check_in=row[3],
             check_out=row[4],
             is_cancelled=bool(row[5]),
-            total_amount=row[6]
+            total_amount=row[6],
+            booking_date=row[7]
         )
     
     def get_by_guest_email(self, email: str) -> list[Booking]:
@@ -172,3 +175,18 @@ class BookingDAL(BaseDAL):
         with self._connect() as conn:
             cursor = conn.execute(sql, (guest_id,))
         return cursor.fetchall()
+
+    def get_by_date_range(self, check_in_date, check_out_date) -> list[Booking]:
+        start_str = check_in_date.isoformat()
+        end_str = check_out_date.isoformat()
+        with self._connect() as conn:
+            cursor = conn.execute(
+                """
+                SELECT * FROM Booking
+                WHERE check_in_date <= ? AND check_out_date >= ?
+                AND is_cancelled = 0
+                """,
+                (start_str, end_str)
+            )
+            rows = cursor.fetchall()
+        return [self.__row_to_booking(row) for row in rows]

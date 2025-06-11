@@ -1,3 +1,5 @@
+from datetime import date
+from collections import defaultdict
 from data_access.booking_dal import BookingDAL
 from data_access.guest_dal import GuestDAL
 from data_access.address_dal import AddressDAL
@@ -44,7 +46,7 @@ class BookingManager:
             guest = self.guest_dal.create(new_guest)
 
         # Create booking
-        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount)
+        booking = Booking(booking_id=None, room_id=room_id, guest_id=guest.guest_id, check_in=check_in, check_out=check_out, is_cancelled=False, total_amount=total_amount,)
         booking = self.booking_dal.create_booking(booking)
         # return the created booking
         return booking
@@ -77,3 +79,19 @@ class BookingManager:
     def get_room_type_occupancy_by_hotel(self, hotel_id: int):
         # returns the booking count for each room type for the given hotel
         return self.booking_dal.get_room_type_occupancy_by_hotel(hotel_id)
+
+    def get_total_revenue(self, start_date: date, end_date: date) -> float:
+        # Gibt die Gesamteinnahmen aus allen Buchungen im gegebenen Zeitraum zurück.
+        bookings = self.booking_dal.get_by_date_range(start_date, end_date)
+        return sum(b.total_amount for b in bookings)
+
+    def get_monthly_revenue_breakdown(self, start_date: date, end_date: date) -> dict:
+        # Gibt die Einnahmen gruppiert nach Monat zurück, z. B. {'2025-06': 1800.0, '2025-07': 1500.0}
+        bookings = self.booking_dal.get_by_date_range(start_date, end_date)
+        monthly_revenue = defaultdict(float)
+
+        for booking in bookings:
+            key = booking.check_in_date.strftime("%Y-%m")  # statt booking_date
+            monthly_revenue[key] += booking.total_amount
+
+        return dict(monthly_revenue)

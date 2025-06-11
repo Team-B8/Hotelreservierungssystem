@@ -7,15 +7,37 @@
 <p>Haris Salii</p>
 
 ## Ressourcen
-- Link zur Deepnote-Dokumentation:
-- Link zu den Scrum Meetings und Sprint Reviews: [Projektdokumentation](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Projektdokumentation-0a3411e6d6224bf6bff262c03516407d?utm_content=a048451d-c7e6-46c3-a824-c0d893d5e1b2)
+- Link zur Deepnote-Dokumentation: [Projektdokumentation](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Projektdokumentation-0a3411e6d6224bf6bff262c03516407d)
+- Link zu den Scrum Meetings und Sprint Reviews: [Scrum Meetings und Sprint Reviews](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Sprint-1-224529094ca64f09810e7c2a8671c092?utm_content=a048451d-c7e6-46c3-a824-c0d893d5e1b2)
 - Link zum Scrum Board: [Scrum-Board](https://github.com/orgs/Team-B8/projects/1)
 
 ## Methodologie / Projektmanagement
-Scrum erklären und wie wir gearbeitet haben. Auf Sprint Meeting und Reviews in DeepNote verweisen.
-Herangehensweise
-Kommunikationskanal
-Zusammenarbeit --> wer hat was gemacht
+Für das Projektmanagement wurde die agile Scrum-Methode eingesetzt. Die vier Unterrichtseinheiten wurden jeweils als einzelne Sprints organisiert, wobei jedes Teammitglied einmal die Rolle des Scrum Masters übernahm. Die Aufgaben wurden auf GitHub unter "Projects" vom Scrum Master verteilt. Die Zusammenarbeit und der Fortschritt wurden fortlaufend auf Deepnote dokumentiert. Dort hielten die Mitglieder ihre individuellen Beiträge fest und besprachen diese im Rahmen der wöchentlichen Scrum-Meetings. Kommuniziert wurde über Teams und ergänzende meetings für die bearbeitung des Projekts wurden auch auf Teams gehalten. Am Ende jedes Sprints fand ein Sprint Review statt, in dem der erreichte Stand gemeinsam bewertet wurde. Diese Bewertungen sowie offene Aufgaben und neue Ziele wurden auf einem gemeinsamen Scrum-Board (siehe Link) festgehalten. 
+
+Inhaltlich waren die Sprints klar strukturiert:
+
+Sprint 1 diente dem Einstieg in das Projekt. Ziel war es, sich mit den Grundlagen von Python vertraut zu machen, erste Programmierübungen durchzuführen, den Projektbeschrieb zu verstehen sowie eine Struktur für die Dokumentation zu erarbeiten.
+
+Sprint 2 konzentrierte sich auf das Verständnis der Unterrichtsinhalte, insbesondere von Object Oriented Programming (OOP). Zudem wurden die bereits behandelten Konzepte miteinander verknüpft und erste Schritte in Richtung Projektumsetzung eingeleitet. Der Sprint endete mit der Erstellung eines UML-Diagramms, das als Grundlage für die Codierung der Geschäftsobjekt-Klassen (Model-Schicht) diente.
+
+In Sprint 3 lag der Fokus auf dem Modellieren einzelner Systemkomponenten und dem praktischen Umsetzen erster User Stories. Diese wurden parallel dokumentiert. Auch in diesem Sprint wurde der Theorieanteil aus dem Unterricht weiter vertieft und direkt auf das Projekt angewendet.
+
+Sprint 4 widmete sich der Finalisierung des Projekts. Ziel war es, alle noch offenen Aufgaben zu erledigen, die Funktionalität zu überprüfen und die vollständige Projektarbeit inklusive Dokumentation fristgerecht abzugeben.
+
+Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugleich flexible Arbeitsweise etabliert werden, bei der alle Teammitglieder aktiv in Planung, Umsetzung und Reflexion eingebunden waren.
+
+### Tools 
+Deepnote: Codieren und Dokumentation
+Visual Studio Code: Codieren
+GitHub: Systemablage, Systemadmninistration, Aufgabenverteilung
+Teams: Kommunikation, Video-Calls
+
+### Projektbeiträge
+Yaren Akinci: 
+Kerem Akkaya: 
+Lou Brauchli: 
+Haris Salii: 
+
 
 ### Wichtige Entscheidungen
 #### 1. Modularer Aufbau des Systems
@@ -60,14 +82,23 @@ Das relationale Datenmodell wurde vor der Implementierung als ER-Diagramm entwor
 ![UML Diagramm](/images/UML_Hotelreservierung.jpg)
 
 ## Projektstruktur
+Das Projekt ist nach dem klassischen Schichtenmodell aufgebaut, um eine klare Trennung der Verantwortlichkeiten zwischen Benutzeroberfläche, Geschäftslogik, Datenzugriff und Datenmodellierung zu gewährleisten. Der Projektordner team-b8-hotelreservierungssystem enthält die folgenden zentralen Komponenten:
+
 ### Layers
 #### User Interface
-was warum und wie
-#### Model
+Der Ordner ui_folder/ enthält die Komponenten, die für die Interaktion mit den Benutzer:innen zuständig sind. Hier wird die Eingabe entgegengenommen und die Ausgabe erzeugt. Die UI ruft Funktionen aus der Business Logic auf und zeigt deren Ergebnisse an. In dieser Schicht erfolgt keine direkte Datenverarbeitung oder Datenbankabfrage. Die Datei input_helper.py#### Model
 
 #### Business Logic
+Im Verzeichnis business_logic/ befindet sich die gesamte Geschäftslogik des Systems. Jede wichtige Funktionalität, wie z. B. das Verwalten von Buchungen, Hotels, Gästen, Rechnungen oder Bewertungen, ist in einer eigenen Manager-Klasse gekapselt. Diese Manager arbeiten mit den Datenmodellen aus dem model/-Verzeichnis und verwenden die Data Access Layer (DAL), um Daten abzurufen oder zu speichern. Die Business Logic stellt damit die zentrale Verarbeitungs- und Entscheidungsschicht des Systems dar.
 
 #### Data Access Layer
+Der Ordner data_access/ enthält die Datenzugriffslogik. Hier befinden sich Klassen, die den Zugriff auf die SQLite-Datenbank kapseln. Jede Domäne (z. B. Hotel, Gast, Bewertung) hat ihr eigenes Data Access Object, das in einer separaten Datei implementiert ist. Diese Schicht stellt Methoden bereit, um Datenbankoperationen (z. B. SELECT, INSERT, UPDATE, DELETE) auszuführen. Der Zugriff erfolgt ausschließlich über diese Schicht. Weder UI noch Business Logic kommunizieren direkt mit der Datenbank.
+
+#### Model
+Im model/-Verzeichnis sind die Datenstrukturen, mit denen innerhalb des Systems gearbeitet wird. Jede Klasse repräsentiert eine zentrale Entität des Hotelreservierungssystems, wie z. B. Guest, Room, Booking oder Rating. Diese Klassen enthalten Konstruktoren, Attribute ( mit privaten Zugriffen), sowie Methoden zur Darstellung oder Modifikation von Instanzdaten. Sie halten die relevanten Informationen wie z. B. Namen, IDs oder Buchungsdaten und werden von den verschiedenen Schichten genutzt, um damit weiterzuarbeiten.
+
+#### Data Base
+Der Ordner database/ enthält die SQLite-Datenbanken, die für Entwicklung und Test genutzt werden, sowie das zugehörige SQL-Skript zur Erstellung der Tabellenstruktur. Die Datei hotel_reservation_samp_scriptle.sql definiert dabei den Aufbau der Datenbank, während z. B. hotel_reservation_db.db die aktuell verwendete SQLite-Datenbank enthält.
 
 ## User Stories
 ### Minimale User Stories
