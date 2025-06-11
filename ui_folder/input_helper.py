@@ -749,7 +749,7 @@ def user_story_revenue_analysis():
 
     manager = InvoiceManager()
     total = manager.get_total_revenue(start_date, end_date)
-    monthly = manager.get_revenue_by_month(start_date, end_date)
+    monthly = manager.get_monthly_revenue_range(start_date, end_date)
 
     print(f"\nGesamteinnahmen von {start_date} bis {end_date}: CHF {total:.2f}")
 
