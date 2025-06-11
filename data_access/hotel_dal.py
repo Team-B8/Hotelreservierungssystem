@@ -18,12 +18,14 @@ class HotelDAL(BaseDAL):
         return Hotel(hotel_id=last_row_id, name=name, stars=stars, address_id=address_id)
 
     def read_hotel_by_id(self, hotel_id: int) -> Hotel | None:
+        # SQL query to fetch a hotel by its ID
         sql = "SELECT hotel_id, name, stars, address_id FROM Hotel WHERE hotel_id = ?"
         params = (hotel_id,)
         with self._connect() as conn:
             cursor = conn.execute(sql, params)
             row = cursor.fetchone()
         if row:
+        # If a row is found, create and return a Hotel object
             return Hotel(hotel_id=row[0], name=row[1], stars=row[2], address_id=row[3])
         return None
 
