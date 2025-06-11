@@ -139,3 +139,4 @@ class HotelManager:
             if hotel.name.lower() == name.lower():
                 return hotel
         return None
+    
