@@ -40,7 +40,7 @@ class InvoiceManager:
         room_type = self.room_type_dal.get_by_id(room.type_id)
         # Determine base price
         base_price = room.price_per_night
-        total_amount = self.calculate_dynamic_price(booking.check_in, booking.check_out, base_price)
+        total_amount = self.calculate_dynamic_price(base_price, booking.check_in, booking.check_out)
         # Create invoice
         invoice = Invoice(booking_id=booking.booking_id, issue_date=date.today(), total_amount=total_amount, is_cancelled=False)
         return self.invoice_dal.create(invoice)

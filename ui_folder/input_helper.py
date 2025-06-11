@@ -352,9 +352,11 @@ def user_story_4():
             zip_code = input("PLZ: ")
             booking = booking_manager.create_booking_new_guest(room_id, check_in, check_out, first_name, last_name, email, street, city, zip_code, total_amount)
         # show booking success and create invoice
-        print(f"Buchung erfolgreich! Buchungs-ID: {booking.booking_id}")
+        if booking:
+            print(f"Buchung erfolgreich! Buchungs-ID: {booking.booking_id}")
         invoice = invoice_manager.generate_invoice(booking)
-        print(f"Rechnung erstellt. Betrag: {invoice.total_amount:.2f} CHF")
+        if invoice:
+            print(f"Rechnung erstellt. Betrag: {invoice.total_amount:.2f} CHF")
     except Exception as e:
         # show error if something goes wrong
         print(f"Fehler bei der Buchung: {e}")
