@@ -30,6 +30,7 @@ class Rating:
     
     @rating_id.setter
     def rating_id(self, value: int):
+        # Allows setting the ID after inserting into the database 
         if not isinstance(value, int) and value is not None:
             raise ValueError("rating_id muss eine ganze Zahl sein")
         self.__rating_id = value
@@ -40,6 +41,7 @@ class Rating:
 
     @stars.setter
     def stars(self, value: int):
+        # Ensures star value is always between 1 and 5
         if not isinstance(value, int) or not (1 <= value <= 5):
             raise ValueError("Sterne müssen eine ganze Zahl zwischen 1 und 5 sein.")
         self.__stars = value
@@ -50,10 +52,12 @@ class Rating:
 
     @comment.setter
     def comment(self, value: str):
+        # Allows updating comment while ensuring correct type
         if not isinstance(value, str) and value is not None:
             raise TypeError("Kommentar muss ein String oder None sein")
         self.__comment = value
 
     @property
     def created_date(self) -> date:
+        # Read-only access to the date the rating was created
         return self.__created_date    
