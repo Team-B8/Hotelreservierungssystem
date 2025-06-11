@@ -18,14 +18,14 @@ class HotelManager:
     def create_hotel(self, name: str, stars: int, address_id: int):
         # check if stars are in the valid range
         if not (1 <= stars <= 5):
-            raise ValueError("Stars must be between 1 and 5")
+            raise ValueError("Die Sterne müssen zwischen 1 und 5 liegen.")
         # create the hotel in the database
         hotel = self.hotel_dal.create_hotel(name, stars, address_id)
         # get the default room type (ID 1, usually Single room)
         default_type = self.room_type_dal.get_by_id(1)
         # if default room type doesn't exist, raise an error
         if not default_type:
-            raise ValueError("Default room type (ID 1) does not exist")
+            raise ValueError("Standard-Raumtyp (ID 1) ist nicht vorhanden")
         # create a default room for the new hotel
         room = self.room_dal.create_room(hotel.hotel_id, "001", default_type.type_id, 100.0)
         # return the created hotel
@@ -46,7 +46,7 @@ class HotelManager:
     def update_hotel(self, hotel_id: int, name: str, stars: int, address=None) -> bool:
         # check if stars are in the valid range
         if not (1 <= stars <= 5):
-            raise ValueError("Stars must be between 1 and 5")
+            raise ValueError("Sterne müssen zwischen 1 und 5 liegen")
         # update hotel name and stars in the database
         hotel_updated = self.hotel_dal.update_hotel(hotel_id, name, stars)
         # if an address object is given, update the address too
