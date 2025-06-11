@@ -100,6 +100,7 @@ class InvoiceDAL(BaseDAL):
         return cursor.rowcount > 0
     
     def get_all_by_date_and_hotel(self, start_date: str, end_date: str, hotel_id: int) -> list[Invoice]:
+        # SQL query to get all invoices within a date range and for a specific hotel
         sql = """
         SELECT i.invoice_id, i.booking_id, i.issue_date, i.total_amount, i.is_cancelled
         FROM Invoice i
@@ -107,8 +108,10 @@ class InvoiceDAL(BaseDAL):
         JOIN Room r ON b.room_id = r.room_id
         WHERE i.issue_date BETWEEN ? AND ? AND r.hotel_id = ?
         """
+        # Connect to database and execute query
         with self._connect() as conn:
             rows = conn.execute(sql, (start_date, end_date, hotel_id)).fetchall()
+        # Convert rows into Invoice objects and return the list
         return [
             Invoice(
                 invoice_id=row["invoice_id"],

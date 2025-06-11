@@ -741,30 +741,34 @@ def user_story_revenue_analysis():
 
     print("\n--- 8: Umsatzanalyse ---")
     try:
+        # Show list of all hotels
         hotels = HotelManager().get_all_hotels()
         for h in hotels:
             print(f"{h.hotel_id}: {h.name}")
+        # User selects a hotel and enters a date range
         hotel_id = int(input("Hotel-ID auswählen: "))
         start_input = input("Startdatum (YYYY-MM-DD): ")
         end_input = input("Enddatum (YYYY-MM-DD): ")
-
+        # Parse input strings into date objects
         start_date = date.fromisoformat(start_input)
         end_date = date.fromisoformat(end_input)
+        # Create manager instance and retrieve revenue data
         manager = InvoiceManager()
         total = manager.get_total_revenue(start_date, end_date, hotel_id)
         monthly = manager.get_monthly_revenue_range(start_date, end_date, hotel_id)
+        # Output total revenue
         print(f"\nGesamteinnahmen von {start_date} bis {end_date}: CHF {total:.2f}")
         if not monthly:
             print("Keine Buchungen im gewählten Zeitraum.")
             return
-        # load data in dataframe
+        # Load monthly revenue data into a DataFrame
         df = pd.DataFrame(list(monthly.items()), columns=["Monat", "Umsatz"])
         df["Monat"] = pd.to_datetime(df["Monat"])
         df = df.sort_values("Monat")
-        # show output in table
+        # Display the table
         print("\nMonatliche Einnahmen:")
         print(df.to_string(index=False))
-        # visualization
+        # Create a bar chart with a trend line using seaborn
         plt.figure(figsize=(10,6))
         sns.barplot(data=df, x="Monat", y="Umsatz", color="skyblue", label="Umsatz")
         sns.regplot(data=df, x=df.index, y="Umsatz", scatter=False, color="red", label="Trendlinie")
