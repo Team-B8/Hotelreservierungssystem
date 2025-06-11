@@ -27,8 +27,6 @@ class Guest:
         self.__last_name = last_name
         self.__email = email
         self.__address_id = address_id
-        self.__bookings = []  # list to store associated bookings
-        self.__is_deleted = False  # flag to mark logical deletion
 
     def __repr__(self):
         # defines how the guest object is represented as string
@@ -73,18 +71,6 @@ class Guest:
         if not isinstance(new_email, str):
             raise ValueError("email must be a string")
         self.__email = new_email
-
-    def delete(self):
-        # marks the guest as logically deleted
-        if not self.__is_deleted:
-            self.__is_deleted = True
-            print(f"{self.__first_name} {self.__last_name} was marked as deleted.")
-        else:
-            print(f"{self.__first_name} {self.__last_name} is already marked as deleted.")
-
-    @property
-    def is_deleted(self):
-        return self.__is_deleted
 
     @property
     def full_name(self) -> str:
