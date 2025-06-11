@@ -794,27 +794,35 @@ def user_story_geocard():
     import tempfile
     print("\n--- 3.4: Karte mit Umgebung ---")
     try:
+        # Display available hotels
         hotels = HotelManager().get_all_hotels()
         for h in hotels:
             print(f"{h.hotel_id}: {h.name} ({h.stars} Sterne)")
+        # User selects a hotel
         hotel_id = int(input("Hotel-ID auswählen: "))
         manager = HotelManager()
+        # Get hotel and address data
         hotel, address = manager.get_hotel_with_address(hotel_id)
         if not hotel or not address:
             print("Hotel oder Adresse nicht gefunden.")
             return
+        # Format the full address for geolocation
         full_address = f"{address.street}, {address.zip_code} {address.city}"
+        # Use geopy to get geographic coordinates from the address
         geolocator = Nominatim(user_agent="hotel_locator")
         location = geolocator.geocode(full_address)
         if not location:
             print("Standort konnte nicht gefunden werden.")
             return
+        # Create the map centered on the hotel's coordinates
         map_ = folium.Map(location=[location.latitude, location.longitude], zoom_start=15)
+        # Add a marker for the hotel location
         folium.Marker(
             [location.latitude, location.longitude],
             popup=f"{hotel.name}\n{full_address}",
             tooltip=f"Hotelstandort von {hotel.name}"
         ).add_to(map_)
+        # Save the map to a temporary HTML file and open it in the browser
         with tempfile.NamedTemporaryFile(suffix=".html", delete=False) as tmp:
             map_.save(tmp.name)
             webbrowser.open('file://' + tmp.name)
