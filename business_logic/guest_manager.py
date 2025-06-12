@@ -1,4 +1,3 @@
-# guest_manager.py (Business Logic Layer)
 from data_access.guest_dal import GuestDAL
 from model.guest import Guest
 
