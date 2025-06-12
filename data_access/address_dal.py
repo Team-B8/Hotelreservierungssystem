@@ -28,8 +28,10 @@ class AddressDAL(BaseDAL):
         return result.rowcount > 0
 
     def get_address_by_hotel(self, hotel_id: int) -> Address | None:
+        # connect to the database and run the update query
         with self._connect() as conn:
             cursor = conn.execute(
+                # SQL query to select the address
                 "SELECT a.* FROM address a JOIN hotel h ON a.address_id = h.address_id WHERE h.hotel_id = ?",
                 (hotel_id,)
             )
