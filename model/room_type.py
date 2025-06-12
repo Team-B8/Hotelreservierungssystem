@@ -12,11 +12,7 @@ class RoomType:
         self.__max_guests = max_guests
 
     def __repr__(self):
-        return (
-            f"RoomType(id={self.__type_id}, "
-            f"description='{self.__description}', "
-            f"max_guests={self.__max_guests})"
-        )
+        return f"RoomType(id={self.__type_id}, description='{self.__description}', max_guests={self.__max_guests})"
 
     @property
     def type_id(self) -> int:

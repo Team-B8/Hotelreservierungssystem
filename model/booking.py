@@ -53,7 +53,6 @@ class Booking:
             raise TypeError("booking_id muss eine ganze Zahl sein")
         self.__booking_id = booking_id
 
-
     @property
     def guest_id(self) -> int:
         return self.__guest_id

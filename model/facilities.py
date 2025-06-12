@@ -9,10 +9,9 @@ class Facilities:
         self.__facility_id = facility_id
         self.__facility_name = facility_name
         self.__is_deleted = False
-        self.__rooms = []  # list of Room objects using this facility
+        self.__rooms = []
 
     def __repr__(self):
-        # Textual representation of the facility object
         return f"Facility(id={self.__facility_id}, name={self.__facility_name})"
 
     @property
@@ -36,7 +35,6 @@ class Facilities:
         return self.__rooms
 
     def assign_to_room(self, room):
-        # Adds the room to the facility if not already assigned
         if room not in self.__rooms:
             self.__rooms.append(room)
 

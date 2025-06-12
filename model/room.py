@@ -38,7 +38,7 @@ class Room:
     @room_no.setter
     def room_no(self, value: str):
         if not isinstance(value, str):
-            raise TypeError("room_no muss eine Zeichenkette sein")
+            raise TypeError("room_no muss eine Zeichenkette sein. Z.B. A122 erlaubt.")
         self.__room_no = value
 
     @property
@@ -60,14 +60,6 @@ class Room:
         if not isinstance(value, (int, float)):
             raise TypeError("price_per_night muss numerisch sein")
         self.__price_per_night = float(value)
-    
-    @property
-    def room_type(self):
-        return self.__room_type
-
-    @room_type.setter
-    def room_type(self, room_type_obj):
-        self.__room_type = room_type_obj
 
     @property
     def facilities(self):
