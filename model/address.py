@@ -67,7 +67,7 @@ class Address:
         self.__zip_code = zip_code
 
     def delete_address(self) -> None:
-    self.__address_id = None
-    self.__street = None
-    self.__city = None
-    self.__zip_code = None
+        self.__address_id = None
+        self.__street = None
+        self.__city = None
+        self.__zip_code = None
