@@ -9,15 +9,20 @@ class Facilities:
         self.__facility_id = facility_id
         self.__facility_name = facility_name
         self.__is_deleted = False
-        self.__rooms = []  # list of Room objects using this facility
+        self.__rooms = []
 
     def __repr__(self):
-        # Textual representation of the facility object
         return f"Facility(id={self.__facility_id}, name={self.__facility_name})"
 
     @property
     def facility_id(self):
         return self.__facility_id
+    
+    @facility_id.setter
+    def facility_id(self, value: int):
+        if not isinstance(value, int):
+            raise TypeError("Facility-ID muss eine ganze Zahl sein")
+        self.__facility_id = value
 
     @property
     def facility_name(self):
@@ -36,7 +41,6 @@ class Facilities:
         return self.__rooms
 
     def assign_to_room(self, room):
-        # Adds the room to the facility if not already assigned
         if room not in self.__rooms:
             self.__rooms.append(room)
 
@@ -50,10 +54,3 @@ class Facilities:
     @property
     def is_deleted(self):
         return self.__is_deleted
-
-    def restore(self):
-        if self.__is_deleted:
-            self.__is_deleted = False
-            print(f"Facility {self.__facility_name} wurde wiederhergestellt.")
-        else:
-            print(f"Facility {self.__facility_name} ist bereits aktiv.")
