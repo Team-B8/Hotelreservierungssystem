@@ -637,19 +637,24 @@ def user_story_db_schemaaenderung_3():
     print("\n--- 12: Hotelbewertung abgeben ---")
     try:
         rating_manager = RatingManager()
+        # User enters their email address
         email = input("Bitte geben Sie Ihre E-Mail-Adresse ein: ")
+        # Retrieve guest ID using the email
         guest_id = rating_manager.get_guest_id_by_email(email)
+        # Fetch completed (non-canceled) bookings of this guest
         bookings = rating_manager.get_completed_bookings_by_guest_id(guest_id)
 
         if not bookings:
             raise LookupError("Sie haben keine abgeschlossenen Buchungen, die bewertet werden können.")
 
+        # let user choose a booking to rate
         print("Bitte wählen Sie eine Buchung aus:")
         for i, (booking_id, room_id, check_in, check_out) in enumerate(bookings, start=1):
             room = rating_manager.get_room_by_id(room_id)
             hotel = rating_manager.get_hotel_by_id(room.hotel_id)
             print(f"[{i}] {hotel.name} ({check_in} – {check_out})")
 
+        # User inputs booking selection
         choice = input("Nummer der Buchung: ")
         if not choice.isdigit() or int(choice) < 1 or int(choice) > len(bookings):
             raise ValueError("Ungültige Auswahl")
@@ -657,13 +662,14 @@ def user_story_db_schemaaenderung_3():
         selected = bookings[int(choice) - 1]
         _, selected_room_id, _, check_out = selected
 
+        #system checks if this booking is valid for rating
         if not rating_manager.has_completed_booking(check_out):
             raise Exception("Gast kann nur nach einem abgeschlossenen, nicht stornierten Aufenthalt bewerten.")
         
         room = rating_manager.get_room_by_id(selected_room_id)
         selected_hotel_id = room.hotel_id
-        #Listen fangen bei Python mit 0 an. Deshalb -1.
-
+       
+        #Ask guest for star rating and comment
         stars = int(input("Wie viele Sterne möchten Sie geben? (1–5): "))
         if not (1 <= stars <= 5):
             raise ValueError("Ungültige Bewertung. Bitte zwischen 1 und 5 Sterne.")
@@ -671,6 +677,7 @@ def user_story_db_schemaaenderung_3():
         comment = input("Ihr Kommentar: ")
         created = date.today()
 
+        # Save rating to the database
         rating_manager.create_rating(stars, comment, created, selected_hotel_id, guest_id)
         print("Bewertung wurde erfolgreich gespeichert.")
     except Exception as e:
@@ -681,23 +688,29 @@ def user_story_db_schemaaenderung_4():
     hotel_manager = HotelManager()
     rating_manager = RatingManager()
 
+    # Get all hotels from the DB
     hotels = hotel_manager.get_all_hotels()
     if not hotels:
         raise LookupError("Keine Hotels verfügbar.")
 
+    # Display all available hotels to the user
     for h in hotels:
             print(f"{h.hotel_id}: {h.name} ({h.stars}★)")
     try:
+        # User selects a hotel by ID
         hotel_id_input = input("Bitte Hotel-ID eingeben: ")
         if not hotel_id_input.isdigit():
             raise ValueError("Ungültige Eingabe. Bitte eine numerische Hotel-ID eingeben.")
 
         hotel_id = int(hotel_id_input)
+
+        # Fetch all ratings for that hotel
         ratings = rating_manager.get_ratings_by_hotel_id(hotel_id)
 
         if not ratings:
             raise LookupError(f"Keine Bewertungen für Hotel-ID {hotel_id} gefunden.")
 
+        # Print all ratings
         print(f"\n⭐ Bewertungen für Hotel-ID {hotel_id}:")
         for r in ratings:
             print(f"{r.stars}★ – {r.comment} ({r.created_date})")
