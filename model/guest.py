@@ -76,9 +76,6 @@ class Guest:
     def full_name(self) -> str:
         return f"{self.__first_name} {self.__last_name}"
 
-    @property
-    def bookings(self) -> str:
-        return self.__bookings
 
     @property
     def address_id(self) -> int:
