@@ -27,16 +27,25 @@ Sprint 4 widmete sich der Finalisierung des Projekts. Ziel war es, alle noch off
 Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugleich flexible Arbeitsweise etabliert werden, bei der alle Teammitglieder aktiv in Planung, Umsetzung und Reflexion eingebunden waren.
 
 ### Tools 
-Deepnote: Codieren und Dokumentation
-Visual Studio Code: Codieren
-GitHub: Systemablage, Systemadmninistration, Aufgabenverteilung
-Teams: Kommunikation, Video-Calls
+<P>Deepnote: Codieren und Dokumentation</p>
+<p>Visual Studio Code: Codieren</p>
+<p>GitHub: Systemablage, Systemadmninistration, Aufgabenverteilung</p>
+<p>Teams: Kommunikation, Video-Calls</p>
 
 ### Projektbeiträge
-Yaren Akinci: 
-Kerem Akkaya: 
-Lou Brauchli: 
-Haris Salii: 
+Während des Projekts arbeiteten alle Teammitglieder gemeinsam an der Umsetzung des Hotelreservierungssystems. In den ersten Sprints stand das Einarbeiten in die Projektumgebung, die verwendeten Tools (z. B. GitHub, Miro), sowie das Erlernen der Grundlagen in Python und der objektorientierten Programmierung im Vordergrund. Alle Gruppenmitglieder beteiligten sich aktiv an diesen Vorbereitungen und erarbeiteten sich gemeinsam das notwendige Wissen.
+
+Im weiteren Projektverlauf lag der Schwerpunkt auf der Modellierung des Systems, der Erstellung und Umsetzung von User Stories sowie der Dokumentation. Alle Teammitglieder arbeiteten dabei kontinuierlich an der Implementierung der User Stories und beteiligten sich an der Programmierung und am Testen der Funktionen.
+
+<p>Yaren Akinci übernahm als Scrum Master im zweiten Sprint Verantwortung für die Organisation des Teams. Sie vertiefte sich in die Projekt-Guidelines und die grundlegenden Prinzipien wie KISS und DRY, die für die saubere und wartbare Programmierung entscheidend waren. Er setzte User Stories um und dokumentierte und korrigierte die Projektdokumentation.</p>
+
+<p>Kerem Akkaya war als Scrum Master im vierten Sprint tätig und trug zur Umsetzung der User Stories bei. Er wiederholte wichtige Unterrichtsinhalte (z. B. Complete User Story) und arbeitete aktiv an der Implementierung des Projekts mit. Schrieb einen Teil der Dokumentation und nahm diverse korrekturen am Projekt teil. </p>
+
+<p>Lou Brauchli fokussierte sich stark auf die technische Dokumentation und Modellierung. Er erstellte und aktualisierte das UML-Diagramm, kommentierte den Code und dokumentierte die User Stories ausführlich in Deepnote. Zusätzlich leitete er als Scrum Master den dritten Sprint, wo er die Umsetzung der User Stories leitete.</p>
+
+<p>Haris Salii übernahm die Rolle des Scrum Masters im ersten Sprint und beschäftigte sich frühzeitig mit der Tool-Infrastruktur. In den späteren Sprints war er insbesondere für die Implementierung der User Stories und deren Logik zuständig. </p>
+
+Alle Mitglieder beteiligten sich an Aspekten der Dokumentation, User Stories und Management. Durch die klare Aufteilung der Verantwortlichkeiten und die gute Zusammenarbeit im Team konnte das Projekt planmässig abgeschlossen und erfolgreich abgegeben werden.
 
 
 ### Wichtige Entscheidungen
