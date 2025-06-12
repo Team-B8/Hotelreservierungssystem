@@ -65,3 +65,9 @@ class Address:
         if not isinstance(zip_code, str):
             raise ValueError("zip_code muss ein String sein")
         self.__zip_code = zip_code
+
+    def delete_address(self) -> None:
+    self.__address_id = None
+    self.__street = None
+    self.__city = None
+    self.__zip_code = None
