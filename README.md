@@ -41,7 +41,7 @@ Im weiteren Projektverlauf lag der Schwerpunkt auf der Modellierung des Systems,
 
 <p>Kerem Akkaya war als Scrum Master im vierten Sprint tätig und trug zur Umsetzung der User Stories bei. Er wiederholte wichtige Unterrichtsinhalte (z. B. Complete User Story) und arbeitete aktiv an der Implementierung des Projekts mit. Schrieb einen Teil der Dokumentation und nahm diverse korrekturen am Projekt teil. </p>
 
-<p>Lou Brauchli fokussierte sich stark auf die technische Dokumentation und Modellierung. Er erstellte und aktualisierte das UML-Diagramm, kommentierte den Code und dokumentierte die User Stories ausführlich in Deepnote. Zusätzlich leitete er als Scrum Master den dritten Sprint, wo er die Umsetzung der User Stories leitete.</p>
+<p>Lou Brauchli fokussierte sich stark auf die technische Dokumentation und Modellierung. Er erstellte und aktualisierte das UML-Diagramm, kommentierte den Code und dokumentierte die User Stories ausführlich in Deepnote. Zusätzlich leitete er als Scrum Master den dritten Sprint, wo er die Umsetzung und Programmierung der User Stories leitete.</p>
 
 <p>Haris Salii übernahm die Rolle des Scrum Masters im ersten Sprint und beschäftigte sich frühzeitig mit der Tool-Infrastruktur. In den späteren Sprints war er insbesondere für die Implementierung der User Stories und deren Logik zuständig. </p>
 
