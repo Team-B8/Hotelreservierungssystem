@@ -11,11 +11,3 @@ class AddressManager:
         address = Address(street=street, city=city, zip_code=zip_code)
         return self.__address_dal.create(address)
 
-    def get_address(self, address_id: int) -> Address | None:
-        # Get an address by its ID
-        return self.__address_dal.get_address_by_id(address_id)
-
-    def delete_address(self, address_id: int) -> None:
-        # Delete the address with the given ID
-        self.__address_dal.delete(address_id)
-

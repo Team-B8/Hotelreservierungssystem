@@ -22,11 +22,6 @@ class FacilitiesManager:
         # Delete a facility by its ID
         return self.dal.delete(facility_id)
 
-    def assign_facility_to_room(self, facility: Facilities, room):
-        # Assigns the facility to the room bidirectionally
-        facility.assign_to_room(room)
-        room.add_facility(facility)
-
     def get_facilities_for_room(self, room_id: int):
         # Get all facilities assigned to a specific room
         return self.dal.get_facilities_by_room_id(room_id)

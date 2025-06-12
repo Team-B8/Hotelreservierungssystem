@@ -15,10 +15,6 @@ class BookingManager:
         self.guest_dal = GuestDAL()
         self.invoice_manager = invoice_manager if invoice_manager else InvoiceManager()
 
-    def get_all_bookings(self):
-        # return all bookings from the database
-        return self.booking_dal.get_all_bookings()
-
     def create_booking_existing_guest(self, room_id: int, check_in, check_out, email: str, total_amount: float):
         guest = GuestDAL().get_by_email(email)
         if not guest:
@@ -58,10 +54,6 @@ class BookingManager:
             # call the cancel_booking method from the data access layer
             self.invoice_manager.mark_invoice_as_cancelled(booking_id)
         return success
-    
-    def get_booking_by_id(self, booking_id: int):
-        # get a booking from the database by its ID
-        return self.booking_dal.get_by_id(booking_id)
 
     def get_bookings_by_email(self, email: str):
         # find the guest by their email

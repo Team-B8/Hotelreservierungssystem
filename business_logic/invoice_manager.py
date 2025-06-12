@@ -44,17 +44,6 @@ class InvoiceManager:
         # Create invoice
         invoice = Invoice(booking_id=booking.booking_id, issue_date=date.today(), total_amount=total_amount, is_cancelled=False)
         return self.invoice_dal.create(invoice)
-    
-    def display_invoice(self, booking_id: int) -> Invoice | None:
-        return self.invoice_dal.get_by_booking_id(booking_id)
-
-    def adjust_invoice(self, booking_id: int, new_amount: float) -> Invoice | None:
-        invoice = self.invoice_dal.get_by_booking_id(booking_id)
-        if invoice is None:
-            return None
-        invoice.total_amount = new_amount
-        self.invoice_dal.update(invoice)
-        return invoice
 
     def get_invoices_by_email(self, email: str):
         # get the guest object by email

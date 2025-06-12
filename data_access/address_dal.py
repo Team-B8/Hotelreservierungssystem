@@ -4,18 +4,6 @@ from model.address import Address
 class AddressDAL(BaseDAL):
     def __init__(self):
         super().__init__()
-        
-    def get_by_id(self, address_id: int) -> Address | None:
-        with self._connect() as conn:
-            cursor = conn.execute("SELECT * FROM address WHERE address_id = ?", (address_id,))
-            row = cursor.fetchone()
-        return Address(**row) if row else None
-
-    def get_all_addresses(self) -> list[Address]:
-        with self._connect() as conn:
-            cursor = conn.execute("SELECT * FROM address")
-            rows = cursor.fetchall()
-        return [Address(**row) for row in rows]
 
     def create(self, address: Address) -> Address:
         with self._connect() as conn:
@@ -39,26 +27,11 @@ class AddressDAL(BaseDAL):
         # return True if at least one row was updated
         return result.rowcount > 0
 
-    def delete(self, address_id: int) -> bool:
-        with self._connect() as conn:
-            result = conn.execute("DELETE FROM address WHERE address_id = ?", (address_id,))
-            conn.commit()
-        return result.rowcount > 0
-
     def get_address_by_hotel(self, hotel_id: int) -> Address | None:
         with self._connect() as conn:
             cursor = conn.execute(
                 "SELECT a.* FROM address a JOIN hotel h ON a.address_id = h.address_id WHERE h.hotel_id = ?",
                 (hotel_id,)
-            )
-            row = cursor.fetchone()
-        return Address(**row) if row else None
-
-    def get_address_by_guest(self, guest_id: int) -> Address | None:
-        with self._connect() as conn:
-            cursor = conn.execute(
-                "SELECT a.* FROM address a JOIN guest g ON a.address_id = g.address_id WHERE g.guest_id = ?",
-                (guest_id,)
             )
             row = cursor.fetchone()
         return Address(**row) if row else None
