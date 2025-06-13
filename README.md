@@ -209,7 +209,7 @@ Damit wird das textbasierte UI gestartet, in dem alle User Stories interaktiv ge
 - SQLite-Datenbank im Ordner database/ vorhanden
  
 ## User Stories
-Folgend werden die erstellten User Stories abgebildet. Eine ausführliche Dokumentation der User Stories ist auf Deepnote zu finden.
+Folgend werden nur die umgesetzten User Stories abgebildet. Eine ausführliche Dokumentation der User Stories ist auf Deepnote zu finden.
 ### Minimale User Stories
 #### 1. Als Gast möchte ich die verfügbaren Hotels durchsuchen, damit ich dasjenige auswählen kann, welches meinen Wünschen entspricht. Wünsche sind:
 1.1. Ich möchte alle Hotels in einer Stadt durchsuchen, damit ich das Hotel nach meinem bevorzugten Standort (Stadt) auswählen kann.
@@ -271,15 +271,15 @@ abhängen.
 
 ### 1. Projektstruktur und Modularisierung
 
-Schon zu Beginn war klar, wie wichtig eine saubere Struktur ist. Wir haben die Anwendung in vier Hauptbereiche aufgeteilt: **Benutzeroberflaeche (`ui_folder`)**, **Geschaeftslogik (`business_logic`)**, **Datenzugriff (`data_access`)** und **Datenmodelle (`model`)**. Diese Trennung hat geholfen, den Ueberblick zu behalten. Neue Funktionen konnten gezielt in einem Bereich umgesetzt werden, ohne andere Teile zu stören. Auch das Testen wurde einfacher, weil die Logik klar voneinander getrennt war. Das hat die Wartbarkeit und Erweiterbarkeit des Projekts deutlich verbessert.
+Schon zu Beginn war klar, wie wichtig eine saubere Struktur ist. Wir haben die Anwendung in vier Hauptbereiche aufgeteilt: **Benutzeroberflaeche (`ui_folder`)**, **Geschaeftslogik (`business_logic`)**, **Datenzugriff (`data_access`)** und **Datenmodelle (`model`)**. Diese Trennung hat geholfen, den Überblick zu behalten. Neue Funktionen konnten gezielt in einem Bereich umgesetzt werden, ohne andere Teile zu stören. Auch das Testen wurde einfacher, weil die Logik klar voneinander getrennt war. Das hat die Wartbarkeit und Erweiterbarkeit des Projekts deutlich verbessert.
 
 ### 2. Datenkonsistenz in relationalen Datenbanken
 
-Im Umgang mit SQLite wurde deutlich: Konsistenz zwischen Tabellen ist zentral. Bei verknuepften Daten wie `Guest`, `Booking`, `Room` und `Invoice` traten schnell Probleme auf, wenn Foreign Keys fehlten oder falsche Werte gespeichert wurden. Durch korrekte Verknuepfungen und Validierungen konnten wir solche Fehler vermeiden. Auch kleinere Anomalien, etwa doppelte Buchungen oder ungültige Verweise, wurden so verhindert.
+Im Umgang mit SQLite wurde deutlich: Konsistenz zwischen Tabellen ist zentral. Bei verknüpften Daten wie `Guest`, `Booking`, `Room` und `Invoice` traten schnell Probleme auf, wenn Foreign Keys fehlten oder falsche Werte gespeichert wurden. Durch korrekte Verknüpfungen und Validierungen konnten wir solche Fehler vermeiden. Auch kleinere Anomalien, etwa doppelte Buchungen oder ungültige Verweise, wurden so verhindert.
 
-### 3. Fehlermanagement und Nutzerfuehrung
+### 3. Fehlermanagement
 
-Fehlermeldungen sind nicht nur fuer Entwickler wichtig. Auch Nutzer müssen verstehen, was schieflief. Wir haben mit `try-except`-Bloecken gearbeitet, um Fehler frühzeitig abzufangen. Für die Benutzeroberfläche wurden klare Rueckmeldungen formuliert, zum Beispiel bei ungültigen Eingaben oder fehlenden Daten. So konnten wir Probleme schneller erkennen und gezielt beheben.
+Fehlermeldungen sind nicht nur für Entwickler wichtig. Auch Nutzer müssen verstehen, was schieflief. Wir haben mit `try-except`-Bloecken gearbeitet, um Fehler frühzeitig abzufangen. Für die Benutzeroberfläche wurden klare Rückmeldungen formuliert, zum Beispiel bei ungültigen Eingaben oder fehlenden Daten. So konnten wir Probleme schneller erkennen und gezielt beheben.
 
 ### 4. Getter, Setter und Kapselung im Klassendesign
 
@@ -291,7 +291,7 @@ Wir haben das Projekt in kleine Schritte unterteilt. Jede **User Story** stand f
 
 ### 6. Verbindung von Frontend und Backend
 
-**Frontend** und **Backend** greifen ineinander. Das wurde besonders bei Änderungen in der Logik deutlich. Als wir zum Beispiel neue Prüfungen in `booking_manager.py` eingeführt haben, mussten wir auch den `input_helper.py` anpassen. Sonst hätten Nutzer keine gültigen Eingaben mehr machen koennen. Solche Zusammenhänge zu erkennen, war wichtig fuer eine stabile Anwendung.
+**Frontend** und **Backend** greifen ineinander. Das wurde besonders bei Änderungen in der Logik deutlich. Als wir zum Beispiel neue Prüfungen in `booking_manager.py` eingeführt haben, mussten wir auch den `input_helper.py` anpassen. Sonst hätten Nutzer keine gültigen Eingaben mehr machen koennen. Solche Zusammenhänge zu erkennen, war wichtig für eine stabile Anwendung.
 
 ### 7. Umgang mit SQLite und SQL-Skripten
 
