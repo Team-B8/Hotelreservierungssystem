@@ -23,9 +23,7 @@ Für das Projektmanagement wurde die **agile Scrum-Methode** eingesetzt. Die vie
 - Am Ende jedes Sprints fand ein **Sprint Review** statt, in dem der aktuelle Projektstand bewertet wurde.
 - Bewertungen, offene Aufgaben und neue Ziele wurden auf einem gemeinsamen **Scrum-Board** ([Scrum-Board](https://github.com/orgs/Team-B8/projects/1)) festgehalten.
 
-#### Sprint-Inhalte
-
-##### Sprint 1 – Einstieg ins Projekt
+#### Sprint 1 – Einstieg ins Projekt
 
 Ziele:
 - Grundlagen von Python kennenlernen
@@ -33,14 +31,14 @@ Ziele:
 - Projektbeschrieb verstehen
 - Struktur für die Dokumentation erarbeiten
 
-##### Sprint 2 – Objektorientierung & Projektstruktur
+#### Sprint 2 – Objektorientierung & Projektstruktur
 
 Ziele:
 - Verständnis der Unterrichtsinhalte mit Fokus auf Object Oriented Programming (OOP)
 - Verknüpfung der bisherigen Konzepte
 - Erstellung eines UML-Diagramms als Basis für die Model-Schicht (Geschäftsobjekte)
 
-##### Sprint 3 – Umsetzung & Dokumentation
+#### Sprint 3 – Umsetzung & Dokumentation
 
 Ziele:
 - Modellierung einzelner Systemkomponenten
@@ -48,7 +46,7 @@ Ziele:
 - Dokumentation der Ergebnisse
 - Weiterführung und Anwendung der Theorieinhalte auf das Projekt
 
-##### Sprint 4 – Finalisierung
+#### Sprint 4 – Finalisierung
 
 Ziele:
 - Abarbeiten aller offenen Aufgaben
