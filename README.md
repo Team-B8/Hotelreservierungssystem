@@ -21,53 +21,43 @@ Für das Projektmanagement wurde die **agile Scrum-Methode** eingesetzt. Die vie
 - Individuelle Beiträge wurden dort festgehalten und in **wöchentlichen Scrum-Meetings** besprochen.
 - Die Kommunikation lief hauptsächlich über **Microsoft Teams**, inklusive zusätzlicher Besprechungen zur Projektbearbeitung.
 - Am Ende jedes Sprints fand ein **Sprint Review** statt, in dem der aktuelle Projektstand bewertet wurde.
-- Bewertungen, offene Aufgaben und neue Ziele wurden auf einem gemeinsamen **Scrum-Board** ([siehe Link](#)) festgehalten.
-
----
+- Bewertungen, offene Aufgaben und neue Ziele wurden auf einem gemeinsamen **Scrum-Board** ([Scrum-Board](https://github.com/orgs/Team-B8/projects/1)) festgehalten.
 
 #### Sprint-Inhalte
 
 ##### Sprint 1 – Einstieg ins Projekt
 
-**Ziele:**
-- Grundlagen von **Python** kennenlernen
+Ziele:
+- Grundlagen von Python kennenlernen
 - Erste Programmierübungen durchführen
 - Projektbeschrieb verstehen
-- Struktur für die **Dokumentation** erarbeiten
-
----
+- Struktur für die Dokumentation erarbeiten
 
 ##### Sprint 2 – Objektorientierung & Projektstruktur
 
-**Ziele:**
-- Verständnis der Unterrichtsinhalte mit Fokus auf **Object Oriented Programming (OOP)**
+Ziele:
+- Verständnis der Unterrichtsinhalte mit Fokus auf Object Oriented Programming (OOP)
 - Verknüpfung der bisherigen Konzepte
-- Erstellung eines **UML-Diagramms** als Basis für die **Model-Schicht** (Geschäftsobjekte)
-
----
+- Erstellung eines UML-Diagramms als Basis für die Model-Schicht (Geschäftsobjekte)
 
 ##### Sprint 3 – Umsetzung & Dokumentation
 
-**Ziele:**
+Ziele:
 - Modellierung einzelner Systemkomponenten
 - Umsetzung erster **User Stories**
 - Dokumentation der Ergebnisse
 - Weiterführung und Anwendung der Theorieinhalte auf das Projekt
 
----
-
 ##### Sprint 4 – Finalisierung
 
-**Ziele:**
+Ziele:
 - Abarbeiten aller offenen Aufgaben
 - Prüfung der Funktionalität
-- **Abgabe** der vollständigen Projektarbeit inkl. Dokumentation
-
----
+- Abgabe der vollständigen Projektarbeit inkl. Dokumentation
 
 #### Fazit
 
-Durch den Einsatz von **Scrum** konnte eine **strukturierte, zielorientierte und zugleich flexible Arbeitsweise** etabliert werden. Alle Teammitglieder waren aktiv in **Planung**, **Umsetzung** und **Reflexion** eingebunden.
+Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugleich flexible Arbeitsweise** etabliert werden. Alle Teammitglieder waren aktiv in Planung, Umsetzung und Reflexion eingebunden.
 
 ### Tools 
 <P>Deepnote: Codieren und Dokumentation</p>
