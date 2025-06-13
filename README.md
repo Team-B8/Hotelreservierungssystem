@@ -12,7 +12,7 @@
 - Link zum Scrum Board: [Scrum-Board](https://github.com/orgs/Team-B8/projects/1)
 
 ## Methodologie / Projektmanagement
-# Projektmanagement mit Scrum
+### Projektmanagement mit Scrum
 
 Für das Projektmanagement wurde die **agile Scrum-Methode** eingesetzt. Die vier Unterrichtseinheiten wurden jeweils als einzelne **Sprints** organisiert, wobei jedes Teammitglied einmal die Rolle des **Scrum Masters** übernahm.
 
@@ -25,9 +25,9 @@ Für das Projektmanagement wurde die **agile Scrum-Methode** eingesetzt. Die vie
 
 ---
 
-## Sprint-Inhalte
+#### Sprint-Inhalte
 
-### Sprint 1 – Einstieg ins Projekt
+##### Sprint 1 – Einstieg ins Projekt
 
 **Ziele:**
 - Grundlagen von **Python** kennenlernen
@@ -37,7 +37,7 @@ Für das Projektmanagement wurde die **agile Scrum-Methode** eingesetzt. Die vie
 
 ---
 
-### Sprint 2 – Objektorientierung & Projektstruktur
+##### Sprint 2 – Objektorientierung & Projektstruktur
 
 **Ziele:**
 - Verständnis der Unterrichtsinhalte mit Fokus auf **Object Oriented Programming (OOP)**
@@ -46,7 +46,7 @@ Für das Projektmanagement wurde die **agile Scrum-Methode** eingesetzt. Die vie
 
 ---
 
-### Sprint 3 – Umsetzung & Dokumentation
+##### Sprint 3 – Umsetzung & Dokumentation
 
 **Ziele:**
 - Modellierung einzelner Systemkomponenten
@@ -56,7 +56,7 @@ Für das Projektmanagement wurde die **agile Scrum-Methode** eingesetzt. Die vie
 
 ---
 
-### Sprint 4 – Finalisierung
+##### Sprint 4 – Finalisierung
 
 **Ziele:**
 - Abarbeiten aller offenen Aufgaben
@@ -65,7 +65,7 @@ Für das Projektmanagement wurde die **agile Scrum-Methode** eingesetzt. Die vie
 
 ---
 
-## Fazit
+#### Fazit
 
 Durch den Einsatz von **Scrum** konnte eine **strukturierte, zielorientierte und zugleich flexible Arbeitsweise** etabliert werden. Alle Teammitglieder waren aktiv in **Planung**, **Umsetzung** und **Reflexion** eingebunden.
 
