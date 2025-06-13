@@ -28,6 +28,8 @@ Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugle
 
 ### Tools 
 <P>Deepnote: Codieren und Dokumentation</p>
+<P>Python 3.13</p>
+<P>Visual Paradigm: Modellierung ERD und UML</p>
 <p>Visual Studio Code: Codieren</p>
 <p>GitHub: Systemablage, Systemadmninistration, Aufgabenverteilung</p>
 <p>Teams: Kommunikation, Video-Calls</p>
