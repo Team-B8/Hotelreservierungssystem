@@ -66,19 +66,45 @@ Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugle
 <p>Teams: Kommunikation, Video-Calls</p>
 
 ### Projektbeiträge
-Während des Projekts arbeiteten alle Teammitglieder gemeinsam an der Umsetzung des Hotelreservierungssystems. In den ersten Sprints stand das Einarbeiten in die Projektumgebung, die verwendeten Tools (z. B. GitHub, Miro), sowie das Erlernen der Grundlagen in Python und der objektorientierten Programmierung im Vordergrund. Alle Gruppenmitglieder beteiligten sich aktiv an diesen Vorbereitungen und erarbeiteten sich gemeinsam das notwendige Wissen.
+#### Teamarbeit und Rollenverteilung im Projekt
 
-Im weiteren Projektverlauf lag der Schwerpunkt auf der Modellierung des Systems, der Erstellung und Umsetzung von User Stories sowie der Dokumentation. Alle Teammitglieder arbeiteten dabei kontinuierlich an der Implementierung der User Stories und beteiligten sich an der Programmierung und am Testen der Funktionen.
+Während des Projekts arbeiteten alle Teammitglieder gemeinsam an der Umsetzung des Hotelreservierungssystems. In den ersten Sprints lag der Fokus auf der Einarbeitung in die Projektumgebung, den verwendeten Tools wie GitHub und Miro, sowie auf dem Erlernen der Grundlagen in Python und der objektorientierten Programmierung. Alle Mitglieder beteiligten sich aktiv an diesen Vorbereitungen und erarbeiteten sich das notwendige Wissen im Team.
 
-<p>Yaren Akinci übernahm als Scrum Master im zweiten Sprint Verantwortung für die Organisation des Teams. Sie vertiefte sich in die Projekt-Guidelines und die grundlegenden Prinzipien wie KISS und DRY, die für die saubere und wartbare Programmierung entscheidend waren. Er setzte User Stories um und dokumentierte und korrigierte die Projektdokumentation.</p>
+Im weiteren Verlauf verschob sich der Schwerpunkt auf die Modellierung des Systems, die Erstellung und Umsetzung von User Stories sowie auf die fortlaufende Dokumentation. Alle Teammitglieder waren in die Implementierung, das Testen sowie die Programmierarbeit involviert.
 
-<p>Kerem Akkaya war als Scrum Master im vierten Sprint tätig und trug zur Umsetzung der User Stories bei. Er wiederholte wichtige Unterrichtsinhalte (z. B. Complete User Story) und arbeitete aktiv an der Implementierung des Projekts mit. Schrieb einen Teil der Dokumentation und nahm diverse korrekturen am Projekt teil. </p>
+#### Rollen und Beiträge im Detail
 
-<p>Lou Brauchli fokussierte sich stark auf die technische Dokumentation und Modellierung. Er erstellte und aktualisierte das UML-Diagramm, kommentierte den Code und dokumentierte die User Stories ausführlich in Deepnote. Zusätzlich leitete er als Scrum Master den dritten Sprint, wo er die Umsetzung und Programmierung der User Stories leitete.</p>
+**Yaren Akinci (Scrum Master – Sprint 2)**
 
-<p>Haris Salii übernahm die Rolle des Scrum Masters im ersten Sprint und beschäftigte sich frühzeitig mit der Tool-Infrastruktur. In den späteren Sprints war er insbesondere für die Implementierung der User Stories und deren Logik zuständig. </p>
+- Verantwortlich für die Organisation des Teams im zweiten Sprint  
+- Intensive Auseinandersetzung mit Projekt-Guidelines sowie den Prinzipien KISS und DRY 
+- Umsetzung von User Stories  
+- Pflege und Korrektur der Projektdokumentation
 
-Alle Mitglieder beteiligten sich an Aspekten der Dokumentation, User Stories und Management. Durch die klare Aufteilung der Verantwortlichkeiten und die gute Zusammenarbeit im Team konnte das Projekt planmässig abgeschlossen und erfolgreich abgegeben werden.
+**Kerem Akkaya (Scrum Master – Sprint 4)**
+
+- Scrum Master im finalen Sprint  
+- Aktive Beteiligung an der Implementierung und Korrektur von Projektinhalten  
+- Wiederholung und Anwendung zentraler Unterrichtsinhalte (z. B. *Complete User Story*)  
+- Verfasser von Teilen der Dokumentation
+
+**Lou Brauchli (Scrum Master – Sprint 3)**
+
+- Fokus auf technische Dokumentation und Modellierung 
+- Erstellung und Aktualisierung des UML-Diagramms
+- Kommentierung des Codes und umfassende Dokumentation der User Stories in Deepnote
+- Leitung der Umsetzung der Programmierung im dritten Sprint
+
+**Haris Salii (Scrum Master – Sprint 1)**
+
+- Übernahm frühzeitig die Verantwortung für die Tool-Infrastruktur 
+- Fokus auf die Implementierung der User Story-Logik in späteren Sprints  
+- Technische Unterstützung in der Systementwicklung
+
+#### Zusammenarbeit und Fazit
+
+Alle Teammitglieder wirkten an der Dokumentation, den User Stories sowie dem Projektmanagement aktiv mit.  
+Dank der klaren Rollenverteilung, der effizienten Kommunikation und der engagierten Teamarbeit konnte das Projekt planmässig abgeschlossen und erfolgreich abgegeben werden.
 
 ### Wichtige Entscheidungen
 #### 1. Modularer Aufbau des Systems
