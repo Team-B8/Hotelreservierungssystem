@@ -9,19 +9,20 @@
 ## Ressourcen
 - Link zur Deepnote-Dokumentation: [Projektdokumentation](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Projektdokumentation-0a3411e6d6224bf6bff262c03516407d)
 - Link zu den Scrum Meetings und Sprint Reviews: [Scrum Meetings und Sprint Reviews](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Sprint-1-224529094ca64f09810e7c2a8671c092?utm_content=a048451d-c7e6-46c3-a824-c0d893d5e1b2)
-- Link zum Scrum Board: [Scrum-Board](https://github.com/orgs/Team-B8/projects/1)
+- Link zum Scrum Board: [Scrum Board](https://github.com/orgs/Team-B8/projects/1)
+- Link zum Miro Board: [Miro Board](https://miro.com/app/board/uXjVLXdcWpw=/)
 
 ## Methodologie / Projektmanagement
 ### Projektmanagement mit Scrum
 
-Für das Projektmanagement wurde die **agile Scrum-Methode** eingesetzt. Die vier Unterrichtseinheiten wurden jeweils als einzelne **Sprints** organisiert, wobei jedes Teammitglied einmal die Rolle des **Scrum Masters** übernahm.
+Für das Projektmanagement wurde die agile Scrum-Methode eingesetzt. Die vier Unterrichtseinheiten wurden jeweils als einzelne Sprints organisiert, wobei jedes Teammitglied einmal die Rolle des Scrum Masters übernahm.
 
-- Die Aufgabenverteilung erfolgte über **GitHub Projects** durch den Scrum Master.
-- Die Zusammenarbeit und der Fortschritt wurden kontinuierlich auf **Deepnote** dokumentiert.
-- Individuelle Beiträge wurden dort festgehalten und in **wöchentlichen Scrum-Meetings** besprochen.
-- Die Kommunikation lief hauptsächlich über **Microsoft Teams**, inklusive zusätzlicher Besprechungen zur Projektbearbeitung.
-- Am Ende jedes Sprints fand ein **Sprint Review** statt, in dem der aktuelle Projektstand bewertet wurde.
-- Bewertungen, offene Aufgaben und neue Ziele wurden auf einem gemeinsamen **Scrum-Board** ([Scrum-Board](https://github.com/orgs/Team-B8/projects/1)) festgehalten.
+- Die Aufgabenverteilung erfolgte über GitHub Projects durch den Scrum Master.
+- Die Zusammenarbeit und der Fortschritt wurden kontinuierlich auf Deepnote dokumentiert.
+- Individuelle Beiträge wurden dort festgehalten und in wöchentlichen Scrum-Meetings besprochen.
+- Die Kommunikation lief hauptsächlich über Microsoft Teams, inklusive zusätzlicher Besprechungen zur Projektbearbeitung.
+- Am Ende jedes Sprints fand ein Sprint Review statt, in dem der aktuelle Projektstand bewertet wurde. Diese wurden auf Miro dokumentiert.
+- Bewertungen, offene Aufgaben und neue Ziele wurden auf einem gemeinsamen Scrum Board festgehalten.
 
 #### Sprint 1 – Einstieg ins Projekt
 
@@ -64,6 +65,7 @@ Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugle
 <p>Visual Studio Code: Codieren</p>
 <p>GitHub: Systemablage, Systemadmninistration, Aufgabenverteilung</p>
 <p>Teams: Kommunikation, Video-Calls</p>
+<p>Miro: Sprint Reviews und Sprint Retrospective</p>
 
 ### Projektbeiträge
 #### Teamarbeit und Rollenverteilung im Projekt
