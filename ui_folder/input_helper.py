@@ -801,10 +801,10 @@ def user_story_revenue_analysis():
         print(f"Fehler bei der Umsatzanzeige: {e}")
 
 def user_story_geocard():
-    import folium
-    from geopy.geocoders import Nominatim
-    import webbrowser
-    import tempfile
+    import folium # for interactive maps
+    from geopy.geocoders import Nominatim # enables converting an address into geographic coordinates (geocoding)
+    import webbrowser # opens the generated HTML map in the default web browser
+    import tempfile # creates temporary files, for example, to store the map before displaying it
     print("\n--- 3.4: Karte mit Umgebung ---")
     try:
         # Display available hotels
