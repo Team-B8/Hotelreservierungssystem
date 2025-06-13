@@ -43,7 +43,7 @@ Ziele:
 
 Ziele:
 - Modellierung einzelner Systemkomponenten
-- Umsetzung erster **User Stories**
+- Umsetzung erster User Stories
 - Dokumentation der Ergebnisse
 - Weiterführung und Anwendung der Theorieinhalte auf das Projekt
 
@@ -56,7 +56,7 @@ Ziele:
 
 #### Fazit
 
-Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugleich flexible Arbeitsweise** etabliert werden. Alle Teammitglieder waren aktiv in Planung, Umsetzung und Reflexion eingebunden.
+Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugleich flexible Arbeitsweise etabliert werden. Alle Teammitglieder waren aktiv in Planung, Umsetzung und Reflexion eingebunden.
 
 ### Tools 
 <P>Deepnote: Codieren und Dokumentation</p>
