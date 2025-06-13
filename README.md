@@ -180,7 +180,7 @@ Das Hotelreservierungssystem kann auf zwei Arten ausgeführt werden:
 
 Die User Stories können in Deepnote ausgeführt werden – **mit Ausnahme von User Story 14**, da dort das Modul `geopy` verwendet wird, welches in Deepnote nicht installiert werden kann.
 
-Hier geht’s direkt zum Deepnote-Projekt:  
+Hier kann man direkt den Codeblock auf Deepnote öffnen:  
 [Codeblock zum Ausführen der User Stories](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Projektdokumentation-0a3411e6d6224bf6bff262c03516407d#0abc00525e5c472a95bbecd7d26bfae6)
 
 **Wichtig:** In Deepnote muss **nur der markierte Codeblock** zur Ausführung der User Story gestartet werden – **nicht** die Codeblöcke innerhalb der Projektdokumentation!
