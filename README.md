@@ -99,7 +99,7 @@ Das Projekt ist nach dem klassischen Schichtenmodell aufgebaut, um eine klare Tr
 
 ### Layers
 #### User Interface
-Der Ordner ui_folder/ enthält die Komponenten, die für die Interaktion mit den Benutzer:innen zuständig sind. Hier wird die Eingabe entgegengenommen und die Ausgabe erzeugt. Die UI ruft Funktionen aus der Business Logic auf und zeigt deren Ergebnisse an. In dieser Schicht erfolgt keine direkte Datenverarbeitung oder Datenbankabfrage. Die Datei input_helper.py#### Model
+Der Ordner ui_folder/ enthält die Komponenten, die für die Interaktion mit den Benutzer:innen zuständig sind. Hier wird die Eingabe entgegengenommen und die Ausgabe erzeugt. Die UI ruft Funktionen aus der Business Logic auf und zeigt deren Ergebnisse an. In dieser Schicht erfolgt keine direkte Datenverarbeitung oder Datenbankabfrage.
 
 #### Business Logic
 Im Verzeichnis business_logic/ befindet sich die gesamte Geschäftslogik des Systems. Jede wichtige Funktionalität, wie z. B. das Verwalten von Buchungen, Hotels, Gästen, Rechnungen oder Bewertungen, ist in einer eigenen Manager-Klasse gekapselt. Diese Manager arbeiten mit den Datenmodellen aus dem model/-Verzeichnis und verwenden die Data Access Layer (DAL), um Daten abzurufen oder zu speichern. Die Business Logic stellt damit die zentrale Verarbeitungs- und Entscheidungsschicht des Systems dar.
