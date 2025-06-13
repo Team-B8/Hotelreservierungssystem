@@ -47,7 +47,6 @@ Im weiteren Projektverlauf lag der Schwerpunkt auf der Modellierung des Systems,
 
 Alle Mitglieder beteiligten sich an Aspekten der Dokumentation, User Stories und Management. Durch die klare Aufteilung der Verantwortlichkeiten und die gute Zusammenarbeit im Team konnte das Projekt planmässig abgeschlossen und erfolgreich abgegeben werden.
 
-
 ### Wichtige Entscheidungen
 #### 1. Modularer Aufbau des Systems
 
@@ -112,6 +111,43 @@ Im model/-Verzeichnis sind die Datenstrukturen, mit denen innerhalb des Systems 
 #### Data Base
 Der Ordner database/ enthält die SQLite-Datenbanken, die für Entwicklung und Test genutzt werden, sowie das zugehörige SQL-Skript zur Erstellung der Tabellenstruktur. Die Datei hotel_reservation_samp_scriptle.sql definiert dabei den Aufbau der Datenbank, während z. B. hotel_reservation_db.db die aktuell verwendete SQLite-Datenbank enthält.
 
+## Ausführung des Programms
+
+Das Hotelreservierungssystem kann auf zwei Arten ausgeführt werden:
+
+---
+
+### Option 1: Ausführung auf Deepnote (empfohlen)
+
+Die User Stories können bequem in Deepnote ausgeführt werden – **mit Ausnahme von User Story 14**, da dort das Modul `geopy` verwendet wird, welches in Deepnote nicht installiert werden kann.
+
+Hier geht’s direkt zum Deepnote-Projekt:  
+[Projekt in Deepnote öffnen](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Projektdokumentation-0a3411e6d6224bf6bff262c03516407d#0abc00525e5c472a95bbecd7d26bfae6)
+
+**Wichtig:** In Deepnote muss **nur der markierte Codeblock** zur Ausführung der User Story gestartet werden – **nicht** die Codeblöcke innerhalb der Projektdokumentation!
+
+---
+
+### Option 2: Lokale Ausführung
+
+Das Projekt kann auch vollständig lokal ausgeführt werden. Dafür wird eine Python-Umgebung (empfohlen: Python 3.10+) benötigt. Stelle sicher, dass folgende Abhängigkeiten installiert sind:
+
+```bash
+pip install pandas matplotlib seaborn geopandas folium geopy
+```
+### Projekt starten
+
+Navigiere in das Projektverzeichnis und führe im Terminal folgenden Befehl aus:
+```bash
+python ui_folder/input_helper.py
+```
+Damit wird das textbasierte UI gestartet, in dem alle User Stories interaktiv getestet werden können.
+
+### Voraussetzungen
+- Python 3.10 oder höher
+- Virtuelle Umgebung empfohlen (venv)
+- SQLite-Datenbank im Ordner database/ vorhanden
+ 
 ## User Stories
 ### Minimale User Stories
 #### 1. Als Gast möchte ich die verfügbaren Hotels durchsuchen, damit ich dasjenige auswählen kann, welches meinen Wünschen entspricht. Wünsche sind:
@@ -154,15 +190,8 @@ abhängen.
 
 ### User Stories mit DB-Schemaänderung
 
-Mindestens zwei der folgenden User Stories auswählen:
-
-#### 1. Als Admin möchte ich alle Buchungen bearbeiten können, um fehlende Informationen zu ergänzen (z.B. Telefonnummer).
-#### 2. Als Gast möchte ich auf meine Buchungshistorie zuzugreifen ("lesen"), damit ich meine kommenden Reservierungen verwalten kann.
-2.1. Die Anwendungsfälle für meine Buchungen sind "neu/erstellen", "ändern/aktualisieren", "stornieren/löschen".
-
 #### 3. Als Gast möchte ich nach meinem Aufenthalt eine Bewertung für ein Hotel abgeben, damit ich meine Erfahrungen teilen kann.
 #### 4. Als Gast möchte ich vor der Buchung Hotelbewertungen lesen, damit ich das beste Hotel auswählen kann.
-
 
 ### User Stories mit Datenvisualisierung
 
