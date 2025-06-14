@@ -225,7 +225,7 @@ Damit wird das textbasierte UI gestartet, in dem alle User Stories interaktiv ge
 - SQLite-Datenbank im Ordner database/ vorhanden
  
 ## User Stories
-Folgend werden die umgesetzten User Stories aufgelistet. Eine ausführliche Dokumentation der User Stories ist auf Deepnote zu finden.
+Folgend werden die umgesetzten User Stories aufgelistet. Eine ausführliche Dokumentation der User Stories ist auf Deepnote zu finden [(Projektdokumentation)](https://deepnote.com/workspace/BAI-Projekte-8a9d47a8-bcd7-44ff-8444-0996c6ccb0b9/project/AEP-Hotelreservierungsysstem-Team-B8-a048451d-c7e6-46c3-a824-c0d893d5e1b2/notebook/Projektdokumentation-0a3411e6d6224bf6bff262c03516407d).
 ### Minimale User Stories
 #### 1. Als Gast möchte ich die verfügbaren Hotels durchsuchen, damit ich dasjenige auswählen kann, welches meinen Wünschen entspricht. Wünsche sind:
 1.1. Ich möchte alle Hotels in einer Stadt durchsuchen, damit ich das Hotel nach meinem bevorzugten Standort (Stadt) auswählen kann.
