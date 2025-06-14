@@ -312,7 +312,7 @@ ChatGPT haben wir hauptsächlich zur **Fehlersuche und Klärung von Verständnis
 
 ---
 
-### 📚 Quellenverzeichnis
+### Quellenverzeichnis
 
 - Moodle-Unterlagen zum Modul **AEP**
 - Inhalte aus den **Live-Vorlesungen**
