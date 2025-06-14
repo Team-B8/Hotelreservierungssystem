@@ -7,7 +7,7 @@
   - [Projektmanagement mit Scrum](#projektmanagement-mit-scrum)  
   - [Tools](#tools)  
   - [Projektbeiträge](#projektbeiträge)  
-- [Wichtige Entscheidungen](#wichtige-entscheidungen)  
+  - [Wichtige Entscheidungen](#wichtige-entscheidungen)  
 - [ERD Diagramm](#erd-diagramm)  
 - [UML Diagramm](#uml-diagramm)  
 - [Projektstruktur](#projektstruktur)  
