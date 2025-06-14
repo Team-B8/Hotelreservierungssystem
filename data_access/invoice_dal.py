@@ -6,6 +6,7 @@ class InvoiceDAL(BaseDAL):
         super().__init__()
 
     def get_by_booking_id(self, booking_id: int) -> Invoice | None:
+        # Retrieves the invoice linked to a given booking_id returns None if no invoice is found
         with self._connect() as conn:
             cursor = conn.execute("SELECT * FROM Invoice WHERE booking_id=?", (booking_id,))
             row = cursor.fetchone()
@@ -20,6 +21,7 @@ class InvoiceDAL(BaseDAL):
         return None
 
     def create(self, invoice: Invoice) -> Invoice:
+        # Inserts a new invoice into the database and updates the invoice_id with the generated ID
         with self._connect() as conn:
             cursor = conn.execute(
                 "INSERT INTO Invoice (booking_id, issue_date, total_amount, is_cancelled) VALUES (?, ?, ?, ?)",
