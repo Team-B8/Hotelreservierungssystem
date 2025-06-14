@@ -1,4 +1,20 @@
 # Team-B8 | Hotelreservierungssystem
+## Inhaltsverzeichnis
+
+- [Autoren](#autoren)  
+- [Ressourcen](#ressourcen)  
+- [Methodologie / Projektmanagement](#methodologie--projektmanagement)  
+  - [Projektmanagement mit Scrum](#projektmanagement-mit-scrum)  
+  - [Tools](#tools)  
+  - [Projektbeiträge](#projektbeiträge)  
+- [Wichtige Entscheidungen](#wichtige-entscheidungen)  
+- [ERD Diagramm](#erd-diagramm)  
+- [UML Diagramm](#uml-diagramm)  
+- [Projektstruktur](#projektstruktur)  
+- [Ausführung des Programms](#ausführung-des-programms)  
+- [User Stories](#user-stories)  
+- [Projekterkenntnisse](#projekterkenntnisse)  
+- [Hilfsmittel & Quellen](#hilfsmittel--quellen)
 
 ## Autoren
 <p>Yaren Akinci</p>
