@@ -75,13 +75,13 @@ Ziele:
 Durch den Einsatz von Scrum konnte eine strukturierte, zielorientierte und zugleich flexible Arbeitsweise etabliert werden. Alle Teammitglieder waren aktiv in Planung, Umsetzung und Reflexion eingebunden.
 
 ### Tools 
-<P>Deepnote: Codieren und Dokumentation</p>
-<P>Python 3.13</p>
-<P>Visual Paradigm: Modellierung ERD und UML</p>
-<p>Visual Studio Code: Codieren</p>
-<p>GitHub: Systemablage, Systemadmninistration, Aufgabenverteilung</p>
-<p>Teams: Kommunikation, Video-Calls</p>
-<p>Miro: Sprint Reviews und Sprint Retrospective</p>
+- **Deepnote**: Codieren und Dokumentation  
+- **Python 3.13**  
+- **Visual Paradigm**: Modellierung ERD und UML  
+- **Visual Studio Code**: Codieren  
+- **GitHub**: Systemablage, Systemadministration, Aufgabenverteilung  
+- **Teams**: Kommunikation, Video-Calls  
+- **Miro**: Sprint Reviews und Sprint Retrospective  
 
 ### Projektbeiträge
 #### Teamarbeit und Rollenverteilung im Projekt
