@@ -296,3 +296,26 @@ Wir haben das Projekt in kleine Schritte unterteilt. Jede **User Story** stand f
 ### 7. Umgang mit SQLite und SQL-Skripten
 
 Die Arbeit mit SQL-Dateien war anfangs fehleranfällig. Besonders beim Wiederverwenden von bestehenden Tabellen kam es schnell zu Konflikten. Wir haben gelernt, dass die Datenbank geleert oder neu erstellt werden muss, bevor SQL-Dateien erneut eingespielt werden. Nur so konnten doppelte Eintraege oder fehlerhafte Verknüpfungen vermieden werden.
+
+## Hilfsmittel & Quellen
+
+### Genutzte Hilfsmittel
+
+Für die Umsetzung unseres Hotelreservierungssystems haben wir verschiedene **Hilfsmittel zur Unterstützung beim Lernen und Verstehen** eingesetzt.
+
+#### W3Schools & PythonTutor
+- [**w3schools.com/python**](https://www.w3schools.com/python/): Hier konnten wir zentrale Sprachkonzepte wie Listen, Klassen oder Schleifen nachschlagen und mit Beispielen testen.
+- [**pythontutor.com**](https://pythontutor.com/): Diente uns als **visuelles Debugging-Tool**, um Codezeile für Codezeile nachzuvollziehen.
+
+#### ChatGPT
+ChatGPT haben wir hauptsächlich zur **Fehlersuche und Klärung von Verständnisfragen** genutzt. Besonders hilfreich war es beim **Analysieren von Tracebacks** und beim **Erklären von Zusammenhängen** im Code. Auf vollständige Codegenerierung haben wir bewusst verzichtet, um unsere eigene Architektur sowie das eigene Verständnis nicht zu gefährden.
+
+---
+
+### 📚 Quellenverzeichnis
+
+- Moodle-Unterlagen zum Modul **AEP**
+- Inhalte aus den **Live-Vorlesungen**
+- [https://www.w3schools.com/python/](https://www.w3schools.com/python/)
+- [https://pythontutor.com/](https://pythontutor.com/)
+- **ChatGPT**, als Werkzeug zur Fehlersuche, Syntaxklärung und Strukturhilfe
