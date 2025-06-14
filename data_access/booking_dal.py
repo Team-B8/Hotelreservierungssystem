@@ -7,12 +7,14 @@ class BookingDAL(BaseDAL):
         super().__init__()
 
     def get_by_id(self, booking_id: int) -> Booking:
+        # Get one booking by ID, used to look up a specific booking in the DB
         with self._connect() as conn:
             cursor = conn.execute("SELECT * FROM Booking WHERE booking_id=?", (booking_id,))
             row = cursor.fetchone()
         return self.__row_to_booking(row)
 
     def get_by_guest_id(self, guest_id: int, active_only: bool = False) -> list[Booking]:
+        # Returns all bookings for a given guest_id, optionally only active (not cancelled) bookings
         with self._connect() as conn:
             if active_only:
                 cursor = conn.execute("SELECT * FROM Booking WHERE guest_id=? AND is_cancelled=0", (guest_id,))
@@ -49,6 +51,7 @@ class BookingDAL(BaseDAL):
         return result.rowcount > 0
 
     def is_room_available(self, room_id: int, check_in_date, check_out_date) -> bool:
+        # Checks if a room is available between the given check-in and check-out dates
         start_str = check_in_date.isoformat() if hasattr(check_in_date, "isoformat") else str(check_in_date)
         end_str = check_out_date.isoformat() if hasattr(check_out_date, "isoformat") else str(check_out_date)
         with self._connect() as conn:
@@ -60,6 +63,7 @@ class BookingDAL(BaseDAL):
         return conflict is None
     
     def __row_to_booking(self, row) -> Booking | None:
+        # Converts a database row into a Booking object, returns None if the row is empty
         if row is None:
             return None
         return Booking(
