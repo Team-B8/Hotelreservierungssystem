@@ -315,7 +315,7 @@ Die Arbeit mit SQL-Dateien war anfangs fehleranfällig. Besonders beim Wiederver
 
 ### 8. Reflexion
 
-Das Projekt bot ein hervorragendes Szenario, um die Konzepte der Softwareentwicklung praxisnah zu erlernen. Am Ende konnten wir alle ein solides technisches Fundament aufbauen und grundlegende Programmierfähigkeiten erwerben. Dieser Lernprozess erforderte jedoch ein hohes Mass an Durchhaltevermögen, Zuversicht und Teamarbeit, verbunden mit viel Einsatz, Frustration und Durchhaltewillen.
+Das Projekt bot ein hervorragendes Szenario, um die Konzepte der Programmierung praxisnah zu erlernen. Am Ende konnten wir alle ein solides technisches Fundament aufbauen und grundlegende Programmierfähigkeiten erwerben. Dieser Lernprozess erforderte jedoch ein hohes Mass an Durchhaltevermögen, Zuversicht und Teamarbeit, verbunden mit viel Einsatz, Frustration und Durchhaltewillen.
 
 Gerade zu Beginn fühlte sich das Programmieren für uns, insbesondere für drei der vier Teammitglieder ohne Vorkenntnisse, wie eine fremde Sprache an. Umfang, Syntax, Logik und die verschiedenen Ebenen des Codes stellten durchgehend eine Herausforderung dar. Hinzu kam, dass das Projekt nicht sämtliche Aspekte von Python abdecken konnte, was oft zur Unsicherheit führte.
 
@@ -323,7 +323,7 @@ Die erste Unterrichtseinheit bildete einen idealen Einstieg, um die Grundkonzept
 
 Die Unterrichtsinhalte waren oftmals so aufgebaut, dass sich ihr praktischer Nutzen erst im späteren Verlauf des Projekts erschloss. Dies führte während der dritten Unterrichtseinheit phasenweise zu Unsicherheiten: Einerseits wuchs der Druck, im Projekt voranzukommen, andererseits konnten wir bestimmte Aufgaben noch nicht sinnvoll umsetzen, da einige Themen erst später im Unterricht ausführlich behandelt wurden. In dieser Phase begannen wir, uns bereits mit Inhalten zu beschäftigen, die erst im späteren Verlauf der Vorlesung aufgegriffen wurden, was zeitweise überfordernd wirkte, auch aufgrund des grossen Umfangs der Programmiersprache Python.
 
-Ein klarer Roadmap, abgestimmt auf das Projekt, wäre hier aus unserer Sicht sehr hilfreich gewesen. Eine solche Roadmap hätte es ermöglicht, gezielt die jeweils aktuellen Konzepte auf das Projekt anzuwenden und uns auf das Lernen zu konzentrieren, um so die Lerneffizienz zu steigern. Auch hätten zusätzliche externe Lernressourcen zum praktischen Programmieren dazu beigetragen, die Anwendungskompetenz weiter zu festigen. Zwar existieren zahlreiche Angebote im Internet, deren Qualität aber stark variiert.
+Eine klare Roadmap, abgestimmt auf das Projekt, wäre hier aus unserer Sicht sehr hilfreich gewesen. Eine solche Roadmap hätte es ermöglicht, gezielt die jeweils aktuellen Konzepte auf das Projekt anzuwenden und uns auf das Lernen zu konzentrieren, um so die Lerneffizienz zu steigern. Auch hätten zusätzliche externe Lernressourcen zum praktischen Programmieren dazu beigetragen, die Anwendungskompetenz weiter zu festigen. Zwar existieren zahlreiche Angebote im Internet, deren Qualität aber stark variiert.
 
 Mit fortschreitendem Semester lichtete sich der anfängliche Nebel. Wir konnten das erworbene Wissen zunehmend sicherer anwenden und in der praktischen Projektarbeit vertiefen. Insgesamt waren die Lerninhalte sinnvoll aufeinander aufgebaut und schufen einen roten Faden, der uns schrittweise durch das Projekt führte.
 
