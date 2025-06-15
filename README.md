@@ -313,6 +313,25 @@ Wir haben das Projekt in kleine Schritte unterteilt. Jede **User Story** stand f
 
 Die Arbeit mit SQL-Dateien war anfangs fehleranfällig. Besonders beim Wiederverwenden von bestehenden Tabellen kam es schnell zu Konflikten. Wir haben gelernt, dass die Datenbank geleert oder neu erstellt werden muss, bevor SQL-Dateien erneut eingespielt werden. Nur so konnten doppelte Eintraege oder fehlerhafte Verknüpfungen vermieden werden.
 
+### 8. Reflexion
+
+Das Projekt bot ein hervorragendes Szenario, um die Konzepte der Softwareentwicklung praxisnah zu erlernen. Am Ende konnten wir alle ein solides technisches Fundament aufbauen und grundlegende Programmierfähigkeiten erwerben. Dieser Lernprozess erforderte jedoch ein hohes Mass an Durchhaltevermögen, Zuversicht und Teamarbeit, verbunden mit viel Einsatz, Frustration und Durchhaltewillen.
+
+Gerade zu Beginn fühlte sich das Programmieren für uns, insbesondere für drei der vier Teammitglieder ohne Vorkenntnisse, wie eine fremde Sprache an. Umfang, Syntax, Logik und die verschiedenen Ebenen des Codes stellten durchgehend eine Herausforderung dar. Hinzu kam, dass das Projekt nicht sämtliche Aspekte von Python abdecken konnte, was oft zur Unsicherheit führte.
+
+Die erste Unterrichtseinheit bildete einen idealen Einstieg, um die Grundkonzepte von Python kennenzulernen und erste Programmierübungen durchzuführen. Dennoch war der Gesamtumfang und Ablauf des Projekts für uns als Gruppe zunächst schwer greifbar: Obwohl die User Stories frühzeitig zur Verfügung standen, fehlte uns anfangs das notwendige Know-how, um diese praktisch umzusetzen. Erst gegen Ende der zweiten Unterrichtseinheit waren wir soweit, mit der konkreten Modellierung der Klassen und Systemkomponenten zu beginnen.
+
+Die Unterrichtsinhalte waren oftmals so aufgebaut, dass sich ihr praktischer Nutzen erst im späteren Verlauf des Projekts erschloss. Dies führte während der dritten Unterrichtseinheit phasenweise zu Unsicherheiten: Einerseits wuchs der Druck, im Projekt voranzukommen, andererseits konnten wir bestimmte Aufgaben noch nicht sinnvoll umsetzen, da einige Themen erst später im Unterricht ausführlich behandelt wurden. In dieser Phase begannen wir, uns bereits mit Inhalten zu beschäftigen, die erst im späteren Verlauf der Vorlesung aufgegriffen wurden, was zeitweise überfordernd wirkte, auch aufgrund des grossen Umfangs der Programmiersprache Python.
+
+Ein klarer Roadmap, abgestimmt auf das Projekt, wäre hier aus unserer Sicht sehr hilfreich gewesen. Eine solche Roadmap hätte es ermöglicht, gezielt die jeweils aktuellen Konzepte auf das Projekt anzuwenden und uns auf das Lernen zu konzentrieren, um so die Lerneffizienz zu steigern. Auch hätten zusätzliche externe Lernressourcen zum praktischen Programmieren dazu beigetragen, die Anwendungskompetenz weiter zu festigen. Zwar existieren zahlreiche Angebote im Internet, deren Qualität aber stark variiert.
+
+Mit fortschreitendem Semester lichtete sich der anfängliche Nebel. Wir konnten das erworbene Wissen zunehmend sicherer anwenden und in der praktischen Projektarbeit vertiefen. Insgesamt waren die Lerninhalte sinnvoll aufeinander aufgebaut und schufen einen roten Faden, der uns schrittweise durch das Projekt führte.
+
+Die Teamarbeit funktionierte insgesamt gut, auch weil wir bereits erste Erfahrungen aus einem früheren Projekt mitbrachten. Dennoch erlebten wir im Projektverlauf gewisse Schwankungen: Nach einem guten Start fiel es uns während der Zwischenphase teilweise schwer einzuschätzen, wann und wie wir konkret am Projekt weiterarbeiten sollten. Mit zunehmender Klarheit der Unterrichtsinhalte konnte jedoch wieder strukturierter und effektiver gearbeitet werden, was sich in einem gelungenen Abschluss widerspiegelte.
+
+Rückblickend war das Projekt für uns alle nicht nur fachlich, sondern auch methodisch und persönlich äusserst lehrreich. Wir konnten unser theoretisches Wissen in einem realitätsnahen Szenario anwenden und wertvolle praktische Erfahrungen sammeln. Besonders haben wir gelernt, wie entscheidend gute Planung, saubere Dokumentation und enge Abstimmung innerhalb des Teams für den Projekterfolg sind. Das entstandene Hotelreservierungssystem stellt am Ende nicht nur ein funktionierendes Softwareprodukt dar, sondern auch ein Spiegelbild unseres gemeinsamen Lernprozesses.
+
+
 ## Hilfsmittel & Quellen
 
 ### Genutzte Hilfsmittel
